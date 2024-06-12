@@ -20,7 +20,10 @@ const TapPage = () => {
             alt=""
             className="event_sideBar_div_area_last_div_cont1_title_gif"
           />{" "}
-          200,000
+          200,000{" "}
+          <span className="TapPageDiv_area_1_profileAmountClaimes_span">
+            xp
+          </span>
         </div>
       </div>{" "}
       <div className="TapPageDiv_area_2">
@@ -41,7 +44,7 @@ const TapPage = () => {
               alt=""
               className="TapPageDiv_area_3_btn_gif"
             />
-            10,000
+            10,000 <span className="TapPageDiv_area_3_btn_Span_span">xp</span>
           </span>
         </button>
       </div>

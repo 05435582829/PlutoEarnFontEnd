@@ -5,10 +5,10 @@
 }
 .Home_body {
   height: 100%;
-  overflow: auto;
+  /* overflow: auto; */
   /* width: -webkit-fill-available; */
   padding-bottom: 8em;
-  background: #e1f0eb;
+  background: #e9f3ef;
 }
 .Home_container {
   width: -webkit-fill-available;

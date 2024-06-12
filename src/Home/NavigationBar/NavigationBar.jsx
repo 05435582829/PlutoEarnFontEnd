@@ -2,7 +2,7 @@ import React from "react";
 import "./NavigationBar.css";
 import { Home06Icon } from "hugeicons-react";
 import { Wallet03Icon } from "hugeicons-react";
-import { UserMultiple02Icon } from "hugeicons-react";
+import { UserMultiple02Icon, Rocket01Icon } from "hugeicons-react";
 import { Note01Icon } from "hugeicons-react";
 
 const NavigationBar = ({ activeTab, ToggleActiveTab }) => {
@@ -31,9 +31,16 @@ const NavigationBar = ({ activeTab, ToggleActiveTab }) => {
         Tasks
       </div>
       <div className="NavigationBarDiv_cont1">
-        <UserMultiple02Icon
+        <Rocket01Icon
           size={24}
           className="NavigationBarDiv_cont1_icon third_icon"
+        />
+        Boost
+      </div>
+      <div className="NavigationBarDiv_cont1">
+        <UserMultiple02Icon
+          size={24}
+          className="NavigationBarDiv_cont1_icon fourth_icon"
         />
         Friends
       </div>

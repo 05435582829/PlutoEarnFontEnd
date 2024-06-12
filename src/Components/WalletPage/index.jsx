@@ -28,7 +28,7 @@ const WalletPage = () => {
             </div>
             <div className="WalletPageDiv_1_cont_2_div2">
               <ViewIcon
-                size={24}
+                size={18}
                 className="WalletPageDiv_1_cont_2_div2_icon"
               />
             </div>

@@ -13,11 +13,11 @@
   border: solid 1px #1eae7d;
   border-radius: 20px;
   padding: 1.2em;
-  background: #1eae7d29;
+  background: #1eae7d1c;
   color: #fff;
 }
 .WalletPageDiv_1_cont_1 {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   color: #469077;
 }
@@ -29,7 +29,7 @@
 .WalletPageDiv_1_cont_2_div1 {
   display: flex;
   align-items: center;
-  font-size: 38px;
+  font-size: 32px;
   font-weight: 700;
   color: #135740;
 }
@@ -45,9 +45,9 @@
 
 .WalletPageDiv_1_cont_3_btn {
   width: -webkit-fill-available;
-  padding: 15px 15px;
-  font-size: 15px;
-  border-radius: 15px;
+  padding: 13px 15px;
+  font-size: 14px;
+  border-radius: 10px;
   border: none;
   background: #1eae7d;
   color: #ffffff;
@@ -55,6 +55,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: 500;
 }
 .WalletPageDiv_1_cont_2_div2_icon {
   stroke-width: 2.5;
@@ -153,10 +154,11 @@
   padding: 1.5em;
   border-top-right-radius: 30px;
   border-top-left-radius: 30px;
-  height: 70%;
+  height: min-content;
   width: -webkit-fill-available;
   position: relative;
   z-index: 1;
+  margin-bottom: 15%;
 }
 .redeemModal_cont_title {
   font-weight: 600;

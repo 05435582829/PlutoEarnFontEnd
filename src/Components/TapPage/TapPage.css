@@ -3,7 +3,7 @@
   width: -webkit-fill-available;
   display: flex;
   flex-direction: column;
-  padding: 4em 0em;
+  padding: 0em 0em;
   padding-top: 2em;
   justify-content: space-between;
 }
@@ -15,13 +15,13 @@
 }
 
 .TapPageDiv_area_1_profile_name {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
 }
 .TapPageDiv_area_1_profileAmountClaimes {
   display: flex;
   align-items: center;
-  font-size: 38px;
+  font-size: 28px;
   font-weight: 700;
   margin-top: 1em;
 }
@@ -36,15 +36,15 @@
   justify-content: center;
 }
 .TapPageDiv_animation {
-  width: 300px;
+  width: 210px;
 }
 .TapPageDiv_area_3_btn {
   width: -webkit-fill-available;
   padding: 15px 15px;
-  font-size: 20px;
+  font-size: 14px;
   border-radius: 15px;
   border: none;
-  background: #2fb688;
+  background: #1eae7d;
   color: #ffff;
   font-weight: 600;
   display: flex;
@@ -52,7 +52,7 @@
   justify-content: center;
 }
 .TapPageDiv_area_1_profile_icon {
-  width: 90px;
+  width: 70px;
 }
 .TapPageDiv_area_3_btn_gif {
   width: 20px;
@@ -62,7 +62,10 @@
   align-items: center;
   margin-left: 0.5em;
 }
-
+.TapPageDiv_area_1_profileAmountClaimes_span {
+  margin-left: 2px;
+  font-size: 28px;
+}
 .TapPageDiv_area_3_btn_gif {
   width: 20px;
   margin-bottom: 4px;
