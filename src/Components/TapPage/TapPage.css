@@ -15,7 +15,7 @@
 }
 
 .TapPageDiv_area_1_profile_name {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 500;
 }
 .TapPageDiv_area_1_profileAmountClaimes {
@@ -40,7 +40,7 @@
 }
 .TapPageDiv_area_3_btn {
   width: -webkit-fill-available;
-  padding: 18px 15px;
+  padding: 15px 15px;
   font-size: 20px;
   border-radius: 15px;
   border: none;
@@ -52,7 +52,7 @@
   justify-content: center;
 }
 .TapPageDiv_area_1_profile_icon {
-  width: 100px;
+  width: 90px;
 }
 .TapPageDiv_area_3_btn_gif {
   width: 20px;

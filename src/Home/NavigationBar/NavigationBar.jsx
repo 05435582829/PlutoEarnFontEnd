@@ -18,21 +18,21 @@ const NavigationBar = ({ activeTab, ToggleActiveTab }) => {
         onClick={ToggleActiveTab}
       >
         <Home06Icon
-          size={32}
+          size={24}
           className="NavigationBarDiv_cont1_icon first_icon"
         />
         Home
       </div>
       <div className="NavigationBarDiv_cont1">
         <Note01Icon
-          size={32}
+          size={24}
           className="NavigationBarDiv_cont1_icon second_icon"
         />
         Tasks
       </div>
       <div className="NavigationBarDiv_cont1">
         <UserMultiple02Icon
-          size={32}
+          size={24}
           className="NavigationBarDiv_cont1_icon third_icon"
         />
         Friends
@@ -47,7 +47,7 @@ const NavigationBar = ({ activeTab, ToggleActiveTab }) => {
         onClick={ToggleActiveTab}
       >
         <Wallet03Icon
-          size={32}
+          size={24}
           className="NavigationBarDiv_cont1_icon last_icon"
         />
         Wallet
