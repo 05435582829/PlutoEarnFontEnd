@@ -154,11 +154,12 @@
   padding: 1.5em;
   border-top-right-radius: 30px;
   border-top-left-radius: 30px;
-  height: min-content;
+  height: 75%;
   width: -webkit-fill-available;
   position: relative;
   z-index: 1;
   margin-bottom: 15%;
+  padding-top: 2em;
 }
 .redeemModal_cont_title {
   font-weight: 600;
@@ -217,6 +218,7 @@
   border: none;
   background: #1eae7d;
   color: #fff;
+  font-weight: 500;
 }
 .redeemModal_cont_body_5 {
   margin-top: 2em;
