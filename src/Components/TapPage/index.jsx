@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import "./TapPage.css";
 import Lottie from "lottie-react";
 import HourGlass from "../LottieFiles/HourGlassAnimation.json";
 const TapPage = () => {
+  const lottieRef = useRef();
+
+  useEffect(() => {
+    if (lottieRef.current) {
+      lottieRef.current.setSpeed(0.3); // Adjust the speed as needed
+    }
+  }, []);
   return (
     <div className="TapPageDiv_div">
       <div className="TapPageDiv_area_1">
@@ -32,6 +39,7 @@ const TapPage = () => {
           loop={true}
           autoPlay={true}
           className="TapPageDiv_animation"
+          lottieRef={lottieRef}
           preserveAspectRatio="xMidYMid meet"
         />
       </div>
