@@ -1,0 +1,53 @@
+.NavigationBarDiv {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em 1em;
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  background: white;
+  width: -webkit-fill-available;
+  border-top: solid 1px #ebebeb;
+}
+
+.NavigationBarDiv_cont1 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 13px;
+  cursor: pointer;
+  filter: grayscale(1);
+  opacity: 0.8;
+  color: #1eae7d;
+}
+.NavigationBarDiv_cont1_active {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 13px;
+  cursor: pointer;
+  filter: opacity(1);
+  font-weight: 600;
+  color: #1eae7d;
+}
+
+.NavigationBarDiv_cont1_icon {
+  margin-bottom: 5px;
+  fill: #1eae7d;
+  color: #1eae7d;
+}
+.first_icon path:last-child {
+  color: white;
+  stroke-width: 3px;
+}
+.second_icon path:nth-child(3) {
+  color: white;
+  stroke-width: 1.5px;
+}
+.last_icon path:nth-child(3) {
+  stroke: #2fb688;
+  color: #fff !important;
+  fill: #fff;
+}

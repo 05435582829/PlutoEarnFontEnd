@@ -1,0 +1,17 @@
+.Home {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+.Home_body {
+  height: 100%;
+  overflow: auto;
+  /* width: -webkit-fill-available; */
+  padding-bottom: 8em;
+}
+.Home_container {
+  width: -webkit-fill-available;
+  max-width: 500px;
+  padding: 0em 1em;
+  height: 100%;
+}

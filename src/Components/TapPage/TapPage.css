@@ -1,0 +1,69 @@
+.TapPageDiv_div {
+  height: 100%;
+  width: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+  padding: 4em 0em;
+  padding-top: 2em;
+  justify-content: space-between;
+}
+.TapPageDiv_area_1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: -webkit-fill-available;
+}
+
+.TapPageDiv_area_1_profile_name {
+  font-size: 24px;
+  font-weight: 500;
+}
+.TapPageDiv_area_1_profileAmountClaimes {
+  display: flex;
+  align-items: center;
+  font-size: 38px;
+  font-weight: 700;
+  margin-top: 1em;
+}
+.event_sideBar_div_area_last_div_cont1_title_gif {
+  width: 50px;
+  margin-bottom: 10px;
+}
+.TapPageDiv_area_2 {
+  width: -webkit-fill-available;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.TapPageDiv_animation {
+  width: 300px;
+}
+.TapPageDiv_area_3_btn {
+  width: -webkit-fill-available;
+  padding: 18px 15px;
+  font-size: 20px;
+  border-radius: 15px;
+  border: none;
+  background: #2fb688;
+  color: #ffff;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.TapPageDiv_area_1_profile_icon {
+  width: 100px;
+}
+.TapPageDiv_area_3_btn_gif {
+  width: 20px;
+}
+.TapPageDiv_area_3_btn_Span {
+  display: flex;
+  align-items: center;
+  margin-left: 0.5em;
+}
+
+.TapPageDiv_area_3_btn_gif {
+  width: 20px;
+  margin-bottom: 4px;
+}

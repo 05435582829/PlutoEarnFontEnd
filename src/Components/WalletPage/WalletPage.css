@@ -1,0 +1,9 @@
+.WalletPageDiv {
+  height: 100%;
+  width: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+  padding: 4em 0em;
+  padding-top: 2em;
+  justify-content: space-between;
+}
