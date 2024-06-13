@@ -38,6 +38,7 @@ const Home = () => {
         </div>
       </div>
       <NavigationBar activeTab={activeTab} ToggleActiveTab={ToggleActiveTab} />
+      {/* <img src="/img/pluto_bg.jpg" alt="" className="Home_bg" /> */}
     </div>
   );
 };
