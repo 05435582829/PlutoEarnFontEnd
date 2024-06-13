@@ -23,21 +23,45 @@ const NavigationBar = ({ activeTab, ToggleActiveTab }) => {
         />
         Home
       </div>
-      <div className="NavigationBarDiv_cont1">
+      <div
+        id="task"
+        className={
+          activeTab === "task"
+            ? "NavigationBarDiv_cont1_active "
+            : "NavigationBarDiv_cont1 "
+        }
+        onClick={ToggleActiveTab}
+      >
         <Note01Icon
           size={24}
           className="NavigationBarDiv_cont1_icon second_icon"
         />
         Tasks
       </div>
-      <div className="NavigationBarDiv_cont1">
+      <div
+        id="boost"
+        className={
+          activeTab === "boost"
+            ? "NavigationBarDiv_cont1_active "
+            : "NavigationBarDiv_cont1 "
+        }
+        onClick={ToggleActiveTab}
+      >
         <Rocket01Icon
           size={24}
           className="NavigationBarDiv_cont1_icon third_icon"
         />
         Boost
       </div>
-      <div className="NavigationBarDiv_cont1">
+      <div
+        id="ref"
+        className={
+          activeTab === "ref"
+            ? "NavigationBarDiv_cont1_active "
+            : "NavigationBarDiv_cont1 "
+        }
+        onClick={ToggleActiveTab}
+      >
         <UserMultiple02Icon
           size={24}
           className="NavigationBarDiv_cont1_icon fourth_icon"

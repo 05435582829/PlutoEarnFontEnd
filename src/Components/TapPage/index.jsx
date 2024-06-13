@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from "react";
+
 import "./TapPage.css";
 import Lottie from "lottie-react";
 import HourGlass from "../LottieFiles/HourGlassAnimation.json";

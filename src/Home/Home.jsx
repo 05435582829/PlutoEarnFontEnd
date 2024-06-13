@@ -8,6 +8,9 @@ import NavigationBar from "./NavigationBar/NavigationBar";
 // pages=========
 import TapPage from "../Components/TapPage";
 import WalletPage from "../Components/WalletPage";
+import ReferralPage from "../Components/ReferralPage";
+import Boost from "../Components/BoostPage";
+import TaskPage from "../Components/TaskPage";
 // styles=========
 // styles=========
 // styles=========
@@ -25,6 +28,12 @@ const Home = () => {
             <TapPage />
           ) : activeTab === "wallet" ? (
             <WalletPage />
+          ) : activeTab === "ref" ? (
+            <ReferralPage />
+          ) : activeTab === "boost" ? (
+            <Boost />
+          ) : activeTab === "task" ? (
+            <TaskPage />
           ) : null}
         </div>
       </div>
