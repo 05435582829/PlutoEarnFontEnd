@@ -44,7 +44,7 @@ const ReferralPage = () => {
             {" "}
             <div className="redeemModal_cont">
               <div className="redeemModal_cont_body">
-                <div className="redeemModal_cont_body_3">
+                <div className="redeemModal_cont_body_3b">
                   <div className="redeemModal_cont_body_3_title">
                     Invite Link
                   </div>

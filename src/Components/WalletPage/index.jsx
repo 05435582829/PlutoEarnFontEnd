@@ -79,6 +79,7 @@ const WalletPage = () => {
         isOpen={redeemModal}
         onClose={() => ToggleRedeemModal()}
         detent="full-height"
+        disableScrollLocking={true}
       >
         <Sheet.Container>
           <Sheet.Header />

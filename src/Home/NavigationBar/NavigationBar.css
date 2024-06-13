@@ -19,7 +19,7 @@
   cursor: pointer;
   filter: grayscale(1);
   opacity: 0.8;
-  color: #1eae7d;
+  color: #11b66e;
 }
 .NavigationBarDiv_cont1_active {
   width: 100%;
@@ -30,13 +30,13 @@
   cursor: pointer;
   filter: opacity(1);
   font-weight: 600;
-  color: #1eae7d;
+  color: #11b66e;
 }
 
 .NavigationBarDiv_cont1_icon {
   margin-bottom: 5px;
-  fill: #1eae7d;
-  color: #1eae7d;
+  fill: #11b66e;
+  color: #11b66e;
 }
 .first_icon path:last-child {
   color: white;

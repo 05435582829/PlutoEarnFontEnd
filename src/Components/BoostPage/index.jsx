@@ -13,7 +13,7 @@ const Boost = () => {
           className="coming_soon_div_animation"
           preserveAspectRatio="xMidYMid meet"
         />
-        <div className="coming_soon_div_txt">Coming soon</div>
+        <div className="coming_soon_div_txt">Coming soon...</div>
       </div>
     </div>
   );
