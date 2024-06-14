@@ -9,6 +9,7 @@ function App() {
     const initTelegramWebApp = async () => {
       if (window.Telegram && window.Telegram.WebApp) {
         try {
+          console.log(window.Telegram, "megan");
           const userInfo = await window.Telegram.WebApp.getUserInfo();
           setUserInfo(userInfo);
         } catch (error) {
@@ -21,7 +22,14 @@ function App() {
   }, []);
   return (
     <div className="App">
-      {userInfo ? <Home /> : <p> THis is not loaded inside a telegram app</p>}
+      {userInfo ? (
+        <Home />
+      ) : (
+        <p>
+          {" "}
+          THis is not loaded inside a telegram app, {JSON.stringify(window)}
+        </p>
+      )}
     </div>
   );
 }
