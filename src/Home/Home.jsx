@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 // components=========
 // components=========
 // components=========
 import NavigationBar from "./NavigationBar/NavigationBar";
 import DefaultComponentLoading from "./ComponentLoader/DefaultComponentLoading";
+import { UserContext } from "../Utils/UserContext";
+
 // pages=========
 // pages=========
 // pages=========
@@ -17,6 +19,7 @@ import TaskPage from "../Components/TaskPage";
 // styles=========
 import "./Home.css";
 const Home = () => {
+  const { user, loading, error } = useContext(UserContext);
   const [activeTab, setActiveTab] = useState("home");
   const [loadingDiv, setLoadingDiv] = useState(true);
 
