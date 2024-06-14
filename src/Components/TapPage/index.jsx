@@ -7,8 +7,28 @@ import Lottie from "lottie-react";
 import HourGlass from "../LottieFiles/HourGlassAnimation.json";
 const TapPage = () => {
   const [pointBalance, setPointBalance] = useState(100000);
+
+  const [user, setUser] = useState({});
   const lottieRef = useRef();
 
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const initTelegramWebApp = async () => {
+      if (window.Telegram && window.Telegram.WebApp) {
+        try {
+          const params = new URLSearchParams(Telegram.WebApp.initData);
+          const data = Object.fromEntries(params);
+          data.user = JSON.parse(data.user);
+          setUserData(data);
+        } catch (error) {
+          console.error("Error initializing Telegram Web App:", error);
+        }
+      }
+    };
+
+    initTelegramWebApp();
+  }, []);
   useEffect(() => {
     if (lottieRef.current) {
       lottieRef.current.setSpeed(0.3); // Adjust the speed as needed
@@ -27,7 +47,11 @@ const TapPage = () => {
             className="TapPageDiv_area_1_profile_icon"
           />
         </div>
-        <div className="TapPageDiv_area_1_profile_name">CyntaxJs</div>
+        <div className="TapPageDiv_area_1_profile_name">
+          {userData?.user?.username || "KK"}
+          {/*  */}
+        </div>
+
         <div className="TapPageDiv_area_1_profileAmountClaimes">
           <img
             src="/img/point_gif_coin.gif"
