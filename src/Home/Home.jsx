@@ -67,9 +67,9 @@ const Home = () => {
     }
   };
 
-  useEffect(() => {
-    initTelegramWebApp();
-  }, []);
+  // useEffect(() => {
+  //   initTelegramWebApp();
+  // }, []);
 
   const ToggleActiveTab = (e) => {
     setActiveTab(e.currentTarget.id);
