@@ -44,6 +44,8 @@ const Home = () => {
           setUserData(data);
           setPredata(data);
 
+          return;
+
           //call the login api
           const res = await SignupLogin(
             "kgnpire",
@@ -54,7 +56,6 @@ const Home = () => {
           console.log(res, "aaa");
           setLoadingDiv(false);
 
-          return;
           if (res.success) {
             setUser(res?.data?.user);
             localStorage.setItem("x-token", res?.data?.token);
