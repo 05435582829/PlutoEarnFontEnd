@@ -39,48 +39,40 @@ const Home = () => {
         const params = new URLSearchParams(Telegram.WebApp.initData);
         const data = Object.fromEntries(params);
         data.user = JSON.parse(data.user);
-        setUserData(data);
         setPredata(data);
-        setLoadingDiv(false);
-
-        return;
 
         //call the login api
-        const res = await SignupLogin(
-          "kgnpire",
-          "goodluck"
-          // userId: data?.user?.username,
-          // chatId: data?.user?.username,
-        );
+        const res = await SignupLogin("kgnpire", "goodluck");
         console.log(res, "aaa");
-        setLoadingDiv(false);
 
         if (res.success) {
           setUser(res?.data?.user);
-          localStorage.setItem("x-token", res?.data?.token);
+          localStorage.setItem("eta", res?.data?.token);
           setLoadingDiv(false);
           return;
         }
       } catch (error) {
         console.error("Error initializing Telegram Web App:", error);
       }
+    } else {
+      console.log("area");
     }
   };
 
-  // useEffect(() => {
-  //   initTelegramWebApp();
-  // }, []);
+  useEffect(() => {
+    initTelegramWebApp();
+  }, []);
 
   const ToggleActiveTab = (e) => {
     setActiveTab(e.currentTarget.id);
   };
-  // useEffect(() => {
-  //   setLoadingDiv(true);
-  //   const timer = setTimeout(() => {
-  //     setLoadingDiv(false);
-  //   }, 5000);
-  // }, []);
-
+  useEffect(() => {
+    setLoadingDiv(true);
+    const timer = setTimeout(() => {
+      setLoadingDiv(false);
+    }, 5000);
+  }, []);
+  console.log(user, pre_data);
   return (
     <>
       {loadingDiv ? (
