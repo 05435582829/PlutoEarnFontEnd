@@ -33,41 +33,41 @@ const Home = () => {
 
   const [activeTab, setActiveTab] = useState("home");
   const [loadingDiv, setLoadingDiv] = useState(true);
+  const initTelegramWebApp = async () => {
+    if (window.Telegram && window.Telegram.WebApp) {
+      try {
+        const params = new URLSearchParams(Telegram.WebApp.initData);
+        const data = Object.fromEntries(params);
+        data.user = JSON.parse(data.user);
+        setUserData(data);
+        setPredata(data);
+        setLoadingDiv(false);
+
+        return;
+
+        //call the login api
+        const res = await SignupLogin(
+          "kgnpire",
+          "goodluck"
+          // userId: data?.user?.username,
+          // chatId: data?.user?.username,
+        );
+        console.log(res, "aaa");
+        setLoadingDiv(false);
+
+        if (res.success) {
+          setUser(res?.data?.user);
+          localStorage.setItem("x-token", res?.data?.token);
+          setLoadingDiv(false);
+          return;
+        }
+      } catch (error) {
+        console.error("Error initializing Telegram Web App:", error);
+      }
+    }
+  };
 
   useEffect(() => {
-    const initTelegramWebApp = async () => {
-      if (window.Telegram && window.Telegram.WebApp) {
-        try {
-          const params = new URLSearchParams(Telegram.WebApp.initData);
-          const data = Object.fromEntries(params);
-          data.user = JSON.parse(data.user);
-          setUserData(data);
-          setPredata(data);
-
-          return;
-
-          //call the login api
-          const res = await SignupLogin(
-            "kgnpire",
-            "goodluck"
-            // userId: data?.user?.username,
-            // chatId: data?.user?.username,
-          );
-          console.log(res, "aaa");
-          setLoadingDiv(false);
-
-          if (res.success) {
-            setUser(res?.data?.user);
-            localStorage.setItem("x-token", res?.data?.token);
-            setLoadingDiv(false);
-            return;
-          }
-        } catch (error) {
-          console.error("Error initializing Telegram Web App:", error);
-        }
-      }
-    };
-
     initTelegramWebApp();
   }, []);
 
