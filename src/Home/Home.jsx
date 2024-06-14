@@ -46,8 +46,10 @@ const Home = () => {
 
           //call the login api
           const res = await SignupLogin({
-            userId: data?.user?.username,
-            chatId: data?.user?.username,
+            userId: "kgnpire",
+            chatId: "goodluck",
+            // userId: data?.user?.username,
+            // chatId: data?.user?.username,
           });
           console.log(res, "aaa");
 
