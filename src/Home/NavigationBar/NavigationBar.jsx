@@ -4,17 +4,8 @@ import { Home06Icon } from "hugeicons-react";
 import { Wallet03Icon } from "hugeicons-react";
 import { UserMultiple02Icon, Rocket01Icon } from "hugeicons-react";
 import { Note01Icon } from "hugeicons-react";
-import { Haptics, ImpactStyle } from "@capacitor/haptics";
 
 const NavigationBar = ({ activeTab, ToggleActiveTab }) => {
-  const hapticsVibrate = async () => {
-    await Haptics.vibrate();
-  };
-
-  const handleTouchStart = () => {
-    hapticsVibrate(); // Trigger haptic feedback on touch start
-  };
-
   return (
     <div className="NavigationBarDiv">
       <div
@@ -25,7 +16,6 @@ const NavigationBar = ({ activeTab, ToggleActiveTab }) => {
             : "NavigationBarDiv_cont1 "
         }
         onClick={ToggleActiveTab}
-        onTouchStart={handleTouchStart}
       >
         <Home06Icon
           size={24}
@@ -41,7 +31,6 @@ const NavigationBar = ({ activeTab, ToggleActiveTab }) => {
             : "NavigationBarDiv_cont1 "
         }
         onClick={ToggleActiveTab}
-        onTouchStart={handleTouchStart}
       >
         <Note01Icon
           size={24}
@@ -57,7 +46,6 @@ const NavigationBar = ({ activeTab, ToggleActiveTab }) => {
             : "NavigationBarDiv_cont1 "
         }
         onClick={ToggleActiveTab}
-        onTouchStart={handleTouchStart}
       >
         <Rocket01Icon
           size={24}
@@ -73,7 +61,6 @@ const NavigationBar = ({ activeTab, ToggleActiveTab }) => {
             : "NavigationBarDiv_cont1 "
         }
         onClick={ToggleActiveTab}
-        onTouchStart={handleTouchStart}
       >
         <UserMultiple02Icon
           size={24}
@@ -89,7 +76,6 @@ const NavigationBar = ({ activeTab, ToggleActiveTab }) => {
             : "NavigationBarDiv_cont1"
         }
         onClick={ToggleActiveTab}
-        onTouchStart={handleTouchStart}
       >
         <Wallet03Icon
           size={24}
