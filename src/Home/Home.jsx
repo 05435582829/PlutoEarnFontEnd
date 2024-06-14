@@ -18,10 +18,37 @@ import TaskPage from "../Components/TaskPage";
 // styles=========
 // styles=========
 import "./Home.css";
+import { SignupLogin } from "../constants/api";
 const Home = () => {
   const { user, loading, error } = useContext(UserContext);
   const [activeTab, setActiveTab] = useState("home");
   const [loadingDiv, setLoadingDiv] = useState(true);
+
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const initTelegramWebApp = async () => {
+      if (window.Telegram && window.Telegram.WebApp) {
+        try {
+          const params = new URLSearchParams(Telegram.WebApp.initData);
+          const data = Object.fromEntries(params);
+          data.user = JSON.parse(data.user);
+          setUserData(data);
+
+          //call the login api
+          const res = await SignupLogin({
+            userId: data?.user?.username,
+            chatId: data?.user?.username,
+          });
+          console.log(res, "aaa");
+        } catch (error) {
+          console.error("Error initializing Telegram Web App:", error);
+        }
+      }
+    };
+
+    initTelegramWebApp();
+  }, []);
 
   const ToggleActiveTab = (e) => {
     setActiveTab(e.currentTarget.id);

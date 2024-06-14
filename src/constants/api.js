@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export const SignupLogin = async () => {
+export const SignupLogin = async ({ userId, chatId }) => {
   try {
     const res = await axios.get(
-      `https://plutoearn.egoras.com/pub/user/register/login/Ebrix/Ebri239`
+      `https://plutoearn.egoras.com/pub/user/register/login/${userId}/${chatId}`
     );
     return res.data;
   } catch (error) {
