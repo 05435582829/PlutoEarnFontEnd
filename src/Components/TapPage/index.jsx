@@ -10,7 +10,7 @@ const TapPage = () => {
 
   const [user, setUser] = useState({});
   const lottieRef = useRef();
-
+  //
   const tg = window.Telegram.WebApp;
   // Hide the back button
   tg.BackButton.hide();
@@ -18,7 +18,7 @@ const TapPage = () => {
     const params = new URLSearchParams(window.Telegram.WebApp.initData());
     const userData = Object.fromEntries(params);
     userData.user = JSON.parse(userData.user);
-    setUser(userData);
+    setUser(userData.user);
   }, []);
 
   useEffect(() => {
