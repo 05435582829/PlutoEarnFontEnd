@@ -20,3 +20,13 @@ export const GetEarningBal = async () => {
     return error.response || error.message;
   }
 };
+export const InitializeEarning = async () => {
+  try {
+    const res = await axios.get(
+      `https://plutoearn.egoras.com/reward/initialize`
+    );
+    return res.data;
+  } catch (error) {
+    return error.response || error.message;
+  }
+};

@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import AnimatedNumber from "react-awesome-animated-number";
 import "react-awesome-animated-number/dist/index.css";
+import { InitializeEarning } from "../../constants/api";
 
 import "./TapPage.css";
 import Lottie from "lottie-react";
