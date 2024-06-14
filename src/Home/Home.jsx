@@ -53,6 +53,8 @@ const Home = () => {
 
           if (res.success) {
             setUser(res?.data?.user);
+            localStorage.setItem("x-token", res?.data?.token);
+            setLoadingDiv(false);
             return;
           }
         } catch (error) {
@@ -67,12 +69,12 @@ const Home = () => {
   const ToggleActiveTab = (e) => {
     setActiveTab(e.currentTarget.id);
   };
-  useEffect(() => {
-    setLoadingDiv(true);
-    const timer = setTimeout(() => {
-      setLoadingDiv(false);
-    }, 5000);
-  }, []);
+  // useEffect(() => {
+  //   setLoadingDiv(true);
+  //   const timer = setTimeout(() => {
+  //     setLoadingDiv(false);
+  //   }, 5000);
+  // }, []);
 
   return (
     <>
