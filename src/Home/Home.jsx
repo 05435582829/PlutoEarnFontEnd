@@ -45,12 +45,12 @@ const Home = () => {
           setPredata(data);
 
           //call the login api
-          const res = await SignupLogin({
-            userId: "kgnpire",
-            chatId: "goodluck",
+          const res = await SignupLogin(
+            "kgnpire",
+            "goodluck"
             // userId: data?.user?.username,
             // chatId: data?.user?.username,
-          });
+          );
           console.log(res, "aaa");
 
           if (res.success) {
