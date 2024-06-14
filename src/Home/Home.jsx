@@ -20,8 +20,15 @@ const Home = () => {
   const [activeTab, setActiveTab] = useState("home");
   const [loadingDiv, setLoadingDiv] = useState(true);
 
+  const handleClick = () => {
+    // Trigger haptic feedback
+    if (navigator.vibrate) {
+      navigator.vibrate(100); // Vibrate for 100ms
+    }
+  };
   const ToggleActiveTab = (e) => {
     setActiveTab(e.currentTarget.id);
+    handleClick();
   };
   useEffect(() => {
     setLoadingDiv(true);
