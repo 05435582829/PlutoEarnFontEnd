@@ -48,7 +48,7 @@ const TapPage = () => {
           />
         </div>
         <div className="TapPageDiv_area_1_profile_name">
-          {userData.username || "KK"}
+          {userData?.username || "KK"}
           {/*  */}
         </div>
 
