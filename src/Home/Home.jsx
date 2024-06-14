@@ -20,7 +20,8 @@ import TaskPage from "../Components/TaskPage";
 import "./Home.css";
 import { SignupLogin } from "../constants/api";
 const Home = () => {
-  const { user, loading, error } = useContext(UserContext);
+  const { setUser, setLoading, setError, user, error, loading } =
+    useContext(UserContext);
   const [activeTab, setActiveTab] = useState("home");
   const [loadingDiv, setLoadingDiv] = useState(true);
 
@@ -59,7 +60,12 @@ const Home = () => {
       setLoadingDiv(false);
     }, 5000);
   }, []);
-
+  useEffect(() => {
+    setUser("Name");
+    setLoading("True");
+    setError("false");
+  }, []);
+  console.log(user, error, loading);
   return (
     <>
       {loadingDiv ? (
