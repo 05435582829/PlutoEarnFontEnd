@@ -52,7 +52,9 @@ const Home = () => {
             // chatId: data?.user?.username,
           );
           console.log(res, "aaa");
+          setLoadingDiv(false);
 
+          return;
           if (res.success) {
             setUser(res?.data?.user);
             localStorage.setItem("x-token", res?.data?.token);
