@@ -42,7 +42,7 @@ const Home = () => {
         setPredata(data);
 
         //call the login api
-        const res = await SignupLogin("kgnpire", "goodluck");
+        const res = await SignupLogin(data.user.username, data.user.id);
         console.log(res, "aaa");
 
         if (res.success) {
