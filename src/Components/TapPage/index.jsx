@@ -1,9 +1,12 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
+import AnimatedNumber from "react-awesome-animated-number";
+import "react-awesome-animated-number/dist/index.css";
 
 import "./TapPage.css";
 import Lottie from "lottie-react";
 import HourGlass from "../LottieFiles/HourGlassAnimation.json";
 const TapPage = () => {
+  const [pointBalance, setPointBalance] = useState(100000);
   const lottieRef = useRef();
 
   useEffect(() => {
@@ -11,6 +14,9 @@ const TapPage = () => {
       lottieRef.current.setSpeed(0.3); // Adjust the speed as needed
     }
   }, []);
+  const AddToPointBalance = () => {
+    setPointBalance(pointBalance + 1000);
+  };
   return (
     <div className="TapPageDiv_div">
       <div className="TapPageDiv_area_1">
@@ -28,7 +34,12 @@ const TapPage = () => {
             alt=""
             className="event_sideBar_div_area_last_div_cont1_title_gif"
           />{" "}
-          200,000{" "}
+          <AnimatedNumber
+            value={pointBalance}
+            hasComma={true}
+            size={32}
+            duration={500}
+          />
           <span className="TapPageDiv_area_1_profileAmountClaimes_span">
             xp
           </span>
@@ -45,7 +56,7 @@ const TapPage = () => {
         />
       </div>
       <div className="TapPageDiv_area_3">
-        <button className="TapPageDiv_area_3_btn">
+        <button className="TapPageDiv_area_3_btn" onClick={AddToPointBalance}>
           Claim{" "}
           <span className="TapPageDiv_area_3_btn_Span">
             <img

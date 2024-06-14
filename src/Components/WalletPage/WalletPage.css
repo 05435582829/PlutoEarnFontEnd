@@ -5,6 +5,7 @@
   flex-direction: column;
   padding: 4em 0em;
   padding-top: 2em;
+  animation: opacityAnime 0.3s linear;
   /* justify-content: space-between; */
 }
 .WalletPageDiv_1_cont {

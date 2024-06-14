@@ -6,6 +6,7 @@
   padding: 0em 0em;
   padding-top: 2em;
   justify-content: space-between;
+  animation: opacityAnime 0.3s linear;
 }
 .TapPageDiv_area_1 {
   display: flex;

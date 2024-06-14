@@ -10,10 +10,19 @@
   padding-bottom: 8em;
   background: #fff;
   background-image: linear-gradient(2deg, #dbfff7b5, #ffffff);
+  animation: opacityAnime 1s linear;
 }
 .Home_container {
   width: -webkit-fill-available;
   max-width: 500px;
   padding: 0em 1em;
   height: 100%;
+}
+@keyframes opacityAnime {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
