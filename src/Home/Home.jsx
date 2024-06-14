@@ -18,7 +18,7 @@ import TaskPage from "../Components/TaskPage";
 // styles=========
 // styles=========
 import "./Home.css";
-import { SignupLogin } from "../constants/api";
+import { SignupLogin, GetEarningBal } from "../constants/api";
 const Home = () => {
   const {
     setUser,

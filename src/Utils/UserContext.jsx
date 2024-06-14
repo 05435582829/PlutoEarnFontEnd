@@ -9,6 +9,7 @@ export const UserProvider = ({ children }) => {
   const [pre_data, setPredata] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [userBalance, setUserBalance] = useState("0");
 
   //   useEffect(() => {
   //     // Fetch user data from API
@@ -41,6 +42,8 @@ export const UserProvider = ({ children }) => {
         error,
         setPredata,
         pre_data,
+        userBalance,
+        setUserBalance,
       }}
     >
       {children}
