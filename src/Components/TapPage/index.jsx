@@ -15,7 +15,7 @@ const TapPage = () => {
   // Hide the back button
   tg.BackButton.hide();
   useEffect(() => {
-    const params = new URLSearchParams(window.Telegram.WebApp.initData);
+    const params = new URLSearchParams(window.Telegram.WebApp.initData());
     const userData = Object.fromEntries(params);
     userData.user = JSON.parse(userData.user);
     setUser(userData);
