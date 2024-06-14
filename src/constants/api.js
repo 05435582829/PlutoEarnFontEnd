@@ -1,4 +1,5 @@
 import axios from "axios";
+import api from "../Utils/AxiosInstance";
 
 export const SignupLogin = async (userId, chatId) => {
   try {
@@ -22,9 +23,7 @@ export const GetEarningBal = async () => {
 };
 export const InitializeEarning = async () => {
   try {
-    const res = await axios.get(
-      `https://plutoearn.egoras.com/reward/initialize`
-    );
+    const res = await api.get(`/reward/initialize`);
     return res.data;
   } catch (error) {
     return error.response || error.message;

@@ -10,36 +10,9 @@ import { UserContext } from "../../Utils/UserContext";
 const TapPage = () => {
   const [pointBalance, setPointBalance] = useState(100000);
 
-  const {
-    setUser,
-    setLoading,
-    setError,
-    user,
-    error,
-    loading,
-    pre_data,
-    setPredata,
-  } = useContext(UserContext);
+  const { pre_data, setPredata } = useContext(UserContext);
   const lottieRef = useRef();
 
-  // const [userData, setUserData] = useState(null);
-
-  // useEffect(() => {
-  //   const initTelegramWebApp = async () => {
-  //     if (window.Telegram && window.Telegram.WebApp) {
-  //       try {
-  //         const params = new URLSearchParams(Telegram.WebApp.initData);
-  //         const data = Object.fromEntries(params);
-  //         data.user = JSON.parse(data.user);
-  //         setUserData(data);
-  //       } catch (error) {
-  //         console.error("Error initializing Telegram Web App:", error);
-  //       }
-  //     }
-  //   };
-
-  //   initTelegramWebApp();
-  // }, []);
   useEffect(() => {
     if (lottieRef.current) {
       lottieRef.current.setSpeed(0.3); // Adjust the speed as needed
@@ -47,6 +20,12 @@ const TapPage = () => {
   }, []);
   const AddToPointBalance = () => {
     setPointBalance(pointBalance + 1000);
+  };
+
+  const init_earning = async () => {
+    const response = await InitializeEarning();
+
+    console.log(response, "jack");
   };
   return (
     <div className="TapPageDiv_div">
@@ -91,16 +70,16 @@ const TapPage = () => {
         />
       </div>
       <div className="TapPageDiv_area_3">
-        <button className="TapPageDiv_area_3_btn" onClick={AddToPointBalance}>
-          Claim{" "}
-          <span className="TapPageDiv_area_3_btn_Span">
+        <button className="TapPageDiv_area_3_btn" onClick={init_earning}>
+          Start{" "}
+          {/* <span className="TapPageDiv_area_3_btn_Span">
             <img
               src="/img/point_gif_coin.gif"
               alt=""
               className="TapPageDiv_area_3_btn_gif"
             />
-            10,000 <span className="TapPageDiv_area_3_btn_Span_span">xp</span>
-          </span>
+            10,000 <span className="TapPageDiv_area_3_btn_Span_span">xp</span> */}
+          {/* </span> */}
         </button>
       </div>
     </div>
