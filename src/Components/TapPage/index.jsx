@@ -10,17 +10,25 @@ const TapPage = () => {
 
   const [user, setUser] = useState({});
   const lottieRef = useRef();
-  //
-  const tg = window.Telegram.WebApp;
-  // Hide the back button
-  tg.BackButton.hide();
-  useEffect(() => {
-    const params = new URLSearchParams(window.Telegram.WebApp.initData());
-    const userData = Object.fromEntries(params);
-    userData.user = JSON.parse(userData.user);
-    setUser(userData.user);
-  }, []);
 
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const initTelegramWebApp = async () => {
+      if (window.Telegram && window.Telegram.WebApp) {
+        try {
+          const params = new URLSearchParams(Telegram.WebApp.initData);
+          const data = Object.fromEntries(params);
+          data.user = JSON.parse(data.user);
+          setUserData(data);
+        } catch (error) {
+          console.error("Error initializing Telegram Web App:", error);
+        }
+      }
+    };
+
+    initTelegramWebApp();
+  }, []);
   useEffect(() => {
     if (lottieRef.current) {
       lottieRef.current.setSpeed(0.3); // Adjust the speed as needed
@@ -41,6 +49,16 @@ const TapPage = () => {
         </div>
         <div className="TapPageDiv_area_1_profile_name">
           {user?.username || "KK"}
+        </div>
+
+        <div>
+          {userData ? (
+            <div>
+              <pre>{JSON.stringify(userData, null, 2)}</pre>
+            </div>
+          ) : (
+            <p>Loading...</p>
+          )}
         </div>
         <div className="TapPageDiv_area_1_profileAmountClaimes">
           <img
