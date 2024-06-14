@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useContext } from "react";
 import AnimatedNumber from "react-awesome-animated-number";
 import "react-awesome-animated-number/dist/index.css";
 import { InitializeEarning } from "../../constants/api";
@@ -6,30 +6,40 @@ import { InitializeEarning } from "../../constants/api";
 import "./TapPage.css";
 import Lottie from "lottie-react";
 import HourGlass from "../LottieFiles/HourGlassAnimation.json";
+import { UserContext } from "../../Utils/UserContext";
 const TapPage = () => {
   const [pointBalance, setPointBalance] = useState(100000);
 
-  const [user, setUser] = useState({});
+  const {
+    setUser,
+    setLoading,
+    setError,
+    user,
+    error,
+    loading,
+    pre_data,
+    setPredata,
+  } = useContext(UserContext);
   const lottieRef = useRef();
 
-  const [userData, setUserData] = useState(null);
+  // const [userData, setUserData] = useState(null);
 
-  useEffect(() => {
-    const initTelegramWebApp = async () => {
-      if (window.Telegram && window.Telegram.WebApp) {
-        try {
-          const params = new URLSearchParams(Telegram.WebApp.initData);
-          const data = Object.fromEntries(params);
-          data.user = JSON.parse(data.user);
-          setUserData(data);
-        } catch (error) {
-          console.error("Error initializing Telegram Web App:", error);
-        }
-      }
-    };
+  // useEffect(() => {
+  //   const initTelegramWebApp = async () => {
+  //     if (window.Telegram && window.Telegram.WebApp) {
+  //       try {
+  //         const params = new URLSearchParams(Telegram.WebApp.initData);
+  //         const data = Object.fromEntries(params);
+  //         data.user = JSON.parse(data.user);
+  //         setUserData(data);
+  //       } catch (error) {
+  //         console.error("Error initializing Telegram Web App:", error);
+  //       }
+  //     }
+  //   };
 
-    initTelegramWebApp();
-  }, []);
+  //   initTelegramWebApp();
+  // }, []);
   useEffect(() => {
     if (lottieRef.current) {
       lottieRef.current.setSpeed(0.3); // Adjust the speed as needed
@@ -49,7 +59,7 @@ const TapPage = () => {
           />
         </div>
         <div className="TapPageDiv_area_1_profile_name">
-          {userData?.user?.username || "KK"}
+          {pre_data?.user?.username || "N/A"}
           {/*  */}
         </div>
 
