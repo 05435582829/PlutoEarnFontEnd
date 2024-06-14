@@ -6,6 +6,7 @@ export const UserContext = createContext();
 // Create the provider component
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [pre_data, setPredata] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -31,7 +32,16 @@ export const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ user, setUser, setLoading, setError, loading, error }}
+      value={{
+        user,
+        setUser,
+        setLoading,
+        setError,
+        loading,
+        error,
+        setPredata,
+        pre_data,
+      }}
     >
       {children}
     </UserContext.Provider>

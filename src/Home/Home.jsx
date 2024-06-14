@@ -20,12 +20,19 @@ import TaskPage from "../Components/TaskPage";
 import "./Home.css";
 import { SignupLogin } from "../constants/api";
 const Home = () => {
-  const { setUser, setLoading, setError, user, error, loading } =
-    useContext(UserContext);
+  const {
+    setUser,
+    setLoading,
+    setError,
+    user,
+    error,
+    loading,
+    pre_data,
+    setPredata,
+  } = useContext(UserContext);
+
   const [activeTab, setActiveTab] = useState("home");
   const [loadingDiv, setLoadingDiv] = useState(true);
-
-  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     const initTelegramWebApp = async () => {
@@ -35,6 +42,7 @@ const Home = () => {
           const data = Object.fromEntries(params);
           data.user = JSON.parse(data.user);
           setUserData(data);
+          setPredata(data);
 
           //call the login api
           const res = await SignupLogin({
@@ -42,6 +50,11 @@ const Home = () => {
             chatId: data?.user?.username,
           });
           console.log(res, "aaa");
+
+          if (res.success) {
+            setUser(res?.data?.user);
+            return;
+          }
         } catch (error) {
           console.error("Error initializing Telegram Web App:", error);
         }
@@ -60,12 +73,7 @@ const Home = () => {
       setLoadingDiv(false);
     }, 5000);
   }, []);
-  useEffect(() => {
-    setUser("Name");
-    setLoading("True");
-    setError("false");
-  }, []);
-  console.log(user, error, loading);
+
   return (
     <>
       {loadingDiv ? (
