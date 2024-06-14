@@ -52,15 +52,6 @@ const TapPage = () => {
           {/*  */}
         </div>
 
-        <div>
-          {userData ? (
-            <div>
-              <pre>{JSON.stringify(userData, null, 2)}</pre>
-            </div>
-          ) : (
-            <p>Loading...</p>
-          )}
-        </div>
         <div className="TapPageDiv_area_1_profileAmountClaimes">
           <img
             src="/img/point_gif_coin.gif"
