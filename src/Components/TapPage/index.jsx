@@ -7,7 +7,19 @@ import Lottie from "lottie-react";
 import HourGlass from "../LottieFiles/HourGlassAnimation.json";
 const TapPage = () => {
   const [pointBalance, setPointBalance] = useState(100000);
+
+  const [user, setUser] = useState({});
   const lottieRef = useRef();
+
+  const tg = window.Telegram.WebApp;
+  // Hide the back button
+  tg.BackButton.hide();
+  useEffect(() => {
+    const params = new URLSearchParams(window.Telegram.WebApp.initData);
+    const userData = Object.fromEntries(params);
+    userData.user = JSON.parse(userData.user);
+    setUser(userData);
+  }, []);
 
   useEffect(() => {
     if (lottieRef.current) {
@@ -27,7 +39,9 @@ const TapPage = () => {
             className="TapPageDiv_area_1_profile_icon"
           />
         </div>
-        <div className="TapPageDiv_area_1_profile_name">CyntaxJs</div>
+        <div className="TapPageDiv_area_1_profile_name">
+          {user?.username || "KK"}
+        </div>
         <div className="TapPageDiv_area_1_profileAmountClaimes">
           <img
             src="/img/point_gif_coin.gif"
