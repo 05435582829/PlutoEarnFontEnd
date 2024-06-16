@@ -36,7 +36,7 @@ const TapPage = () => {
   const init_earning = async () => {
     setLoading(true);
     const response = await InitializeEarning();
-    console.log(response, "jack");
+    // console.log(response, "jack");
     if (response.success === true) {
       setLoading(false);
       localStorage.setItem("time", response.data.lastTime);
@@ -51,7 +51,7 @@ const TapPage = () => {
   const claim_earning = async () => {
     setLoading(true);
     const response = await ClaimReward();
-    console.log(response, "jack");
+    // console.log(response, "jack");
     if (response.success === true) {
       localStorage.removeItem("time");
       setLoading(false);
@@ -67,7 +67,7 @@ const TapPage = () => {
   const local_storage = localStorage.getItem("time");
   const local_storage_farming = localStorage.getItem("farming");
   const local_storage_claim_farm = localStorage.getItem("claimFarming");
-  console.log(new Date(local_storage), new Date());
+  // console.log(new Date(local_storage), new Date());
   useEffect(() => {
     if (local_storage === null) {
       localStorage.setItem("farming", "false");
@@ -77,7 +77,7 @@ const TapPage = () => {
   }, [local_storage, new Date()]);
 
   useEffect(() => {
-    console.log(local_storage);
+    // console.log(local_storage);
     if (local_storage !== null) {
       setNextRewardTakeTime(localStorage.getItem("time"));
       if (new Date(local_storage) <= new Date()) {
@@ -88,7 +88,6 @@ const TapPage = () => {
       return;
     }
   }, [local_storage]);
-  const TestToast = () => toast.success("Successful Toast");
 
   return (
     <div className="TapPageDiv_div">
@@ -99,13 +98,6 @@ const TapPage = () => {
             alt=""
             className="TapPageDiv_area_1_profile_icon"
           />
-          {/* 
-          <Avvvatars
-            value={pre_data?.user?.username}
-            style="shape"
-            size={50}
-            border={true}
-          /> */}
         </div>
         <div className="TapPageDiv_area_1_profile_name">
           {pre_data?.user?.username || "N/A"}

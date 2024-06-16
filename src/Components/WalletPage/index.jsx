@@ -241,7 +241,7 @@ const WalletPage = () => {
         onClose={() => ToggleRedeemModal()}
         // detent="full-height"
         detent="Content-height"
-        disableScrollLocking={false}
+        disableScrollLocking={true}
         // style={{ zIndex: "1000" }}
       >
         <Sheet.Container>

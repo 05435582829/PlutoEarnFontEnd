@@ -151,15 +151,11 @@
 .redeemModal_cont {
   flex-direction: column;
   display: flex;
-  padding: 1em;
   width: -webkit-fill-available;
-  padding-top: -1em;
-  /* background: #fff; */
   height: 100%;
-  /* border-top-right-radius: 20px; */
-  /* border-top-left-radius: 20px; */
-  /* box-shadow: 0px -9px 10px #00000012; */
   border-top: solid 1px #eeeeee;
+  padding: 20px !important;
+  background: #fff;
 }
 .redeemModal_cont_title {
   font-weight: 600;
