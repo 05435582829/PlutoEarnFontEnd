@@ -29,6 +29,7 @@ const Home = () => {
     loading,
     pre_data,
     setPredata,
+    setUserBalance,
   } = useContext(UserContext);
 
   const [activeTab, setActiveTab] = useState("home");
@@ -84,6 +85,15 @@ const Home = () => {
     }, 5000);
   }, []);
   console.log(user, pre_data);
+
+  const FetchUserBalance = async () => {
+    const res = await GetEarningBal();
+    console.log(res);
+    setUserBalance(res?.data?.earnings);
+  };
+  useEffect(() => {
+    FetchUserBalance();
+  }, []);
   return (
     <>
       {loadingDiv ? (

@@ -3,10 +3,19 @@ import { Sheet } from "react-modal-sheet";
 import "./ReferralPage.css";
 import Lottie from "lottie-react";
 import Friends from "../LottieFiles/Friends.json";
+import toast, { Toaster } from "react-hot-toast";
+
 const ReferralPage = () => {
   const [redeemModal, setRedeemModal] = useState(false);
   const ToggleRedeemModal = () => {
     setRedeemModal(!redeemModal);
+  };
+  const copyText = () => {
+    var copyText = document.getElementById("myInput");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(copyText.value);
+    toast.success("Invite link copied");
   };
   return (
     <div className="Referral_div">
@@ -37,6 +46,7 @@ const ReferralPage = () => {
         isOpen={redeemModal}
         onClose={() => ToggleRedeemModal()}
         detent="Content-height"
+        disableScrollLocking={true}
       >
         <Sheet.Container>
           <Sheet.Header />
@@ -45,18 +55,21 @@ const ReferralPage = () => {
             <div className="redeemModal_cont">
               <div className="redeemModal_cont_body">
                 <div className="redeemModal_cont_body_3b">
-                  <div className="redeemModal_cont_body_3_title">
-                    Invite Link
-                  </div>
+                  <div className="redeemModal_cont_title">Invite Link</div>
                   <input
+                    id="myInput"
                     type="text"
                     value={"t.me/plutoEarn/ref=124hbuf"}
                     className="redeemModal_cont_body_3_input"
                     placeholder="0xXxxx"
                   />
+                  <div></div>
                 </div>
                 <div className="redeemModal_cont_body_4">
-                  <button className="redeemModal_cont_body_4_btn">
+                  <button
+                    className="redeemModal_cont_body_4_btn"
+                    onClick={copyText}
+                  >
                     Copy Invite Link
                   </button>
                 </div>
@@ -66,6 +79,7 @@ const ReferralPage = () => {
         </Sheet.Container>
         <Sheet.Backdrop />
       </Sheet>
+      <Toaster />
     </div>
   );
 };
