@@ -30,6 +30,15 @@ function App() {
     }
   }, []);
 
+  const setHeaderColor = (color) => {
+    if (window.Telegram && window.Telegram.WebApp) {
+      window.Telegram.WebApp.setHeaderColor(color);
+    }
+  };
+  useEffect(() => {
+    setHeaderColor("#fff");
+  }, []);
+
   return (
     <div className="App">
       <Home />
