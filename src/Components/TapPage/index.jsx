@@ -6,6 +6,7 @@ import {
   ClaimReward,
   GetEarningBal,
 } from "../../constants/api";
+import ClipLoader from "react-spinners/ClipLoader";
 import Timer from "./Timer";
 import toast, { Toaster } from "react-hot-toast";
 import "./TapPage.css";
@@ -36,7 +37,7 @@ const TapPage = () => {
   const init_earning = async () => {
     setLoading(true);
     const response = await InitializeEarning();
-    // console.log(response, "jack");
+    console.log(response, "jack");
     if (response.success === true) {
       setLoading(false);
       localStorage.setItem("time", response.data.lastTime);
@@ -87,7 +88,7 @@ const TapPage = () => {
       }
       return;
     }
-  }, [local_storage]);
+  }, [local_storage, new Date()]);
 
   return (
     <div className="TapPageDiv_div">

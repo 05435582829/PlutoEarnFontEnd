@@ -33,12 +33,8 @@ const DefaultComponentLoading = () => {
           size={80}
           speedMultiplier={0.5}
         /> */}
-        <img
-          src="/img/pluto_icon.svg"
-          alt=""
-          className="loading_div_area_img"
-        />
-        <div className="default_loader_txt">PlutoEarn</div>
+        <img src="/img/logo.png" alt="" className="loading_div_area_img" />
+        <div className="default_loader_txt">PlutoSwap</div>
       </div>
 
       <div className="powered_by_txt">Powered By Egochain</div>
