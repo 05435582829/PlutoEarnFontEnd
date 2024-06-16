@@ -46,6 +46,7 @@ const ReferralPage = () => {
         isOpen={redeemModal}
         onClose={() => ToggleRedeemModal()}
         detent="Content-height"
+        disableScrollLocking={true}
       >
         <Sheet.Container>
           <Sheet.Header />
