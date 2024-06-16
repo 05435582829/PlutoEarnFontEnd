@@ -37,11 +37,21 @@ const Home = () => {
   const initTelegramWebApp = async () => {
     if (window.Telegram && window.Telegram.WebApp) {
       try {
+        const tg = Telegram.WebApp;
+        // Click Event
+        const goBack = () => {
+          // Callback code
+          console.log("Do you want to close???");
+        };
+
+        tg.BackButton.onClick(goBack);
         const params = new URLSearchParams(Telegram.WebApp.initData);
         const data = Object.fromEntries(params);
         data.user = JSON.parse(data.user);
         setPredata(data);
 
+        // Disable the swipe-down gesture to prevent the app from closing
+        window.Telegram.WebApp.disableSwipeDownHandler();
         //call the login api
         const res = await SignupLogin(data.user.username, data.user.id);
         console.log(res, "aaa");
