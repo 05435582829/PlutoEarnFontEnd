@@ -1,6 +1,7 @@
 import React from "react";
 import "./TaskPage.css";
 import { NewTwitterIcon } from "hugeicons-react";
+import { TelegramIcon } from "hugeicons-react";
 
 const TaskPage = () => {
   return (
@@ -22,7 +23,7 @@ const TaskPage = () => {
                 Follow Pluto on X
               </div>
               <div className="task_page_div_2_cont1_div1_txt_div_amount">
-                +10,000
+                +500
               </div>
             </div>
           </div>
@@ -37,10 +38,10 @@ const TaskPage = () => {
             </div>
             <div className="task_page_div_2_cont1_div1_txt_div">
               <div className="task_page_div_2_cont1_div1_txt_div_title">
-                Follow Pluto on X
+                Follow Egoras on X
               </div>
               <div className="task_page_div_2_cont1_div1_txt_div_amount">
-                +10,000
+                +500
               </div>
             </div>
           </div>
@@ -55,10 +56,10 @@ const TaskPage = () => {
             </div>
             <div className="task_page_div_2_cont1_div1_txt_div">
               <div className="task_page_div_2_cont1_div1_txt_div_title">
-                Follow Pluto on X
+                Follow Egochain on X
               </div>
               <div className="task_page_div_2_cont1_div1_txt_div_amount">
-                +10,000
+                +500
               </div>
             </div>
           </div>
@@ -69,14 +70,14 @@ const TaskPage = () => {
         <div className="task_page_div_2_cont1">
           <div className="task_page_div_2_cont1_div1">
             <div className="task_page_div_2_cont1_div1_icon">
-              <NewTwitterIcon size={20} />
+              <TelegramIcon size={20} />
             </div>
             <div className="task_page_div_2_cont1_div1_txt_div">
               <div className="task_page_div_2_cont1_div1_txt_div_title">
-                Follow Pluto on X
+                Join Pluto Community
               </div>
               <div className="task_page_div_2_cont1_div1_txt_div_amount">
-                +10,000
+                +500
               </div>
             </div>
           </div>
@@ -87,14 +88,32 @@ const TaskPage = () => {
         <div className="task_page_div_2_cont1">
           <div className="task_page_div_2_cont1_div1">
             <div className="task_page_div_2_cont1_div1_icon">
-              <NewTwitterIcon size={20} />
+              <TelegramIcon size={20} />
             </div>
             <div className="task_page_div_2_cont1_div1_txt_div">
               <div className="task_page_div_2_cont1_div1_txt_div_title">
-                Follow Pluto on X
+                Join Egoras Channel
               </div>
               <div className="task_page_div_2_cont1_div1_txt_div_amount">
-                +10,000
+                +500
+              </div>
+            </div>
+          </div>
+          <div className="task_page_div_2_cont1_div2">
+            <button className="task_page_div_2_cont1_div2_btn">Start</button>
+          </div>
+        </div>
+        <div className="task_page_div_2_cont1">
+          <div className="task_page_div_2_cont1_div1">
+            <div className="task_page_div_2_cont1_div1_icon">
+              <TelegramIcon size={20} />
+            </div>
+            <div className="task_page_div_2_cont1_div1_txt_div">
+              <div className="task_page_div_2_cont1_div1_txt_div_title">
+                Join Egochain Community
+              </div>
+              <div className="task_page_div_2_cont1_div1_txt_div_amount">
+                +500
               </div>
             </div>
           </div>

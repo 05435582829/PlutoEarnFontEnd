@@ -29,7 +29,7 @@
   flex-direction: column;
 }
 .task_page_div_2_cont1 {
-  padding: 1em;
+  padding: 1em 0em;
   border-bottom: solid 1px #eaeaea;
   display: flex;
   justify-content: space-between;

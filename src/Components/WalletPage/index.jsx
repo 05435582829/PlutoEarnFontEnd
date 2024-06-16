@@ -13,6 +13,7 @@ import toast, { Toaster } from "react-hot-toast";
 import ClipLoader from "react-spinners/ClipLoader";
 import NodataComp from "../NodatComp/NodataComp";
 import { GetTransactions } from "../../constants/api";
+import { numberWithCommas } from "../../assets/js/numberWithCommas";
 
 const WalletPage = () => {
   const { pre_data, setPredata, userBalance } = useContext(UserContext);
@@ -22,6 +23,7 @@ const WalletPage = () => {
   const [disabled, setDisabled] = useState(false);
   const [getTransactionLoding, setGetTransactionLoding] = useState(false);
   const [transaction, setTransaction] = useState([]);
+  const [tranPopUp, setTranPopUp] = useState(0);
 
   const ToggleRedeemModal = () => {
     setRedeemModal(!redeemModal);
@@ -58,6 +60,7 @@ const WalletPage = () => {
   const fetchTransaction = async () => {
     const res = await GetTransactions();
     console.log(res);
+    setTransaction(res.data);
   };
   useEffect(() => {
     fetchTransaction();
@@ -104,7 +107,7 @@ const WalletPage = () => {
                 className="WalletPageDiv_1_cont_2_div1_icon
                 "
               />
-              {parseFloat(userBalance).toFixed(2)}
+              {numberWithCommas(parseFloat(userBalance).toFixed(2))}
             </div>
             <div className="WalletPageDiv_1_cont_2_div2">
               <ViewIcon
@@ -138,7 +141,7 @@ const WalletPage = () => {
                 Pluto
               </div>
               <div className="WalletPageDiv_2_body_cont1_amount_div_amount">
-                {parseFloat(userBalance).toFixed(2)}
+                {numberWithCommas(parseFloat(userBalance).toFixed(2))}
               </div>
             </div>
           </div>
@@ -173,12 +176,12 @@ const WalletPage = () => {
                         className="transactionBody_cont1"
                         id={data.id}
                         // key={data.id}
-                        onClick={ChangeTranPopUp}
+                        // onClick={ChangeTranPopUp}
                       >
                         <div className="transactionBody_cont1_areabody1">
                           <div className="transactionBody_cont1_img">
                             <img
-                              src={data.image}
+                              src="/img/pluto_swap_icon.png"
                               alt=""
                               className="transactionBody_cont1_img_img"
                             />
@@ -196,7 +199,7 @@ const WalletPage = () => {
                         </div>
                         <div className="transactionBody_cont1_areabody2">
                           <div className="transactionBody_cont1_areabody2_amount">
-                            {data.to_email === "samuelify225@gmail.com" ? (
+                            {/* {data.to_email === "samuelify225@gmail.com" ? (
                               <div style={{ color: "#90ff90" }}>
                                 {" "}
                                 +₦
@@ -212,7 +215,15 @@ const WalletPage = () => {
                                   parseFloat(data.amount).toFixed(2)
                                 )}
                               </div>
-                            )}
+                            )} */}
+                            <span className="transactionBody_cont1_areabody2_amount_span">
+                              {numberWithCommas(
+                                parseFloat(data.amount).toFixed(2)
+                              )}
+                              <div className="transactionBody_cont1_areabody2_amount_span_txt">
+                                {data.type}
+                              </div>
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -228,8 +239,9 @@ const WalletPage = () => {
       <Sheet
         isOpen={redeemModal}
         onClose={() => ToggleRedeemModal()}
-        detent="full-height"
-        disableScrollLocking={true}
+        // detent="full-height"
+        detent="Content-height"
+        disableScrollLocking={false}
         // style={{ zIndex: "1000" }}
       >
         <Sheet.Container>
@@ -259,7 +271,9 @@ const WalletPage = () => {
                     className="redeemModal_cont_body_1_icon
                 "
                   />
-                  {parseFloat(userBalance).toFixed(2)} pluto
+                  <span>
+                    {numberWithCommas(parseFloat(userBalance).toFixed(2))} pluto
+                  </span>
                 </div>
                 <div className="redeemModal_cont_body_3">
                   <div className="redeemModal_cont_body_3_title">
@@ -323,83 +337,6 @@ const WalletPage = () => {
         <Sheet.Backdrop />
       </Sheet>
 
-      {transaction.map((data) => (
-        <>
-          {tranPopUp == data.id ? (
-            <div key={data.id} className="trans_div">
-              <div className="tranPop_div">
-                <div className="tranPopHeading">
-                  Transaction Details{" "}
-                  <span className="tranPopOutButton">
-                    <CloseIcon
-                      className="closeTranPopDiv"
-                      onClick={closeTranPop}
-                    />
-                  </span>
-                </div>
-                <div className="tranPop_div_cont1">
-                  {" "}
-                  <div className="deposited_icon">
-                    {data.to_email === "samuelify225@gmail.com" ? (
-                      <ArrowDownwardIcon className="arrow_down_deposit_icon" />
-                    ) : (
-                      <ArrowUpwardIcon
-                        className="arrow_down_deposit_icon"
-                        style={{ background: "red" }}
-                      />
-                    )}{" "}
-                  </div>
-                  <span className="transPopData">
-                    {" "}
-                    {data.to_email === "samuelify225@gmail.com"
-                      ? "Credit"
-                      : "Debit"}{" "}
-                  </span>
-                </div>
-                <div className="tranPop_div_cont1">
-                  Date{" "}
-                  <span className="transPopData">
-                    {" "}
-                    {data.createdAt.slice(0, 10)}
-                  </span>{" "}
-                </div>
-                <div className="tranPop_div_cont1">
-                  Amount{" "}
-                  <span className="transPopData">
-                    {" "}
-                    {data.to_email === "samuelify225@gmail.com" ? (
-                      <div style={{ color: "#0ecb81" }}>
-                        {" "}
-                        +₦
-                        {parseInt(data.amount).toFixed(2)}
-                      </div>
-                    ) : (
-                      <div style={{ color: "#ff8484" }}>
-                        {" "}
-                        -₦
-                        {parseInt(data.amount).toFixed(2)}
-                      </div>
-                    )}
-                  </span>{" "}
-                </div>
-                <div className="tranPop_div_cont1">
-                  From <span className="transPopData">{data.email}</span>
-                </div>
-                <div className="tranPop_div_cont1">
-                  To <span className="transPopData">{data.to_email}</span>
-                </div>
-                <div className="tranPop_div_cont1">
-                  Status{" "}
-                  <span className="transPopData">
-                    <CircleIcon className="complete_circle" />
-                    {data.status}
-                  </span>
-                </div>
-              </div>
-            </div>
-          ) : null}
-        </>
-      ))}
       <Toaster />
     </div>
   );

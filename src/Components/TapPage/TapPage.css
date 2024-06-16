@@ -18,6 +18,7 @@
 .TapPageDiv_area_1_profile_name {
   font-size: 18px;
   font-weight: 500;
+  margin-top: 10px;
 }
 .TapPageDiv_area_1_profileAmountClaimes {
   display: flex;

@@ -153,12 +153,13 @@
   display: flex;
   padding: 1em;
   width: -webkit-fill-available;
-  padding-top: 1em;
-  background: #fff;
+  padding-top: -1em;
+  /* background: #fff; */
   height: 100%;
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
-  box-shadow: 0px -9px 10px #00000012;
+  /* border-top-right-radius: 20px; */
+  /* border-top-left-radius: 20px; */
+  /* box-shadow: 0px -9px 10px #00000012; */
+  border-top: solid 1px #eeeeee;
 }
 .redeemModal_cont_title {
   font-weight: 600;
@@ -173,8 +174,8 @@
 .react-modal-sheet-container {
   border-top-right-radius: 20px !important;
   border-top-left-radius: 20px !important;
-  background: none !important;
-  box-shadow: none !important;
+  /* background: none !important; */
+  /* box-shadow: none !important; */
 }
 .react-modal-sheet-backdrop {
   background-color: rgb(0 0 0 / 38%) !important;
@@ -199,7 +200,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 15px;
-  padding-right: 2em;
+  padding-right: 1em;
   font-weight: 700;
   /* margin-top: 1em; */
   background: #11b66e17;
@@ -294,7 +295,7 @@
 /* =========== */
 /* =========== */
 .transactionBody_cont1_area1_head {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -302,7 +303,7 @@
   width: 160px;
 }
 .transactionBody_cont1_img_img {
-  width: 30px;
+  width: 25px;
   border-radius: 50%;
 }
 .transactionBody {
@@ -318,20 +319,21 @@
 }
 .transactionBody1_date {
   padding: 10px;
-  background: #000000;
+  background: #e6f7ef;
   font-size: 14px;
   margin-bottom: 1em;
   border-radius: 5px;
+  color: #637b6f;
 }
 .transactionBody_cont1 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1em;
-  background: #383546;
+  padding: 10px;
+  background: #ffffff;
   margin-bottom: 1em;
-  border: solid 1px #60576c;
-  box-shadow: 0px 10px 10px #000000;
+  border: solid 1px #d9ede9;
+  /* box-shadow: 0px 10px 10px #000000; */
   border-radius: 10px;
   cursor: pointer;
 }
@@ -340,24 +342,38 @@
   align-items: center;
 }
 .transactionBody_cont1_img {
-  margin-right: 10px;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .transactionBody_cont1_area1 {
   display: flex;
   flex-direction: column;
 }
 .transactionBody_cont1_area1_head {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 2px;
 }
 .transactionBody_cont1_area1_time {
-  font-size: 14px;
-  color: #8bb09d;
+  font-size: 10px;
+  color: #12b66f;
   font-weight: 400;
 }
 .transactionBody_cont1_areabody2_amount {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 14px;
+}
+.transactionBody_cont1_areabody2_amount_span {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.transactionBody_cont1_areabody2_amount_span_txt {
+  color: #9eaca5;
+  margin-top: 2px;
+  font-size: 11px;
 }
 /* =========== */
 /* =========== */

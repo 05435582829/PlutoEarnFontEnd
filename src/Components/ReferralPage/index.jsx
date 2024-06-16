@@ -62,6 +62,7 @@ const ReferralPage = () => {
                     className="redeemModal_cont_body_3_input"
                     placeholder="0xXxxx"
                   />
+                  <div></div>
                 </div>
                 <div className="redeemModal_cont_body_4">
                   <button

@@ -8,12 +8,12 @@ import {
 } from "../../constants/api";
 import Timer from "./Timer";
 import toast, { Toaster } from "react-hot-toast";
-import ClipLoader from "react-spinners/ClipLoader";
-
 import "./TapPage.css";
 import Lottie from "lottie-react";
 import HourGlass from "../LottieFiles/HourGlassAnimation.json";
 import { UserContext } from "../../Utils/UserContext";
+import Avvvatars from "avvvatars-react";
+
 const TapPage = () => {
   const { pre_data, userBalance, setUserBalance } = useContext(UserContext);
   const [pointBalance, setPointBalance] = useState(100000);
@@ -95,10 +95,17 @@ const TapPage = () => {
       <div className="TapPageDiv_area_1">
         <div className="TapPageDiv_area_1_profile">
           <img
-            src="/img/user_img_icon.png"
+            src="/img/pluto_icon.svg"
             alt=""
             className="TapPageDiv_area_1_profile_icon"
           />
+          {/* 
+          <Avvvatars
+            value={pre_data?.user?.username}
+            style="shape"
+            size={50}
+            border={true}
+          /> */}
         </div>
         <div className="TapPageDiv_area_1_profile_name">
           {pre_data?.user?.username || "N/A"}
