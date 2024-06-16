@@ -108,7 +108,7 @@ const TapPage = () => {
         <div
           className="TapPageDiv_area_1_profileAmountClaimes"
           // onClick={TestToast}
-          onClick={AddToPointBalance}
+          // onClick={AddToPointBalance}
         >
           <span className="TapPageDiv_area_1_profileAmountClaimes_span">
             <img
