@@ -238,6 +238,9 @@
   color: #fff;
   font-weight: 500;
   font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .redeemModal_cont_body_5 {
   margin-top: 2em;
