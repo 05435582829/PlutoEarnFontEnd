@@ -1,0 +1,13 @@
+.Nodata_div_title {
+  margin-top: 10px;
+  color: #000;
+  font-size: 12px;
+}
+.Nodata_div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 3em;
+  color: #fff;
+}

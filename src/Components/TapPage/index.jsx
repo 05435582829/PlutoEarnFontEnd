@@ -1,16 +1,25 @@
 import React, { useRef, useEffect, useState, useContext } from "react";
 import AnimatedNumber from "react-awesome-animated-number";
 import "react-awesome-animated-number/dist/index.css";
-import { InitializeEarning } from "../../constants/api";
+import {
+  InitializeEarning,
+  ClaimReward,
+  GetEarningBal,
+} from "../../constants/api";
+import Timer from "./Timer";
+import toast, { Toaster } from "react-hot-toast";
+import ClipLoader from "react-spinners/ClipLoader";
 
 import "./TapPage.css";
 import Lottie from "lottie-react";
 import HourGlass from "../LottieFiles/HourGlassAnimation.json";
 import { UserContext } from "../../Utils/UserContext";
 const TapPage = () => {
+  const { pre_data, userBalance, setUserBalance } = useContext(UserContext);
   const [pointBalance, setPointBalance] = useState(100000);
+  const [nextRewardTakeTime, setNextRewardTakeTime] = useState(new Date());
+  const [loading, setLoading] = useState(false);
 
-  const { pre_data, setPredata } = useContext(UserContext);
   const lottieRef = useRef();
 
   useEffect(() => {
@@ -19,14 +28,68 @@ const TapPage = () => {
     }
   }, []);
   const AddToPointBalance = () => {
-    setPointBalance(pointBalance + 1000);
+    const newBalance = parseInt(userBalance) + 1000;
+    console.log(userBalance);
+    setUserBalance(newBalance);
   };
-
+  // localStorage.setItem("startFarming", "true");
   const init_earning = async () => {
+    setLoading(true);
     const response = await InitializeEarning();
-
     console.log(response, "jack");
+    if (response.success === true) {
+      setLoading(false);
+      localStorage.setItem("time", response.data.lastTime);
+      localStorage.setItem("farming", "true");
+      setNextRewardTakeTime(response.data.lastTime);
+      toast.success("You have started farming");
+      return;
+    }
+    setLoading(false);
+    toast.error(response.data.errorMessage);
   };
+  const claim_earning = async () => {
+    setLoading(true);
+    const response = await ClaimReward();
+    console.log(response, "jack");
+    if (response.success === true) {
+      localStorage.removeItem("time");
+      setLoading(false);
+      setNextRewardTakeTime(new Date());
+      localStorage.setItem("claimFarming", "false");
+      toast.success("You have successfully claimed 1,000 pluto tokens");
+      AddToPointBalance();
+      return;
+    }
+    setLoading(false);
+    toast.error(response.data.errorMessage);
+  };
+  const local_storage = localStorage.getItem("time");
+  const local_storage_farming = localStorage.getItem("farming");
+  const local_storage_claim_farm = localStorage.getItem("claimFarming");
+  console.log(new Date(local_storage), new Date());
+  useEffect(() => {
+    if (local_storage === null) {
+      localStorage.setItem("farming", "false");
+      localStorage.setItem("claimFarming", "false");
+      return;
+    }
+  }, [local_storage, new Date()]);
+
+  useEffect(() => {
+    console.log(local_storage);
+    if (local_storage !== null) {
+      setNextRewardTakeTime(localStorage.getItem("time"));
+      if (new Date(local_storage) <= new Date()) {
+        localStorage.setItem("farming", "false");
+        localStorage.setItem("claimFarming", "true");
+        return;
+      }
+      return;
+    }
+  }, [local_storage]);
+  const TestToast = () => toast.success("Successful Toast");
+
   return (
     <div className="TapPageDiv_div">
       <div className="TapPageDiv_area_1">
@@ -42,20 +105,26 @@ const TapPage = () => {
           {/*  */}
         </div>
 
-        <div className="TapPageDiv_area_1_profileAmountClaimes">
-          <img
-            src="/img/point_gif_coin.gif"
-            alt=""
-            className="event_sideBar_div_area_last_div_cont1_title_gif"
-          />{" "}
-          <AnimatedNumber
-            value={pointBalance}
-            hasComma={true}
-            size={32}
-            duration={500}
-          />
+        <div
+          className="TapPageDiv_area_1_profileAmountClaimes"
+          // onClick={TestToast}
+          onClick={AddToPointBalance}
+        >
           <span className="TapPageDiv_area_1_profileAmountClaimes_span">
-            xp
+            <img
+              src="/img/point_gif_coin.gif"
+              alt=""
+              className="event_sideBar_div_area_last_div_cont1_title_gif"
+            />{" "}
+            <AnimatedNumber
+              value={parseFloat(userBalance).toFixed(2)}
+              hasComma={true}
+              size={32}
+              duration={500}
+            />
+          </span>
+          <span className="TapPageDiv_area_1_profileAmountClaimes_Span_txt">
+            Pluto Token
           </span>
         </div>
       </div>{" "}
@@ -70,18 +139,79 @@ const TapPage = () => {
         />
       </div>
       <div className="TapPageDiv_area_3">
-        <button className="TapPageDiv_area_3_btn" onClick={init_earning}>
-          Start{" "}
-          {/* <span className="TapPageDiv_area_3_btn_Span">
-            <img
-              src="/img/point_gif_coin.gif"
-              alt=""
-              className="TapPageDiv_area_3_btn_gif"
-            />
-            10,000 <span className="TapPageDiv_area_3_btn_Span_span">xp</span> */}
-          {/* </span> */}
-        </button>
+        {local_storage_farming === "true" ? (
+          <button className="TapPageDiv_area_3_btn2">
+            <span className="TapPageDiv_area_3_btn2_span">
+              Farming
+              <img
+                src="/img/point_gif_coin.gif"
+                alt=""
+                className="TapPageDiv_area_3_btn_gif"
+              />
+            </span>
+            <Timer deadline={nextRewardTakeTime} />
+          </button>
+        ) : local_storage_claim_farm === "true" ? (
+          <button
+            className="TapPageDiv_area_3_btn"
+            onClick={claim_earning}
+            disabled={loading}
+          >
+            {loading ? (
+              <div style={{ display: "flex", alignItems: "center" }}>
+                Claiming...
+                <span style={{ marginLeft: "10px" }}>
+                  <ClipLoader color="#fff" size={20} />
+                </span>
+              </div>
+            ) : (
+              <>
+                {" "}
+                Claim{" "}
+                <div
+                  style={{
+                    marginLeft: "10px",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <img
+                    src="/img/point_gif_coin.gif"
+                    alt=""
+                    className="TapPageDiv_area_3_btn_gif"
+                  />
+                  1,000
+                </div>
+              </>
+            )}
+          </button>
+        ) : (
+          <button
+            className="TapPageDiv_area_3_btn"
+            onClick={init_earning}
+            disabled={loading}
+          >
+            {loading ? (
+              <div style={{ display: "flex", alignItems: "center" }}>
+                Starting...
+                <span style={{ marginLeft: "10px" }}>
+                  <ClipLoader color="#fff" size={20} />
+                </span>
+              </div>
+            ) : (
+              <>
+                Start{" "}
+                <img
+                  src="/img/point_gif_coin.gif"
+                  alt=""
+                  className="TapPageDiv_area_3_btn_gif"
+                />
+              </>
+            )}
+          </button>
+        )}
       </div>
+      <Toaster />
     </div>
   );
 };

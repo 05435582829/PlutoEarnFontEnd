@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Sheet } from "react-modal-sheet";
 import "./WalletPage.css";
 import {
@@ -7,11 +7,90 @@ import {
   ArrowDataTransferVerticalIcon,
   InformationCircleIcon,
 } from "hugeicons-react";
+import { WithdrawReward } from "../../constants/api";
+import { UserContext } from "../../Utils/UserContext";
+import toast, { Toaster } from "react-hot-toast";
+import ClipLoader from "react-spinners/ClipLoader";
+import NodataComp from "../NodatComp/NodataComp";
+import { GetTransactions } from "../../constants/api";
+
 const WalletPage = () => {
+  const { pre_data, setPredata, userBalance } = useContext(UserContext);
   const [redeemModal, setRedeemModal] = useState(false);
+  const [wallet, setWallet] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [disabled, setDisabled] = useState(false);
+  const [getTransactionLoding, setGetTransactionLoding] = useState(false);
+  const [transaction, setTransaction] = useState([]);
+
   const ToggleRedeemModal = () => {
     setRedeemModal(!redeemModal);
   };
+  const withdraw_funds = async () => {
+    setLoading(true);
+    setDisabled(true);
+    const res = await WithdrawReward({ wallet_address: wallet });
+    console.log(res);
+    if (res.success === true) {
+      setLoading(false);
+      setDisabled(false);
+      toast.success("You have successfully withdrawn your pluto tokens");
+      return;
+    }
+    setLoading(false);
+    setDisabled(false);
+    toast.error(res.data.errorMessage);
+  };
+  const onChangeWallet = (e) => {
+    setWallet(e.target.value);
+    console.log(e.target.value);
+  };
+  useEffect(() => {
+    if (userBalance <= 0) {
+      setDisabled(true);
+      return;
+    }
+    if (userBalance > 0) {
+      setDisabled(false);
+      return;
+    }
+  }, []);
+  const fetchTransaction = async () => {
+    const res = await GetTransactions();
+    console.log(res);
+  };
+  useEffect(() => {
+    fetchTransaction();
+  }, []);
+
+  const groups = transaction.reduce((groups, data) => {
+    const date = data.createdAt.split("T")[0];
+    if (!groups[date]) {
+      groups[date] = [];
+    }
+    groups[date].push(data);
+    return groups;
+  }, {});
+
+  // Edit: to add it in the array format instead
+  const groupArrays = Object.keys(groups).map((date) => {
+    return {
+      date,
+      data: groups[date],
+    };
+  });
+
+  console.log(groupArrays);
+  const ChangeTranPopUp = (e) => {
+    let currentTarget = e.currentTarget.id;
+    console.log(currentTarget);
+    setTranPopUp(currentTarget);
+  };
+  const closeTranPop = () => {
+    setTranPopUp(0);
+    console.log("i am not here");
+  };
+
   return (
     <div className="WalletPageDiv">
       <div className="WalletPageDiv_1">
@@ -25,7 +104,7 @@ const WalletPage = () => {
                 className="WalletPageDiv_1_cont_2_div1_icon
                 "
               />
-              100,000 xp
+              {parseFloat(userBalance).toFixed(2)}
             </div>
             <div className="WalletPageDiv_1_cont_2_div2">
               <ViewIcon
@@ -49,16 +128,17 @@ const WalletPage = () => {
         <div className="WalletPageDiv_2_body">
           <div className="WalletPageDiv_2_body_cont1">
             <img
-              src="/img/pluto_icon.svg"
+              src="/img/point_gif_coin.gif"
               alt=""
-              className="WalletPageDiv_2_body_cont1_img"
+              className="WalletPageDiv_1_cont_2_div1_icon
+                "
             />
             <div className="WalletPageDiv_2_body_cont1_amount_div">
               <div className="WalletPageDiv_2_body_cont1_amount_div_txt">
                 Pluto
               </div>
               <div className="WalletPageDiv_2_body_cont1_amount_div_amount">
-                30,000
+                {parseFloat(userBalance).toFixed(2)}
               </div>
             </div>
           </div>
@@ -72,7 +152,77 @@ const WalletPage = () => {
       </div>
       <div className="WalletPageDiv_3">
         <div className="WalletPageDiv_3_title">Transactions</div>
-        <div className="WalletPageDiv_3_body">No transactions</div>
+        {getTransactionLoding ? (
+          <div className="loader_div">
+            <BeatLoader color="#fff" />
+            <span className="loader_div_span">Fetching Transactions...</span>
+          </div>
+        ) : (
+          <>
+            {" "}
+            {groupArrays.length < 1 ? (
+              <NodataComp />
+            ) : (
+              <>
+                {groupArrays.slice(0, 3).map((data) => (
+                  <>
+                    <div className="transactionBody1_date">{data.date}</div>
+
+                    {data.data.map((data) => (
+                      <div
+                        className="transactionBody_cont1"
+                        id={data.id}
+                        // key={data.id}
+                        onClick={ChangeTranPopUp}
+                      >
+                        <div className="transactionBody_cont1_areabody1">
+                          <div className="transactionBody_cont1_img">
+                            <img
+                              src={data.image}
+                              alt=""
+                              className="transactionBody_cont1_img_img"
+                            />
+                          </div>
+                          <div className="transactionBody_cont1_area1">
+                            <div className="transactionBody_cont1_area1_head">
+                              {data.to_email === "samuelify225@gmail.com"
+                                ? data.email
+                                : data.to_email}
+                            </div>
+                            <div className="transactionBody_cont1_area1_time">
+                              {data.status}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="transactionBody_cont1_areabody2">
+                          <div className="transactionBody_cont1_areabody2_amount">
+                            {data.to_email === "samuelify225@gmail.com" ? (
+                              <div style={{ color: "#90ff90" }}>
+                                {" "}
+                                +₦
+                                {numberWithCommas(
+                                  parseFloat(data.amount).toFixed(2)
+                                )}
+                              </div>
+                            ) : (
+                              <div style={{ color: "#ff8686" }}>
+                                {" "}
+                                -₦
+                                {numberWithCommas(
+                                  parseFloat(data.amount).toFixed(2)
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </>
+                ))}
+              </>
+            )}
+          </>
+        )}
       </div>
 
       <Sheet
@@ -80,6 +230,7 @@ const WalletPage = () => {
         onClose={() => ToggleRedeemModal()}
         detent="full-height"
         disableScrollLocking={true}
+        // style={{ zIndex: "1000" }}
       >
         <Sheet.Container>
           <Sheet.Header />
@@ -88,7 +239,7 @@ const WalletPage = () => {
             <div className="redeemModal_cont">
               <div className="redeemModal_cont_title">Redeem</div>
               <div className="redeemModal_cont_body">
-                <div className="redeemModal_cont_body_1">
+                {/* <div className="redeemModal_cont_body_1">
                   <img
                     src="/img/point_gif_coin.gif"
                     alt=""
@@ -100,14 +251,15 @@ const WalletPage = () => {
                 <ArrowDataTransferVerticalIcon
                   size={24}
                   className="redeemModal_cont_body_icon"
-                />
+                /> */}
                 <div className="redeemModal_cont_body_2">
                   <img
-                    src="/img/pluto_icon.svg"
+                    src="/img/point_gif_coin.gif"
                     alt=""
-                    className="redeemModal_cont_body_2_img"
+                    className="redeemModal_cont_body_1_icon
+                "
                   />
-                  30,000 pluto
+                  {parseFloat(userBalance).toFixed(2)} pluto
                 </div>
                 <div className="redeemModal_cont_body_3">
                   <div className="redeemModal_cont_body_3_title">
@@ -117,12 +269,36 @@ const WalletPage = () => {
                     type="text"
                     className="redeemModal_cont_body_3_input"
                     placeholder="0xXxxx"
+                    onChange={onChangeWallet}
+                    value={wallet}
                   />
                 </div>
                 <div className="redeemModal_cont_body_4">
-                  <button className="redeemModal_cont_body_4_btn">
-                    Redeem
-                  </button>
+                  {wallet === "" ? (
+                    <button
+                      className="redeemModal_cont_body_4_btn"
+                      disabled={true}
+                    >
+                      Input Receiver Address
+                    </button>
+                  ) : (
+                    <button
+                      className="redeemModal_cont_body_4_btn"
+                      onClick={withdraw_funds}
+                      disabled={disabled}
+                    >
+                      {loading ? (
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                          Redeeming...
+                          <span style={{ marginLeft: "10px" }}>
+                            <ClipLoader color="#fff" size={20} />
+                          </span>
+                        </div>
+                      ) : (
+                        <>Redeem</>
+                      )}
+                    </button>
+                  )}
                 </div>
                 <div className="redeemModal_cont_body_5">
                   <div className="redeemModal_cont_body_5_div">
@@ -146,69 +322,85 @@ const WalletPage = () => {
         </Sheet.Container>
         <Sheet.Backdrop />
       </Sheet>
-      {/* {redeemModal ? (
-        <div className="redeemModal">
-          <div
-            className="redeemModal_cont_cancel_div"
-            onClick={ToggleRedeemModal}
-          ></div>
-          <div className="redeemModal_cont">
-            <div className="redeemModal_cont_title">Redeem</div>
-            <div className="redeemModal_cont_body">
-              <div className="redeemModal_cont_body_1">
-                <img
-                  src="/img/point_gif_coin.gif"
-                  alt=""
-                  className="redeemModal_cont_body_1_icon
-                "
-                />
-                100,000 xp
-              </div>
-              <ArrowDataTransferVerticalIcon
-                size={24}
-                className="redeemModal_cont_body_icon"
-              />
-              <div className="redeemModal_cont_body_2">
-                <img
-                  src="/img/pluto_icon.svg"
-                  alt=""
-                  className="redeemModal_cont_body_2_img"
-                />
-                30,000 pluto
-              </div>
-              <div className="redeemModal_cont_body_3">
-                <div className="redeemModal_cont_body_3_title">
-                  Receiver address
+
+      {transaction.map((data) => (
+        <>
+          {tranPopUp == data.id ? (
+            <div key={data.id} className="trans_div">
+              <div className="tranPop_div">
+                <div className="tranPopHeading">
+                  Transaction Details{" "}
+                  <span className="tranPopOutButton">
+                    <CloseIcon
+                      className="closeTranPopDiv"
+                      onClick={closeTranPop}
+                    />
+                  </span>
                 </div>
-                <input
-                  type="text"
-                  className="redeemModal_cont_body_3_input"
-                  placeholder="0xXxxx"
-                />
-              </div>
-              <div className="redeemModal_cont_body_4">
-                <button className="redeemModal_cont_body_4_btn">Redeem</button>
-              </div>
-              <div className="redeemModal_cont_body_5">
-                <div className="redeemModal_cont_body_5_div">
-                  <InformationCircleIcon
-                    size={16}
-                    className="redeemModal_cont_body_5_div_icon"
-                  />
-                  Make sure your wallet address is an ego20 wallet address
+                <div className="tranPop_div_cont1">
+                  {" "}
+                  <div className="deposited_icon">
+                    {data.to_email === "samuelify225@gmail.com" ? (
+                      <ArrowDownwardIcon className="arrow_down_deposit_icon" />
+                    ) : (
+                      <ArrowUpwardIcon
+                        className="arrow_down_deposit_icon"
+                        style={{ background: "red" }}
+                      />
+                    )}{" "}
+                  </div>
+                  <span className="transPopData">
+                    {" "}
+                    {data.to_email === "samuelify225@gmail.com"
+                      ? "Credit"
+                      : "Debit"}{" "}
+                  </span>
                 </div>
-                <div className="redeemModal_cont_body_5_div">
-                  <InformationCircleIcon
-                    size={16}
-                    className="redeemModal_cont_body_5_div_icon"
-                  />
-                  Minimum withdrawable amount 10,000 pluto
+                <div className="tranPop_div_cont1">
+                  Date{" "}
+                  <span className="transPopData">
+                    {" "}
+                    {data.createdAt.slice(0, 10)}
+                  </span>{" "}
+                </div>
+                <div className="tranPop_div_cont1">
+                  Amount{" "}
+                  <span className="transPopData">
+                    {" "}
+                    {data.to_email === "samuelify225@gmail.com" ? (
+                      <div style={{ color: "#0ecb81" }}>
+                        {" "}
+                        +₦
+                        {parseInt(data.amount).toFixed(2)}
+                      </div>
+                    ) : (
+                      <div style={{ color: "#ff8484" }}>
+                        {" "}
+                        -₦
+                        {parseInt(data.amount).toFixed(2)}
+                      </div>
+                    )}
+                  </span>{" "}
+                </div>
+                <div className="tranPop_div_cont1">
+                  From <span className="transPopData">{data.email}</span>
+                </div>
+                <div className="tranPop_div_cont1">
+                  To <span className="transPopData">{data.to_email}</span>
+                </div>
+                <div className="tranPop_div_cont1">
+                  Status{" "}
+                  <span className="transPopData">
+                    <CircleIcon className="complete_circle" />
+                    {data.status}
+                  </span>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      ) : null} */}
+          ) : null}
+        </>
+      ))}
+      <Toaster />
     </div>
   );
 };
