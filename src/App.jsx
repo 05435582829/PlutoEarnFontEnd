@@ -23,6 +23,13 @@ function App() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  useEffect(() => {
+    // Initialize the Telegram Web App SDK
+    if (window.Telegram) {
+      window.Telegram.WebApp.ready();
+    }
+  }, []);
+
   return (
     <div className="App">
       <Home />
