@@ -45,6 +45,7 @@ const Home = () => {
         };
 
         tg.BackButton.onClick(goBack);
+
         const params = new URLSearchParams(Telegram.WebApp.initData);
         const data = Object.fromEntries(params);
         data.user = JSON.parse(data.user);
