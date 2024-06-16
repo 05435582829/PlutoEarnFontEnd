@@ -4,15 +4,21 @@ import Home from "./Home/Home";
 
 function App() {
   useEffect(() => {
-    const handleScroll = (event) => {
-      event.stopPropagation();
-      // Add your scroll handling logic here
+    let lastScrollTop = 0;
+
+    const handleScroll = () => {
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      const isScrollingDown = scrollTop > lastScrollTop;
+
+      if (isScrollingDown) {
+        window.Telegram.WebApp.MainInstance.backButtonInvoked = false;
+      }
+      lastScrollTop = scrollTop;
     };
 
-    // Attach the event listener to the desired element
     window.addEventListener("scroll", handleScroll);
 
-    // Clean up the event listener when the component unmounts
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
