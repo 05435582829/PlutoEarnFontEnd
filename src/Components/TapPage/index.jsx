@@ -81,16 +81,17 @@ const TapPage = () => {
   useEffect(() => {
     if (new Date(lastTime) <= new Date()) {
       localStorage.setItem("claimFarming", "true");
+      localStorage.setItem("farming", "false");
       return;
     }
     if (new Date(lastTime) > new Date()) {
       localStorage.setItem("claimFarming", "false");
       return;
     }
-  }, [new Date(lastTime), new Date(), lastTime]);
+  }, [lastTime, new Date(), lastTime]);
 
   console.log(local_storage_claim_farm);
-  console.log(new Date(lastTime));
+  console.log(new Date(lastTime), new Date());
 
   return (
     <div className="TapPageDiv_div">
