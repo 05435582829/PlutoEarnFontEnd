@@ -4,7 +4,7 @@ import api from "../Utils/AxiosInstance";
 export const SignupLogin = async (userId, chatId) => {
   try {
     const res = await axios.get(
-      `https://plutoearn.egoras.com/pub/user/register/login/${userId}/${chatId}`
+      `https://plutoearn.egoras.com/pub/user/register/login/${userId}/${chatId}/null`
     );
     return res.data;
   } catch (error) {
