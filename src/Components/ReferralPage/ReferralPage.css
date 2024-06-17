@@ -33,3 +33,11 @@
   align-items: center;
   justify-content: center;
 }
+.redeemModal_cont_body_3_inputb {
+  padding: 18px;
+  border-radius: 10px;
+  border: solid 1px #b1d5c8;
+  background: #11b66e17;
+  color: #1f7054;
+  font-size: 13px;
+}

@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Sheet } from "react-modal-sheet";
+import { Cancel01Icon } from "hugeicons-react";
+
 import "./WalletPage.css";
 import {
   ViewIcon,
@@ -242,17 +244,21 @@ const WalletPage = () => {
         onClose={() => ToggleRedeemModal()}
         // detent="full-height"
         detent="Content-height"
-        disableScrollLocking={true}
+        disableScrollLocking={false}
+        className="bottom_sheet"
         // style={{ zIndex: "1000" }}
       >
         <Sheet.Container>
           <Sheet.Header />
           <Sheet.Content>
-            {" "}
-            <div className="redeemModal_cont">
-              <div className="redeemModal_cont_title">Redeem</div>
-              <div className="redeemModal_cont_body">
-                {/* <div className="redeemModal_cont_body_1">
+            <Sheet.Scroller>
+              <div className="close_Sheet" onClick={ToggleRedeemModal}>
+                <Cancel01Icon className="close_icon" size={20} />
+              </div>
+              <div className="redeemModal_cont">
+                <div className="redeemModal_cont_title">Redeem</div>
+                <div className="redeemModal_cont_body">
+                  {/* <div className="redeemModal_cont_body_1">
                   <img
                     src="/img/point_gif_coin.gif"
                     alt=""
@@ -265,74 +271,78 @@ const WalletPage = () => {
                   size={24}
                   className="redeemModal_cont_body_icon"
                 /> */}
-                <div className="redeemModal_cont_body_2">
-                  <img
-                    src="/img/point_gif_coin.gif"
-                    alt=""
-                    className="redeemModal_cont_body_1_icon
+                  <div className="redeemModal_cont_body_2">
+                    <img
+                      src="/img/point_gif_coin.gif"
+                      alt=""
+                      className="redeemModal_cont_body_1_icon
                 "
-                  />
-                  <span>
-                    {numberWithCommas(parseFloat(userBalance).toFixed(2))} pluto
-                  </span>
-                </div>
-                <div className="redeemModal_cont_body_3">
-                  <div className="redeemModal_cont_body_3_title">
-                    Receiver address
-                  </div>
-                  <input
-                    type="text"
-                    className="redeemModal_cont_body_3_input"
-                    placeholder="0xXxxx"
-                    onChange={onChangeWallet}
-                    value={wallet}
-                  />
-                </div>
-                <div className="redeemModal_cont_body_4">
-                  {wallet === "" ? (
-                    <button
-                      className="redeemModal_cont_body_4_btn"
-                      disabled={true}
-                    >
-                      Input Receiver Address
-                    </button>
-                  ) : (
-                    <button
-                      className="redeemModal_cont_body_4_btn"
-                      onClick={withdraw_funds}
-                      disabled={disabled}
-                    >
-                      {loading ? (
-                        <div style={{ display: "flex", alignItems: "center" }}>
-                          Redeeming...
-                          <span style={{ marginLeft: "10px" }}>
-                            <ClipLoader color="#fff" size={20} />
-                          </span>
-                        </div>
-                      ) : (
-                        <>Redeem</>
-                      )}
-                    </button>
-                  )}
-                </div>
-                <div className="redeemModal_cont_body_5">
-                  <div className="redeemModal_cont_body_5_div">
-                    <InformationCircleIcon
-                      size={16}
-                      className="redeemModal_cont_body_5_div_icon"
                     />
-                    Make sure your wallet address is an ego20 wallet address
+                    <span>
+                      {numberWithCommas(parseFloat(userBalance).toFixed(2))}{" "}
+                      pluto
+                    </span>
                   </div>
-                  <div className="redeemModal_cont_body_5_div">
-                    <InformationCircleIcon
-                      size={16}
-                      className="redeemModal_cont_body_5_div_icon"
+                  <div className="redeemModal_cont_body_3">
+                    <div className="redeemModal_cont_body_3_title">
+                      Receiver address
+                    </div>
+                    <input
+                      type="text"
+                      className="redeemModal_cont_body_3_input"
+                      placeholder="0xXxxx"
+                      onChange={onChangeWallet}
+                      value={wallet}
                     />
-                    Minimum withdrawable amount 1,000 pluto
+                  </div>
+                  <div className="redeemModal_cont_body_4">
+                    {wallet === "" ? (
+                      <button
+                        className="redeemModal_cont_body_4_btn"
+                        disabled={true}
+                      >
+                        Input Receiver Address
+                      </button>
+                    ) : (
+                      <button
+                        className="redeemModal_cont_body_4_btn"
+                        onClick={withdraw_funds}
+                        disabled={disabled}
+                      >
+                        {loading ? (
+                          <div
+                            style={{ display: "flex", alignItems: "center" }}
+                          >
+                            Redeeming...
+                            <span style={{ marginLeft: "10px" }}>
+                              <ClipLoader color="#fff" size={20} />
+                            </span>
+                          </div>
+                        ) : (
+                          <>Redeem</>
+                        )}
+                      </button>
+                    )}
+                  </div>
+                  <div className="redeemModal_cont_body_5">
+                    <div className="redeemModal_cont_body_5_div">
+                      <InformationCircleIcon
+                        size={16}
+                        className="redeemModal_cont_body_5_div_icon"
+                      />
+                      Make sure your wallet address is an ego20 wallet address
+                    </div>
+                    <div className="redeemModal_cont_body_5_div">
+                      <InformationCircleIcon
+                        size={16}
+                        className="redeemModal_cont_body_5_div_icon"
+                      />
+                      Minimum withdrawable amount 1,000 pluto
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Sheet.Scroller>{" "}
           </Sheet.Content>
         </Sheet.Container>
         <Sheet.Backdrop />

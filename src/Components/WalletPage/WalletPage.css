@@ -284,6 +284,18 @@
   background: #12b66f7a;
   cursor: pointer;
 }
+
+.close_Sheet {
+  position: absolute;
+  top: -15%;
+  right: 6%;
+}
+.close_icon {
+  stroke-width: 2px;
+  /* border: solid 1px grey; */
+  padding: 1px;
+  color: #8f8f8f;
+}
 /* =========== */
 /* =========== */
 /* =========== */
