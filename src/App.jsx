@@ -24,6 +24,22 @@ function App() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  useEffect(() => {
+    // Initialize the Telegram Web App SDK
+    if (window.Telegram) {
+      window.Telegram.WebApp.ready();
+    }
+  }, []);
+
+  const setHeaderColor = (color) => {
+    if (window.Telegram && window.Telegram.WebApp) {
+      window.Telegram.WebApp.setHeaderColor(color);
+    }
+  };
+  useEffect(() => {
+    setHeaderColor("#fff");
+  }, []);
+
   return (
     <div className="App">
       <Home />

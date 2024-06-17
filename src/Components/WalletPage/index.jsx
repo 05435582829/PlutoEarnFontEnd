@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Sheet } from "react-modal-sheet";
+import { Cancel01Icon } from "hugeicons-react";
+
 import "./WalletPage.css";
 import {
   ViewIcon,
@@ -24,11 +26,16 @@ const WalletPage = () => {
   const [getTransactionLoding, setGetTransactionLoding] = useState(false);
   const [transaction, setTransaction] = useState([]);
   const [tranPopUp, setTranPopUp] = useState(0);
-
+  const handleHapticFeedback = () => {
+    if (window.Telegram && window.Telegram.WebApp) {
+      window.Telegram.WebApp.HapticFeedback.impactOccurred("medium"); // Adjust feedback type as needed
+    }
+  };
   const ToggleRedeemModal = () => {
     setRedeemModal(!redeemModal);
   };
   const withdraw_funds = async () => {
+    handleHapticFeedback();
     setLoading(true);
     setDisabled(true);
     const res = await WithdrawReward({ wallet_address: wallet });
@@ -120,7 +127,10 @@ const WalletPage = () => {
           <div className="WalletPageDiv_1_cont_3">
             <button
               className="WalletPageDiv_1_cont_3_btn"
-              onClick={ToggleRedeemModal}
+              onClick={() => {
+                handleHapticFeedback();
+                ToggleRedeemModal();
+              }}
             >
               Redeem
             </button>
@@ -243,12 +253,13 @@ const WalletPage = () => {
         // detent="full-height"
         detent="Content-height"
         disableScrollLocking={true}
+        className={redeemModal ? "bottom_sheetb" : "bottom_sheet"}
+        disableDrag={true}
         // style={{ zIndex: "1000" }}
       >
         <Sheet.Container>
           <Sheet.Header />
           <Sheet.Content>
-            {" "}
             <div className="redeemModal_cont">
               <div className="redeemModal_cont_title">Redeem</div>
               <div className="redeemModal_cont_body">
@@ -332,6 +343,16 @@ const WalletPage = () => {
                   </div>
                 </div>
               </div>
+              <button
+                className="close_sheet_btn"
+                style={{ marginTop: "10px" }}
+                onClick={() => {
+                  handleHapticFeedback();
+                  ToggleRedeemModal();
+                }}
+              >
+                Close
+              </button>
             </div>
           </Sheet.Content>
         </Sheet.Container>

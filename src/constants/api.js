@@ -27,6 +27,14 @@ export const GetTransactions = async () => {
     return error.response || error.message;
   }
 };
+export const GetRefs = async () => {
+  try {
+    const res = await api.get(`/referral/user/referral/count`);
+    return res.data;
+  } catch (error) {
+    return error.response || error.message;
+  }
+};
 export const InitializeEarning = async () => {
   try {
     const res = await api.get(`/reward/initialize`);

@@ -228,6 +228,21 @@
 }
 .redeemModal_cont_body_4 {
   margin-top: 1em;
+  display: flex;
+  align-items: center;
+}
+.close_sheet_btn {
+  width: -webkit-fill-available;
+  padding: 19px;
+  border-radius: 16px;
+  border: none;
+  background: #e75858;
+  color: #fff;
+  font-weight: 500;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .redeemModal_cont_body_4_btn {
   width: -webkit-fill-available;
@@ -284,6 +299,30 @@
   background: #12b66f7a;
   cursor: pointer;
 }
+
+.close_Sheet {
+  position: absolute;
+  top: -15%;
+  left: 6%;
+}
+.close_icon {
+  stroke-width: 2px;
+  /* border: solid 1px grey; */
+  padding: 1px;
+  color: #8f8f8f;
+}
+.bottom_sheet {
+  z-index: 1000 !important;
+}
+.bottom_sheetb {
+  z-index: 1000 !important;
+}
+
+/* Disable pointer events for main content when modal is open */
+/* body > *:not(.bottom_sheetb) {
+  pointer-events: none;
+} */
+
 /* =========== */
 /* =========== */
 /* =========== */

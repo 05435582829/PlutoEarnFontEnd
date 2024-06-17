@@ -33,8 +33,15 @@ const TapPage = () => {
     console.log(userBalance);
     setUserBalance(newBalance);
   };
+
+  const handleHapticFeedback = () => {
+    if (window.Telegram && window.Telegram.WebApp) {
+      window.Telegram.WebApp.HapticFeedback.impactOccurred("medium"); // Adjust feedback type as needed
+    }
+  };
   // localStorage.setItem("startFarming", "true");
   const init_earning = async () => {
+    handleHapticFeedback();
     setLoading(true);
     const response = await InitializeEarning();
     console.log(response, "jack");
@@ -50,6 +57,7 @@ const TapPage = () => {
     toast.error(response.data.errorMessage);
   };
   const claim_earning = async () => {
+    handleHapticFeedback();
     setLoading(true);
     const response = await ClaimReward();
     // console.log(response, "jack");
@@ -108,7 +116,7 @@ const TapPage = () => {
         <div
           className="TapPageDiv_area_1_profileAmountClaimes"
           // onClick={TestToast}
-          onClick={AddToPointBalance}
+          // onClick={AddToPointBalance}
         >
           <span className="TapPageDiv_area_1_profileAmountClaimes_span">
             <img

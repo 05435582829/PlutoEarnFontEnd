@@ -27,9 +27,13 @@ const TaskPage = () => {
               </div>
             </div>
           </div>
-          <div className="task_page_div_2_cont1_div2">
+          <a
+            href="https://x.com/plutodex"
+            target="_blank"
+            className="task_page_div_2_cont1_div2"
+          >
             <button className="task_page_div_2_cont1_div2_btn">Start</button>
-          </div>
+          </a>
         </div>
         <div className="task_page_div_2_cont1">
           <div className="task_page_div_2_cont1_div1">
@@ -45,9 +49,13 @@ const TaskPage = () => {
               </div>
             </div>
           </div>
-          <div className="task_page_div_2_cont1_div2">
+          <a
+            href="https://x.com/Egoras_auto"
+            target="_blank"
+            className="task_page_div_2_cont1_div2"
+          >
             <button className="task_page_div_2_cont1_div2_btn">Start</button>
-          </div>
+          </a>
         </div>
         <div className="task_page_div_2_cont1">
           <div className="task_page_div_2_cont1_div1">
@@ -63,9 +71,13 @@ const TaskPage = () => {
               </div>
             </div>
           </div>
-          <div className="task_page_div_2_cont1_div2">
+          <a
+            href="https://x.com/egochainHQ"
+            target="_blank"
+            className="task_page_div_2_cont1_div2"
+          >
             <button className="task_page_div_2_cont1_div2_btn">Start</button>
-          </div>
+          </a>
         </div>
         <div className="task_page_div_2_cont1">
           <div className="task_page_div_2_cont1_div1">
@@ -81,9 +93,13 @@ const TaskPage = () => {
               </div>
             </div>
           </div>
-          <div className="task_page_div_2_cont1_div2">
+          <a
+            href="https://t.me/pluto_ex"
+            target="_blank"
+            className="task_page_div_2_cont1_div2"
+          >
             <button className="task_page_div_2_cont1_div2_btn">Start</button>
-          </div>
+          </a>
         </div>
         <div className="task_page_div_2_cont1">
           <div className="task_page_div_2_cont1_div1">
@@ -99,9 +115,13 @@ const TaskPage = () => {
               </div>
             </div>
           </div>
-          <div className="task_page_div_2_cont1_div2">
+          <a
+            href="https://t.me/egorasmarket"
+            target="_blank"
+            className="task_page_div_2_cont1_div2"
+          >
             <button className="task_page_div_2_cont1_div2_btn">Start</button>
-          </div>
+          </a>
         </div>
         <div className="task_page_div_2_cont1">
           <div className="task_page_div_2_cont1_div1">
@@ -117,9 +137,13 @@ const TaskPage = () => {
               </div>
             </div>
           </div>
-          <div className="task_page_div_2_cont1_div2">
+          <a
+            href="https://t.me/egochainHQ"
+            target="_blank"
+            className="task_page_div_2_cont1_div2"
+          >
             <button className="task_page_div_2_cont1_div2_btn">Start</button>
-          </div>
+          </a>
         </div>
       </div>
     </div>

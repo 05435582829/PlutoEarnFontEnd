@@ -74,9 +74,14 @@ const Home = () => {
   useEffect(() => {
     initTelegramWebApp();
   }, []);
-
+  const handleHapticFeedback = () => {
+    if (window.Telegram && window.Telegram.WebApp) {
+      window.Telegram.WebApp.HapticFeedback.impactOccurred("medium"); // Adjust feedback type as needed
+    }
+  };
   const ToggleActiveTab = (e) => {
     setActiveTab(e.currentTarget.id);
+    handleHapticFeedback();
   };
   useEffect(() => {
     setLoadingDiv(true);
