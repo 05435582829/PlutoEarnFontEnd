@@ -7,9 +7,12 @@ import "./ReferralPage.css";
 import Lottie from "lottie-react";
 import Friends from "../LottieFiles/Friends.json";
 import toast, { Toaster } from "react-hot-toast";
+import { GetRefs } from "../../constants/api";
+import { numberWithCommas } from "../../assets/js/numberWithCommas";
 
 const ReferralPage = () => {
   const [redeemModal, setRedeemModal] = useState(false);
+  const [referral, setReferral] = useState([]);
   // const ref = React.useRef < SlickBottomSheetControl > null;
   const handleHapticFeedback = () => {
     if (window.Telegram && window.Telegram.WebApp) {
@@ -46,6 +49,14 @@ const ReferralPage = () => {
       document.body.removeChild(textArea);
     }
   };
+  const fetchRefs = async () => {
+    const res = await GetRefs();
+    console.log(res);
+    setReferral(res.data);
+  };
+  useEffect(() => {
+    fetchRefs();
+  }, []);
   return (
     <div className="Referral_div">
       <div className="Referral_div_1">
@@ -56,15 +67,47 @@ const ReferralPage = () => {
           auto refill for each invite.
         </div>{" "}
       </div>
-      <div className="Referral_div_2">
-        <Lottie
-          animationData={Friends}
-          loop={true}
-          autoPlay={true}
-          className="Referral_div_2_animation"
-          preserveAspectRatio="xMidYMid meet"
-        />
-      </div>
+      {referral.length <= 0 ? (
+        <div className="Referral_div_2">
+          <Lottie
+            animationData={Friends}
+            loop={true}
+            autoPlay={true}
+            className="Referral_div_2_animation"
+            preserveAspectRatio="xMidYMid meet"
+          />
+        </div>
+      ) : (
+        <div className="Referral_div_2_refs">
+          <div className="Referral_div_2_refs_title">
+            <span>My Referrals</span>{" "}
+            <span className="Referral_div_2_refs_title_span2">
+              {referral.length}
+            </span>
+          </div>
+          <div className="Referral_div_2_refs_body">
+            {referral.map((data) => (
+              <div className="Referral_div_2_refs_body_cont1">
+                <div className="Referral_div_2_refs_body_cont1_username_div">
+                  <img
+                    src="/img/pluto_icon.svg"
+                    alt=""
+                    className="Referral_div_2_refs_body_cont1_username_div_icon"
+                  />{" "}
+                  {data.username}
+                </div>
+                <div className="Referral_div_2_refs_body_cont1_amount_div">
+                  {numberWithCommas(parseFloat(data.amount).toFixed(2))}
+                </div>
+                <div className="Referral_div_2_refs_body_cont1_status_div">
+                  {data.status}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       <div className="Referral_div_3">
         {" "}
         <button
@@ -83,6 +126,7 @@ const ReferralPage = () => {
         onClose={() => ToggleRedeemModal()}
         detent="Content-height"
         disableScrollLocking={false}
+        className="bottom_sheet"
         // disableDrag={true}
       >
         <Sheet.Container>

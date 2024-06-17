@@ -296,6 +296,10 @@
   padding: 1px;
   color: #8f8f8f;
 }
+
+.bottom_sheet {
+  z-index: 1000 !important;
+}
 /* =========== */
 /* =========== */
 /* =========== */

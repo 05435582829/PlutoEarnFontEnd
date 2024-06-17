@@ -252,7 +252,7 @@ const WalletPage = () => {
         onClose={() => ToggleRedeemModal()}
         // detent="full-height"
         detent="Content-height"
-        disableScrollLocking={false}
+        disableScrollLocking={true}
         className="bottom_sheet"
         // style={{ zIndex: "1000" }}
       >
