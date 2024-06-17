@@ -164,7 +164,7 @@ const ReferralPage = () => {
                       ToggleRedeemModal();
                     }}
                   >
-                    Close Modal
+                    Close
                   </button>
                 </div>
               </div>

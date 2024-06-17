@@ -351,7 +351,7 @@ const WalletPage = () => {
                   ToggleRedeemModal();
                 }}
               >
-                Close Modal
+                Close
               </button>
             </div>
           </Sheet.Content>
