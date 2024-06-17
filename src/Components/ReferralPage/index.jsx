@@ -127,15 +127,15 @@ const ReferralPage = () => {
         detent="Content-height"
         disableScrollLocking={false}
         className="bottom_sheet"
-        // disableDrag={true}
+        disableDrag={true}
       >
         <Sheet.Container>
           <Sheet.Header />
           <Sheet.Content>
             {" "}
-            <div className="close_Sheet" onClick={ToggleRedeemModal}>
+            {/* <div className="close_Sheet" onClick={ToggleRedeemModal}>
               <Cancel01Icon className="close_icon" size={20} />
-            </div>
+            </div> */}
             <div className="redeemModal_cont">
               <div className="redeemModal_cont_body">
                 <div className="redeemModal_cont_body_3b">
@@ -155,6 +155,16 @@ const ReferralPage = () => {
                     onClick={copyText}
                   >
                     Copy Invite Link
+                  </button>
+                  <button
+                    className="close_sheet_btn"
+                    style={{ marginLeft: "10px" }}
+                    onClick={() => {
+                      handleHapticFeedback();
+                      ToggleRedeemModal();
+                    }}
+                  >
+                    Close Modal
                   </button>
                 </div>
               </div>

@@ -228,6 +228,21 @@
 }
 .redeemModal_cont_body_4 {
   margin-top: 1em;
+  display: flex;
+  align-items: center;
+}
+.close_sheet_btn {
+  width: -webkit-fill-available;
+  padding: 19px;
+  border-radius: 16px;
+  border: none;
+  background: #e75858;
+  color: #fff;
+  font-weight: 500;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .redeemModal_cont_body_4_btn {
   width: -webkit-fill-available;
@@ -288,7 +303,7 @@
 .close_Sheet {
   position: absolute;
   top: -15%;
-  right: 6%;
+  left: 6%;
 }
 .close_icon {
   stroke-width: 2px;
