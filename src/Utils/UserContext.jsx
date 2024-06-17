@@ -10,6 +10,7 @@ export const UserProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [userBalance, setUserBalance] = useState(0);
+  const [lastTime, setLastTime] = useState();
 
   //   useEffect(() => {
   //     // Fetch user data from API
@@ -44,6 +45,8 @@ export const UserProvider = ({ children }) => {
         pre_data,
         userBalance,
         setUserBalance,
+        lastTime,
+        setLastTime,
       }}
     >
       {children}

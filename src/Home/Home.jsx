@@ -30,6 +30,8 @@ const Home = () => {
     pre_data,
     setPredata,
     setUserBalance,
+    lastTime,
+    setLastTime,
   } = useContext(UserContext);
 
   const [activeTab, setActiveTab] = useState("home");
@@ -59,6 +61,7 @@ const Home = () => {
 
         if (res.success) {
           setUser(res?.data?.user);
+          setLastTime(res?.data?.claimTime?.lastTime);
           localStorage.setItem("eta", res?.data?.token);
           setLoadingDiv(false);
           return;

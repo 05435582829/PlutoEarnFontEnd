@@ -16,8 +16,7 @@ import { UserContext } from "../../Utils/UserContext";
 import Avvvatars from "avvvatars-react";
 
 const TapPage = () => {
-  const { pre_data, userBalance, setUserBalance, setLastTime, lastTime } =
-    useContext(UserContext);
+  const { pre_data, userBalance, setUserBalance } = useContext(UserContext);
   const [pointBalance, setPointBalance] = useState(100000);
   const [nextRewardTakeTime, setNextRewardTakeTime] = useState(new Date());
   const [loading, setLoading] = useState(false);
@@ -48,8 +47,7 @@ const TapPage = () => {
     console.log(response, "jack");
     if (response.success === true) {
       setLoading(false);
-      setLastTime(response?.data?.lastTime);
-      // localStorage.setItem("time", response.data.lastTime);
+      localStorage.setItem("time", response.data.lastTime);
       localStorage.setItem("farming", "true");
       setNextRewardTakeTime(response.data.lastTime);
       toast.success("You have started farming");
@@ -75,8 +73,7 @@ const TapPage = () => {
     setLoading(false);
     toast.error(response.data.errorMessage);
   };
-  const local_storage = lastTime;
-  // const local_storage = localStorage.getItem("time");
+  const local_storage = localStorage.getItem("time");
   const local_storage_farming = localStorage.getItem("farming");
   const local_storage_claim_farm = localStorage.getItem("claimFarming");
   // console.log(new Date(local_storage), new Date());
@@ -91,7 +88,7 @@ const TapPage = () => {
   useEffect(() => {
     // console.log(local_storage);
     if (local_storage !== null) {
-      setNextRewardTakeTime(lastTime);
+      setNextRewardTakeTime(localStorage.getItem("time"));
       if (new Date(local_storage) <= new Date()) {
         localStorage.setItem("farming", "false");
         localStorage.setItem("claimFarming", "true");
@@ -114,8 +111,6 @@ const TapPage = () => {
         <div className="TapPageDiv_area_1_profile_name">
           {pre_data?.user?.username || "N/A"}
           {/*  */}
-
-          <p className="">{lastTime} last-time</p>
         </div>
 
         <div
