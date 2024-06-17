@@ -34,17 +34,8 @@ const Home = () => {
 
   const [activeTab, setActiveTab] = useState("home");
   const [loadingDiv, setLoadingDiv] = useState(true);
-  const [tokenisSet, setTokenIsSet] = useState(false);
-
-  const FetchUserBalance = async () => {
-    const res = await GetEarningBal();
-    console.log(res, "amadi oha");
-    setUserBalance(res?.data?.earnings);
-  };
   const initTelegramWebApp = async () => {
     if (window.Telegram && window.Telegram.WebApp) {
-      console.log("supposing ");
-
       try {
         const tg = Telegram.WebApp;
         // Click Event
@@ -64,16 +55,11 @@ const Home = () => {
         // window.Telegram.WebApp.disableSwipeDownHandler();
         //call the login api
         const res = await SignupLogin(data.user.username, data.user.id);
-        console.log(res, "amadi");
-        // await FetchUserBalance();
-        const res2 = await GetEarningBal();
-        console.log(res2, "mamama");
+        console.log(res, "aaa");
 
         if (res.success) {
-          setTokenIsSet(true);
           setUser(res?.data?.user);
           localStorage.setItem("eta", res?.data?.token);
-
           setLoadingDiv(false);
           return;
         }
@@ -87,17 +73,10 @@ const Home = () => {
 
   useEffect(() => {
     initTelegramWebApp();
-    console.log("suppose");
   }, []);
 
-  const handleHapticFeedback = () => {
-    if (window.Telegram && window.Telegram.WebApp) {
-      window.Telegram.WebApp.HapticFeedback.impactOccurred("medium"); // Adjust feedback type as needed
-    }
-  };
   const ToggleActiveTab = (e) => {
     setActiveTab(e.currentTarget.id);
-    handleHapticFeedback();
   };
   useEffect(() => {
     setLoadingDiv(true);
@@ -107,11 +86,14 @@ const Home = () => {
   }, []);
   console.log(user, pre_data);
 
-  // useEffect(() => {
-  //   console.log("entering...", tokenisSet);
-  //   if (tokenisSet) {
-  //   }
-  // }, [tokenisSet]);
+  const FetchUserBalance = async () => {
+    const res = await GetEarningBal();
+    console.log(res);
+    setUserBalance(res?.data?.earnings);
+  };
+  useEffect(() => {
+    FetchUserBalance();
+  }, []);
   return (
     <>
       {loadingDiv ? (
