@@ -13,6 +13,7 @@ function App() {
 
       if (isScrollingDown) {
         window.Telegram.WebApp.MainInstance.backButtonInvoked = false;
+        alert("welcome");
       }
       lastScrollTop = scrollTop;
     };
