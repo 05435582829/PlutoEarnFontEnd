@@ -21,6 +21,7 @@ const TapPage = () => {
   const [pointBalance, setPointBalance] = useState(100000);
   const [nextRewardTakeTime, setNextRewardTakeTime] = useState(new Date());
   const [loading, setLoading] = useState(false);
+  const [loadingStart, setLoadingStart] = useState(false);
 
   const lottieRef = useRef();
 
@@ -43,18 +44,18 @@ const TapPage = () => {
   // localStorage.setItem("startFarming", "true");
   const init_earning = async () => {
     handleHapticFeedback();
-    setLoading(true);
+    setLoadingStart(true);
     const response = await InitializeEarning();
     console.log(response, "jack");
     if (response.success === true) {
-      setLoading(false);
+      setLoadingStart(false);
       setLastTime(response?.data?.lastTime);
       localStorage.setItem("farming", "true");
       localStorage.setItem("claimFarming", "false");
       toast.success("You have started farming");
       return;
     }
-    setLoading(false);
+    setLoadingStart(false);
     toast.error(response.data.errorMessage);
   };
   const claim_earning = async () => {
@@ -79,11 +80,17 @@ const TapPage = () => {
 
   useEffect(() => {
     if (new Date(lastTime) <= new Date()) {
-      localStorage.setItem("farming", "false");
       localStorage.setItem("claimFarming", "true");
       return;
     }
+    if (new Date(lastTime) > new Date()) {
+      localStorage.setItem("claimFarming", "false");
+      return;
+    }
   }, [new Date(lastTime), new Date(), lastTime]);
+
+  console.log(local_storage_claim_farm);
+  console.log(new Date(lastTime));
 
   return (
     <div className="TapPageDiv_div">
@@ -186,9 +193,9 @@ const TapPage = () => {
           <button
             className="TapPageDiv_area_3_btn"
             onClick={init_earning}
-            disabled={loading}
+            disabled={loadingStart}
           >
-            {loading ? (
+            {loadingStart ? (
               <div style={{ display: "flex", alignItems: "center" }}>
                 Starting...
                 <span style={{ marginLeft: "10px" }}>
