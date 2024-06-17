@@ -33,6 +33,12 @@ const WalletPage = () => {
   };
   const ToggleRedeemModal = () => {
     setRedeemModal(!redeemModal);
+    const otherElements = document.querySelectorAll(
+      "body > *:not(.bottom_sheetb)"
+    );
+    otherElements.forEach((element) => {
+      element.style.pointerEvents = redeemModal ? "auto" : "none";
+    });
   };
   const withdraw_funds = async () => {
     handleHapticFeedback();
@@ -253,7 +259,7 @@ const WalletPage = () => {
         // detent="full-height"
         detent="Content-height"
         disableScrollLocking={true}
-        className="bottom_sheet"
+        className={redeemModal ? "bottom_sheetb" : "bottom_sheet"}
         // style={{ zIndex: "1000" }}
       >
         <Sheet.Container>
