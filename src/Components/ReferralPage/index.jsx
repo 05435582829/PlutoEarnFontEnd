@@ -11,10 +11,16 @@ import toast, { Toaster } from "react-hot-toast";
 const ReferralPage = () => {
   const [redeemModal, setRedeemModal] = useState(false);
   // const ref = React.useRef < SlickBottomSheetControl > null;
+  const handleHapticFeedback = () => {
+    if (window.Telegram && window.Telegram.WebApp) {
+      window.Telegram.WebApp.HapticFeedback.impactOccurred("medium"); // Adjust feedback type as needed
+    }
+  };
   const ToggleRedeemModal = () => {
     setRedeemModal(!redeemModal);
   };
   const copyText = () => {
+    handleHapticFeedback();
     const textToCopy = document.getElementById("myInput").textContent;
     if (navigator.clipboard) {
       navigator.clipboard
@@ -61,7 +67,13 @@ const ReferralPage = () => {
       </div>
       <div className="Referral_div_3">
         {" "}
-        <button className="TapPageDiv_area_3_btn" onClick={ToggleRedeemModal}>
+        <button
+          className="TapPageDiv_area_3_btn"
+          onClick={() => {
+            ToggleRedeemModal();
+            handleHapticFeedback();
+          }}
+        >
           Invite a friend
         </button>
       </div>

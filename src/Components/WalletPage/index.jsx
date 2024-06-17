@@ -26,11 +26,16 @@ const WalletPage = () => {
   const [getTransactionLoding, setGetTransactionLoding] = useState(false);
   const [transaction, setTransaction] = useState([]);
   const [tranPopUp, setTranPopUp] = useState(0);
-
+  const handleHapticFeedback = () => {
+    if (window.Telegram && window.Telegram.WebApp) {
+      window.Telegram.WebApp.HapticFeedback.impactOccurred("medium"); // Adjust feedback type as needed
+    }
+  };
   const ToggleRedeemModal = () => {
     setRedeemModal(!redeemModal);
   };
   const withdraw_funds = async () => {
+    handleHapticFeedback();
     setLoading(true);
     setDisabled(true);
     const res = await WithdrawReward({ wallet_address: wallet });
@@ -122,7 +127,10 @@ const WalletPage = () => {
           <div className="WalletPageDiv_1_cont_3">
             <button
               className="WalletPageDiv_1_cont_3_btn"
-              onClick={ToggleRedeemModal}
+              onClick={() => {
+                handleHapticFeedback();
+                ToggleRedeemModal();
+              }}
             >
               Redeem
             </button>
