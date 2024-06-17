@@ -114,8 +114,6 @@ const TapPage = () => {
         <div className="TapPageDiv_area_1_profile_name">
           {pre_data?.user?.username || "N/A"}
           {/*  */}
-
-          <p className="">{lastTime} last-time</p>
         </div>
 
         <div
