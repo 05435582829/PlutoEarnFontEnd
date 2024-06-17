@@ -49,9 +49,8 @@ const TapPage = () => {
     if (response.success === true) {
       setLoading(false);
       setLastTime(response?.data?.lastTime);
-      // localStorage.setItem("time", response.data.lastTime);
       localStorage.setItem("farming", "true");
-      setNextRewardTakeTime(response.data.lastTime);
+      localStorage.setItem("claimFarming", "false");
       toast.success("You have started farming");
       return;
     }
@@ -62,12 +61,11 @@ const TapPage = () => {
     handleHapticFeedback();
     setLoading(true);
     const response = await ClaimReward();
-    // console.log(response, "jack");
     if (response.success === true) {
-      localStorage.removeItem("time");
       setLoading(false);
-      setNextRewardTakeTime(new Date());
+      setLastTime(new Date());
       localStorage.setItem("claimFarming", "false");
+      localStorage.setItem("farming", "false");
       toast.success("You have successfully claimed 1,000 pluto tokens");
       AddToPointBalance();
       return;
@@ -75,31 +73,17 @@ const TapPage = () => {
     setLoading(false);
     toast.error(response.data.errorMessage);
   };
-  const local_storage = lastTime;
-  // const local_storage = localStorage.getItem("time");
+
   const local_storage_farming = localStorage.getItem("farming");
   const local_storage_claim_farm = localStorage.getItem("claimFarming");
-  // console.log(new Date(local_storage), new Date());
-  useEffect(() => {
-    if (local_storage === null) {
-      localStorage.setItem("farming", "false");
-      localStorage.setItem("claimFarming", "false");
-      return;
-    }
-  }, [local_storage, new Date()]);
 
   useEffect(() => {
-    // console.log(local_storage);
-    if (local_storage !== null) {
-      setNextRewardTakeTime(lastTime);
-      if (new Date(local_storage) <= new Date()) {
-        localStorage.setItem("farming", "false");
-        localStorage.setItem("claimFarming", "true");
-        return;
-      }
+    if (new Date(lastTime) <= new Date()) {
+      localStorage.setItem("farming", "false");
+      localStorage.setItem("claimFarming", "true");
       return;
     }
-  }, [local_storage, new Date()]);
+  }, [new Date(lastTime), new Date(), lastTime]);
 
   return (
     <div className="TapPageDiv_div">
@@ -162,7 +146,7 @@ const TapPage = () => {
                 className="TapPageDiv_area_3_btn_gif"
               />
             </span>
-            <Timer deadline={nextRewardTakeTime} />
+            <Timer deadline={lastTime} />
           </button>
         ) : local_storage_claim_farm === "true" ? (
           <button

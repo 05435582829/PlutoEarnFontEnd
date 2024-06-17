@@ -153,15 +153,27 @@
   display: flex;
   width: -webkit-fill-available;
   height: 100%;
-  border-top: solid 1px #eeeeee;
+  /* border-top: solid 1px #eeeeee; */
   padding: 20px !important;
   background: #fff;
+  /* background: #fff; */
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  padding-top: 1.2em !important;
 }
 .redeemModal_cont_title {
   font-weight: 600;
   color: #000000;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.redeemModal_cont_title_close_icon_div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .redeemModal_cont_body {
   display: flex;
@@ -309,7 +321,7 @@
   stroke-width: 2px;
   /* border: solid 1px grey; */
   padding: 1px;
-  color: #8f8f8f;
+  color: #000000;
 }
 .bottom_sheet {
   z-index: 1000 !important;

@@ -258,24 +258,21 @@ const WalletPage = () => {
         // style={{ zIndex: "1000" }}
       >
         <Sheet.Container>
-          <Sheet.Header />
           <Sheet.Content>
             <div className="redeemModal_cont">
-              <div className="redeemModal_cont_title">Redeem</div>
-              <div className="redeemModal_cont_body">
-                {/* <div className="redeemModal_cont_body_1">
-                  <img
-                    src="/img/point_gif_coin.gif"
-                    alt=""
-                    className="redeemModal_cont_body_1_icon
-                "
-                  />
-                  100,000 xp
+              <div className="redeemModal_cont_title">
+                Redeem{" "}
+                <div
+                  className="redeemModal_cont_title_close_icon_div"
+                  onClick={() => {
+                    handleHapticFeedback();
+                    ToggleRedeemModal();
+                  }}
+                >
+                  <Cancel01Icon className="close_icon" size={20} />
                 </div>
-                <ArrowDataTransferVerticalIcon
-                  size={24}
-                  className="redeemModal_cont_body_icon"
-                /> */}
+              </div>
+              <div className="redeemModal_cont_body">
                 <div className="redeemModal_cont_body_2">
                   <img
                     src="/img/point_gif_coin.gif"
@@ -343,16 +340,6 @@ const WalletPage = () => {
                   </div>
                 </div>
               </div>
-              <button
-                className="close_sheet_btn"
-                style={{ marginTop: "10px" }}
-                onClick={() => {
-                  handleHapticFeedback();
-                  ToggleRedeemModal();
-                }}
-              >
-                Close
-              </button>
             </div>
           </Sheet.Content>
         </Sheet.Container>
