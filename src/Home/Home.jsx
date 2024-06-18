@@ -32,6 +32,8 @@ const Home = () => {
     setUserBalance,
     lastTime,
     setLastTime,
+    refCode,
+    setRefCode,
   } = useContext(UserContext);
 
   const [activeTab, setActiveTab] = useState("home");
@@ -62,6 +64,9 @@ const Home = () => {
         if (res.success) {
           setUser(res?.data?.user);
           console.log(res?.data?.claimTime);
+          console.log(res?.data.user.swapRef);
+          console.log(res?.data);
+          setRefCode(res?.data?.user?.swapRef);
           setLastTime(res?.data?.claimTime?.lastTime);
           localStorage.setItem("eta", res?.data?.token);
           setLoadingDiv(false);

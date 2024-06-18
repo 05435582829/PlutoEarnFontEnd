@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Sheet } from "react-modal-sheet";
 import { Cancel01Icon } from "hugeicons-react";
 // import "react-modal-sheet/dist/react-modal-sheet.css";
@@ -9,8 +9,10 @@ import Friends from "../LottieFiles/Friends.json";
 import toast, { Toaster } from "react-hot-toast";
 import { GetRefs } from "../../constants/api";
 import { numberWithCommas } from "../../assets/js/numberWithCommas";
+import { UserContext } from "../../Utils/UserContext";
 
 const ReferralPage = () => {
+  const { refCode } = useContext(UserContext);
   const [redeemModal, setRedeemModal] = useState(false);
   const [referral, setReferral] = useState([]);
   // const ref = React.useRef < SlickBottomSheetControl > null;
@@ -148,14 +150,10 @@ const ReferralPage = () => {
                       <Cancel01Icon className="close_icon" size={20} />
                     </div>
                   </div>
-                  <input
+                  <div
                     id="myInput"
-                    type="text"
-                    value={"t.me/plutoEarn/ref=124hbuf"}
                     className="redeemModal_cont_body_3_input"
-                    placeholder="0xXxxx"
-                  />
-                  <div></div>
+                  >{`https://t.me/plutotapbot?start=${refCode}`}</div>
                 </div>
                 <div className="redeemModal_cont_body_4">
                   <button
