@@ -64,7 +64,7 @@ const TapPage = () => {
     const response = await ClaimReward();
     if (response.success === true) {
       setLoading(false);
-      setLastTime(new Date());
+      setLastTime(null);
       localStorage.setItem("claimFarming", "false");
       localStorage.setItem("farming", "false");
       toast.success("You have successfully claimed 1,000 pluto tokens");
@@ -81,6 +81,7 @@ const TapPage = () => {
   useEffect(() => {
     console.log(lastTime);
     if (lastTime !== null) {
+      console.log("i'm not null");
       if (new Date(lastTime) <= new Date()) {
         localStorage.setItem("claimFarming", "true");
         localStorage.setItem("farming", "false");
@@ -88,11 +89,14 @@ const TapPage = () => {
       }
       if (new Date(lastTime) > new Date()) {
         localStorage.setItem("claimFarming", "false");
+        localStorage.setItem("farming", "true");
         return;
       }
       return;
     }
     if (lastTime === null) {
+      console.log("i'm  null");
+
       localStorage.setItem("claimFarming", "false");
       localStorage.setItem("farming", "false");
       return;

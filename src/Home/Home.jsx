@@ -61,6 +61,7 @@ const Home = () => {
 
         if (res.success) {
           setUser(res?.data?.user);
+          console.log(res?.data?.claimTime);
           setLastTime(res?.data?.claimTime?.lastTime);
           localStorage.setItem("eta", res?.data?.token);
           setLoadingDiv(false);
