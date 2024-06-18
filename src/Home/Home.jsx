@@ -109,8 +109,11 @@ const Home = () => {
     setUserBalance(res?.data?.earnings);
   };
   useEffect(() => {
-    FetchUserBalance();
-  }, []);
+    if (localStorage.getItem("eta") !== null) {
+      FetchUserBalance();
+      return;
+    }
+  }, [localStorage.getItem("eta")]);
   return (
     <>
       {loadingDiv ? (
