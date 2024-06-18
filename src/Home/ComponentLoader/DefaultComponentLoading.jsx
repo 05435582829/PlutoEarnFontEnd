@@ -34,7 +34,7 @@ const DefaultComponentLoading = () => {
           speedMultiplier={0.5}
         /> */}
         <img src="/img/logo.png" alt="" className="loading_div_area_img" />
-        <div className="default_loader_txt">Pluto Farm</div>
+        <div className="default_loader_txt">PlutoFarm</div>
       </div>
 
       <div className="powered_by_txt">Powered By Egochain</div>
