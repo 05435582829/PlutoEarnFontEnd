@@ -4,20 +4,6 @@ import Home from "./Home/Home";
 
 function App() {
   const [allowed, setAllowed] = useState(true);
-  useEffect(() => {
-    // Check if the app is running inside the Telegram WebView
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    const isTelegramWebView = /Telegram/.test(userAgent);
-
-    if (!isTelegramWebView) {
-      // If the app is not running inside the Telegram WebView, display a message or redirect the user
-      alert("This app can only be accessed within the Telegram app.");
-      window.location.href = "https://telegram.org/dl";
-      // Redirect to Telegram download page
-      setAllowed(false);
-      return;
-    }
-  }, []);
 
   useEffect(() => {
     let lastScrollTop = 0;
