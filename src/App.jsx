@@ -1,8 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Home from "./Home/Home";
 
 function App() {
+  const [allowed, setAllowed] = useState(true);
+
   useEffect(() => {
     let lastScrollTop = 0;
 
@@ -39,6 +41,13 @@ function App() {
     setHeaderColor("#fff");
   }, []);
 
+  if (!allowed) {
+    return (
+      <div>
+        <p>This browser don't posses the feature to run this application</p>
+      </div>
+    );
+  }
   return (
     <div className="App">
       <Home />
