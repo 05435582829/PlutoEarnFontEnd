@@ -13,7 +13,7 @@ import "./TapPage.css";
 import Lottie from "lottie-react";
 import HourGlass from "../LottieFiles/HourGlassAnimation.json";
 import { UserContext } from "../../Utils/UserContext";
-import Avvvatars from "avvvatars-react";
+import { ReactSVG } from "react-svg";
 
 const TapPage = () => {
   const { pre_data, userBalance, setUserBalance, setLastTime, lastTime } =
@@ -156,6 +156,24 @@ const TapPage = () => {
           preserveAspectRatio="xMidYMid meet"
         />
       </div>
+      {/* ============== */}
+      {/* ============== */}
+      {/* ============== */}
+      {/* ============== */}
+      {/* ============== */}
+      {/* ============== */}
+      {/* ============== */}
+      {/* <div>
+        <img src="/dummy_glass.svg" alt="" />
+        <ReactSVG src="/hourGlassAnimation.svg" />
+      </div> */}
+      {/* ============== */}
+      {/* ============== */}
+      {/* ============== */}
+      {/* ============== */}
+      {/* ============== */}
+      {/* ============== */}
+      {/* ============== */}
       <div className="TapPageDiv_area_3">
         {local_storage_farming === "true" ? (
           <button className="TapPageDiv_area_3_btn2">

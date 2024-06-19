@@ -94,12 +94,12 @@ const Home = () => {
     setActiveTab(e.currentTarget.id);
   };
 
-  useEffect(() => {
-    setLoadingDiv(true);
-    const timer = setTimeout(() => {
-      setLoadingDiv(false);
-    }, 5000);
-  }, []);
+  // useEffect(() => {
+  //   setLoadingDiv(true);
+  //   const timer = setTimeout(() => {
+  //     setLoadingDiv(false);
+  //   }, 5000);
+  // }, []);
 
   console.log(user, pre_data);
 
