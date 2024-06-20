@@ -14,6 +14,9 @@ import Lottie from "lottie-react";
 import HourGlass from "../LottieFiles/HourGlassAnimation.json";
 import { UserContext } from "../../Utils/UserContext";
 import { ReactSVG } from "react-svg";
+import Check from "./check.js";
+import Swam from "./swamAnimation.js";
+import Running from "./runningGlass.js";
 
 const TapPage = () => {
   const { pre_data, userBalance, setUserBalance, setLastTime, lastTime } =
@@ -21,7 +24,7 @@ const TapPage = () => {
   const [pointBalance, setPointBalance] = useState(100000);
   const [nextRewardTakeTime, setNextRewardTakeTime] = useState(new Date());
   const [loading, setLoading] = useState(false);
-  const [loadingStart, setLoadingStart] = useState(false);
+  const [loadingStart, setLoadingStart] = useState(true);
 
   const lottieRef = useRef();
 
@@ -147,14 +150,48 @@ const TapPage = () => {
         </div>
       </div>{" "}
       <div className="TapPageDiv_area_2">
-        <Lottie
-          animationData={HourGlass}
-          loop={true}
-          autoPlay={true}
-          className="TapPageDiv_animation"
-          lottieRef={lottieRef}
-          preserveAspectRatio="xMidYMid meet"
-        />
+        {local_storage_farming === "true" ? (
+          <Lottie
+            animationData={Running}
+            loop={true}
+            autoPlay={true}
+            className=" TapPageDiv_animation TapPageDiv_animation3"
+            preserveAspectRatio="xMidYMid meet"
+          />
+        ) : local_storage_claim_farm === "true" ? (
+          <Lottie
+            animationData={Check}
+            loop={false}
+            autoPlay={true}
+            className=" TapPageDiv_animation TapPageDiv_animation1"
+            preserveAspectRatio="xMidYMid meet"
+          />
+        ) : (
+          <button
+            className="TapPageDiv_area_3_btn"
+            onClick={init_earning}
+            disabled={loadingStart}
+          >
+            {loadingStart ? (
+              <Lottie
+                animationData={Swam}
+                play={loadingStart}
+                loop={false}
+                autoPlay={true}
+                className="TapPageDiv_animation TapPageDiv_animation2"
+                preserveAspectRatio="xMidYMid meet"
+              />
+            ) : (
+              <Lottie
+                animationData={Check}
+                loop={false}
+                autoPlay={true}
+                className=" TapPageDiv_animation TapPageDiv_animation1"
+                preserveAspectRatio="xMidYMid meet"
+              />
+            )}
+          </button>
+        )}
       </div>
       {/* ============== */}
       {/* ============== */}
@@ -163,10 +200,6 @@ const TapPage = () => {
       {/* ============== */}
       {/* ============== */}
       {/* ============== */}
-      {/* <div>
-        <img src="/dummy_glass.svg" alt="" />
-        <ReactSVG src="/hourGlassAnimation.svg" />
-      </div> */}
       {/* ============== */}
       {/* ============== */}
       {/* ============== */}

@@ -48,7 +48,7 @@
   justify-content: center;
 }
 .TapPageDiv_animation {
-  width: 210px;
+  width: 75%;
 }
 .TapPageDiv_area_3_btn {
   width: -webkit-fill-available;
@@ -101,3 +101,80 @@
   width: 20px;
   margin-bottom: 4px;
 }
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+.TapPageDiv_animation1 svg g g g:nth-child(15) {
+  display: none !important;
+}
+.TapPageDiv_animation1 svg g g g:nth-child(16) {
+  display: none !important;
+}
+.TapPageDiv_animation1 svg g g g:nth-child(17) {
+  display: none !important;
+}
+.TapPageDiv_animation1 svg g g g:nth-child(18) {
+  display: none !important;
+}
+.TapPageDiv_animation2 svg g g g:nth-child(17) {
+  display: none !important;
+}
+.TapPageDiv_animation2 svg g g g:nth-child(11) {
+  display: none !important;
+}
+.TapPageDiv_animation2 svg g g g:nth-child(18) {
+  display: none !important;
+}
+.TapPageDiv_animation2 svg g g g:nth-child(19) {
+  display: none !important;
+}
+.TapPageDiv_animation3 svg g g g:nth-child(20) {
+  display: none !important;
+}
+.TapPageDiv_animation3 svg g g g:nth-child(21) {
+  display: none !important;
+}
+.TapPageDiv_animation3 svg g g g:nth-child(22) {
+  display: none !important;
+}
+.TapPageDiv_animation3 svg g g g:nth-child(23) {
+  display: none !important;
+}
+
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
+/* ============== */
