@@ -36,22 +36,26 @@
   align-items: center;
 }
 .TapPageDiv_area_1_profileAmountClaimes_Span_txt {
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 500;
   color: #878787;
   margin-top: -5px;
 }
 .TapPageDiv_area_1_profileAmountClaimes_Span_txt2 {
-  font-size: 12px;
+  font-size: 9px;
   font-weight: 500;
   color: #6ea18b;
   border: solid 1px #d4ece2;
-  padding: 10px;
+  padding: 6px;
   border-radius: 10px;
   margin-top: 6px;
   text-align: center;
   line-height: 1.5;
   background: #12b66f0f;
+  width: 70%;
+}
+.TapPageDiv_area_3 {
+  margin-bottom: 1em;
 }
 .TapPageDiv_area_2 {
   width: -webkit-fill-available;
