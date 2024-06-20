@@ -123,6 +123,28 @@ const TaskPage = () => {
             <button className="task_page_div_2_cont1_div2_btn">Start</button>
           </a>
         </div>
+        <div className="task_page_div_2_cont1">
+          <div className="task_page_div_2_cont1_div1">
+            <div className="task_page_div_2_cont1_div1_icon">
+              <TelegramIcon size={20} />
+            </div>
+            <div className="task_page_div_2_cont1_div1_txt_div">
+              <div className="task_page_div_2_cont1_div1_txt_div_title">
+                Subscribe to pluto channel
+              </div>
+              <div className="task_page_div_2_cont1_div1_txt_div_amount">
+                +500
+              </div>
+            </div>
+          </div>
+          <a
+            href="https://t.me/pluto_newz"
+            target="_blank"
+            className="task_page_div_2_cont1_div2"
+          >
+            <button className="task_page_div_2_cont1_div2_btn">Start</button>
+          </a>
+        </div>
         {/* <div className="task_page_div_2_cont1">
           <div className="task_page_div_2_cont1_div1">
             <div className="task_page_div_2_cont1_div1_icon">
