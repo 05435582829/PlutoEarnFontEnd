@@ -1,7 +1,7 @@
 import React from "react";
 import "./TaskPage.css";
 import { NewTwitterIcon } from "hugeicons-react";
-import { TelegramIcon } from "hugeicons-react";
+import { TelegramIcon, Wallet02Icon } from "hugeicons-react";
 
 const TaskPage = () => {
   return (
@@ -13,6 +13,28 @@ const TaskPage = () => {
         </div>
       </div>
       <div className="task_page_div_2">
+        <div className="task_page_div_2_cont1">
+          <div className="task_page_div_2_cont1_div1">
+            <div className="task_page_div_2_cont1_div1_icon">
+              <Wallet02Icon size={20} />
+            </div>
+            <div className="task_page_div_2_cont1_div1_txt_div">
+              <div className="task_page_div_2_cont1_div1_txt_div_title">
+                Add Egochain to Metamask
+              </div>
+              <div className="task_page_div_2_cont1_div1_txt_div_amount">
+                +1,000
+              </div>
+            </div>
+          </div>
+          <a
+            href="https://chainlist.org/?search=egochain"
+            target="_blank"
+            className="task_page_div_2_cont1_div2"
+          >
+            <button className="task_page_div_2_cont1_div2_btn">Start</button>
+          </a>
+        </div>
         <div className="task_page_div_2_cont1">
           <div className="task_page_div_2_cont1_div1">
             <div className="task_page_div_2_cont1_div1_icon">

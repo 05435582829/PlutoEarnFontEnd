@@ -25,6 +25,7 @@ const TapPage = () => {
   const [nextRewardTakeTime, setNextRewardTakeTime] = useState(new Date());
   const [loading, setLoading] = useState(false);
   const [loadingStart, setLoadingStart] = useState(false);
+  const [animationLoading, setAnimationLoading] = useState(false);
 
   const lottieRef = useRef();
 
@@ -48,14 +49,19 @@ const TapPage = () => {
   const init_earning = async () => {
     handleHapticFeedback();
     setLoadingStart(true);
+    setAnimationLoading(true);
     const response = await InitializeEarning();
     console.log(response, "jack");
     if (response.success === true) {
-      setLoadingStart(false);
       setLastTime(response?.data?.lastTime);
-      localStorage.setItem("farming", "true");
       localStorage.setItem("claimFarming", "false");
-      toast.success("You have started farming");
+      const timer = setTimeout(() => {
+        setLoadingStart(false);
+        setAnimationLoading(false);
+        localStorage.setItem("farming", "true");
+        toast.success("You have started farming");
+      }, 1500);
+
       return;
     }
     setLoadingStart(false);
@@ -147,6 +153,10 @@ const TapPage = () => {
           <span className="TapPageDiv_area_1_profileAmountClaimes_Span_txt">
             Pluto Token
           </span>
+          <span className="TapPageDiv_area_1_profileAmountClaimes_Span_txt2">
+            Once your balance reaches 50,000, you must withdraw your funds
+            before you can claim or farm again.
+          </span>
         </div>
       </div>{" "}
       <div className="TapPageDiv_area_2">
@@ -168,7 +178,7 @@ const TapPage = () => {
           />
         ) : (
           <>
-            {loadingStart ? (
+            {animationLoading ? (
               <Lottie
                 animationData={Swam}
                 play={loadingStart}

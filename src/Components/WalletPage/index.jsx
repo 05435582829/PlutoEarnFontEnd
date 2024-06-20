@@ -336,7 +336,7 @@ const WalletPage = () => {
                       size={16}
                       className="redeemModal_cont_body_5_div_icon"
                     />
-                    Minimum withdrawable amount 1,000 pluto
+                    Minimum withdrawable amount 50,000 pluto
                   </div>
                 </div>
               </div>

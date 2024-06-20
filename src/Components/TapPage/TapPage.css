@@ -41,6 +41,18 @@
   color: #878787;
   margin-top: -5px;
 }
+.TapPageDiv_area_1_profileAmountClaimes_Span_txt2 {
+  font-size: 12px;
+  font-weight: 500;
+  color: #6ea18b;
+  border: solid 1px #d4ece2;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 6px;
+  text-align: center;
+  line-height: 1.5;
+  background: #12b66f0f;
+}
 .TapPageDiv_area_2 {
   width: -webkit-fill-available;
   display: flex;
