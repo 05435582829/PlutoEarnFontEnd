@@ -24,7 +24,7 @@ const TapPage = () => {
   const [pointBalance, setPointBalance] = useState(100000);
   const [nextRewardTakeTime, setNextRewardTakeTime] = useState(new Date());
   const [loading, setLoading] = useState(false);
-  const [loadingStart, setLoadingStart] = useState(true);
+  const [loadingStart, setLoadingStart] = useState(false);
 
   const lottieRef = useRef();
 
@@ -167,11 +167,7 @@ const TapPage = () => {
             preserveAspectRatio="xMidYMid meet"
           />
         ) : (
-          <button
-            className="TapPageDiv_area_3_btn"
-            onClick={init_earning}
-            disabled={loadingStart}
-          >
+          <>
             {loadingStart ? (
               <Lottie
                 animationData={Swam}
@@ -190,7 +186,7 @@ const TapPage = () => {
                 preserveAspectRatio="xMidYMid meet"
               />
             )}
-          </button>
+          </>
         )}
       </div>
       {/* ============== */}
