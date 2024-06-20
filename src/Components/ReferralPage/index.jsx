@@ -64,9 +64,7 @@ const ReferralPage = () => {
       <div className="Referral_div_1">
         <div className="Referral_div_1_title">Invite Friends</div>{" "}
         <div className="Referral_div_1_span">
-          Earn 20% for your direct referrals, 10% for their referrals, then 5%,
-          2.5% and 1.25% for your fifth-level referrals. Plus Earn an instant
-          auto refill for each invite.
+          Earn up to 1,000 Pluto tokens for each successful referral.
         </div>{" "}
       </div>
       {referral.length <= 0 ? (
