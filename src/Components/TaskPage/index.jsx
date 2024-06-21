@@ -25,7 +25,14 @@ const TaskPage = () => {
     console.log(response);
     if (task === "metamask") {
       if (response.success === true) {
-        window.open("https://chainlist.org/?search=egochain", "_blank");
+        if (window.Telegram && window.Telegram.WebApp) {
+          window.Telegram.WebApp.openLink(
+            "https://chainlist.org/?search=egochain"
+          );
+        } else {
+          window.open("https://chainlist.org/?search=egochain", "_blank");
+        }
+
         const timer = setTimeout(() => {
           setMetaMaskTask(true);
         }, 5000);
@@ -37,7 +44,12 @@ const TaskPage = () => {
 
     if (task === "egochainX") {
       if (response.success === true) {
-        window.open("https://x.com/egochainHQ", "_blank");
+        if (window.Telegram && window.Telegram.WebApp) {
+          window.Telegram.WebApp.openLink("https://x.com/egochainHQ");
+        } else {
+          window.open("https://x.com/egochainHQ", "_blank");
+        }
+
         const timer = setTimeout(() => {
           setEgochainX(true);
         }, 5000);
@@ -49,7 +61,11 @@ const TaskPage = () => {
 
     if (task === "plutoX") {
       if (response.success === true) {
-        window.open("https://x.com/plutodex", "_blank");
+        if (window.Telegram && window.Telegram.WebApp) {
+          window.Telegram.WebApp.openLink("https://x.com/plutodex");
+        } else {
+          window.open("https://x.com/plutodex", "_blank");
+        }
         const timer = setTimeout(() => {
           setPlutoX(true);
         }, 5000);
@@ -61,7 +77,12 @@ const TaskPage = () => {
 
     if (task === "plutoT") {
       if (response.success === true) {
-        window.open("https://t.me/pluto_ex", "_blank");
+        if (window.Telegram && window.Telegram.WebApp) {
+          window.Telegram.WebApp.openLink("https://t.me/pluto_ex");
+        } else {
+          window.open("https://t.me/pluto_ex", "_blank");
+        }
+
         const timer = setTimeout(() => {
           setPlutoCommunity(true);
         }, 5000);
@@ -73,7 +94,12 @@ const TaskPage = () => {
 
     if (task === "plutoC") {
       if (response.success === true) {
-        window.open("https://t.me/pluto_newz", "_blank");
+        if (window.Telegram && window.Telegram.WebApp) {
+          window.Telegram.WebApp.openLink("https://t.me/pluto_newz");
+        } else {
+          window.open("https://t.me/pluto_newz", "_blank");
+        }
+
         const timer = setTimeout(() => {
           setPlutoChannel(true);
         }, 5000);
@@ -85,7 +111,12 @@ const TaskPage = () => {
 
     if (task === "egochainT") {
       if (response.success === true) {
-        window.open("https://t.me/egochainHQ", "_blank");
+        if (window.Telegram && window.Telegram.WebApp) {
+          window.Telegram.WebApp.openLink("https://t.me/egochainHQ");
+        } else {
+          window.open("https://t.me/egochainHQ", "_blank");
+        }
+
         const timer = setTimeout(() => {
           setEgochainCommunity(true);
         }, 5000);
