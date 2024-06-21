@@ -31,10 +31,14 @@ const ReferralPage = () => {
       navigator.clipboard
         .writeText(textToCopy)
         .then(() => {
-          toast.success("Link copied to clipboard!");
+          toast.success("Link copied to clipboard!", {
+            style: { fontSize: "12px" },
+          });
         })
         .catch((err) => {
-          toast.error("Failed to copy link: ", err);
+          toast.error("Failed to copy link: ", err, {
+            style: { fontSize: "12px" },
+          });
         });
     } else {
       // Fallback method for older browsers
@@ -44,9 +48,13 @@ const ReferralPage = () => {
       textArea.select();
       try {
         document.execCommand("copy");
-        toast.success("Link copied to clipboard!");
+        toast.success("Link copied to clipboard!", {
+          style: { fontSize: "12px" },
+        });
       } catch (err) {
-        toast.error("Failed to copy link: ", err);
+        toast.error("Failed to copy link: ", err, {
+          style: { fontSize: "12px" },
+        });
       }
       document.body.removeChild(textArea);
     }
@@ -96,11 +104,12 @@ const ReferralPage = () => {
                   />{" "}
                   {data.username}
                 </div>
-                <div className="Referral_div_2_refs_body_cont1_amount_div">
-                  {numberWithCommas(parseFloat(data.amount).toFixed(2))}
-                </div>
-                <div className="Referral_div_2_refs_body_cont1_status_div">
-                  {data.status}
+
+                <div
+                  className="Referral_div_2_refs_body_cont1_status_div"
+                  style={{ color: "#000" }}
+                >
+                  +{numberWithCommas(parseFloat(data.amount).toFixed(2))}
                 </div>
               </div>
             ))}

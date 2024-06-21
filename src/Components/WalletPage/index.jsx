@@ -5,6 +5,7 @@ import { Cancel01Icon } from "hugeicons-react";
 import "./WalletPage.css";
 import {
   ViewIcon,
+  ViewOffIcon,
   ArrowRight02Icon,
   ArrowDataTransferVerticalIcon,
   InformationCircleIcon,
@@ -23,6 +24,7 @@ const WalletPage = () => {
   const [wallet, setWallet] = useState("");
   const [loading, setLoading] = useState(false);
   const [disabled, setDisabled] = useState(false);
+  const [hideBalance, setHideBalance] = useState(false);
   const [getTransactionLoding, setGetTransactionLoding] = useState(false);
   const [transaction, setTransaction] = useState([]);
   const [tranPopUp, setTranPopUp] = useState(0);
@@ -31,9 +33,15 @@ const WalletPage = () => {
       window.Telegram.WebApp.HapticFeedback.impactOccurred("medium"); // Adjust feedback type as needed
     }
   };
+
   const ToggleRedeemModal = () => {
     setRedeemModal(!redeemModal);
   };
+  const ToggleBalanceView = () => {
+    setHideBalance(!hideBalance);
+    handleHapticFeedback();
+  };
+
   const withdraw_funds = async () => {
     handleHapticFeedback();
     setLoading(true);
@@ -43,18 +51,27 @@ const WalletPage = () => {
     if (res.success === true) {
       setLoading(false);
       setDisabled(false);
-      toast.success("You have successfully withdrawn your pluto tokens");
-      window.location.reload();
+      toast.success("You withdrawal has been placed", {
+        style: { fontSize: "12px" },
+      });
+      const timer = setTimeout(() => {
+        window.location.reload();
+      }, 1500);
+
       return;
     }
     setLoading(false);
     setDisabled(false);
-    toast.error(res.data.errorMessage);
+    toast.error(res.data.errorMessage, {
+      style: { fontSize: "12px" },
+    });
   };
+
   const onChangeWallet = (e) => {
     setWallet(e.target.value);
     console.log(e.target.value);
   };
+
   useEffect(() => {
     if (userBalance <= 0) {
       setDisabled(true);
@@ -65,11 +82,13 @@ const WalletPage = () => {
       return;
     }
   }, []);
+
   const fetchTransaction = async () => {
     const res = await GetTransactions();
     console.log(res);
     setTransaction(res.data);
   };
+
   useEffect(() => {
     fetchTransaction();
   }, []);
@@ -97,6 +116,7 @@ const WalletPage = () => {
     console.log(currentTarget);
     setTranPopUp(currentTarget);
   };
+
   const closeTranPop = () => {
     setTranPopUp(0);
     console.log("i am not here");
@@ -115,13 +135,26 @@ const WalletPage = () => {
                 className="WalletPageDiv_1_cont_2_div1_icon
                 "
               />
-              {numberWithCommas(parseFloat(userBalance).toFixed(2))}
+              {hideBalance ? (
+                "*****"
+              ) : (
+                <> {numberWithCommas(parseInt(userBalance))}</>
+              )}
             </div>
             <div className="WalletPageDiv_1_cont_2_div2">
-              <ViewIcon
-                size={18}
-                className="WalletPageDiv_1_cont_2_div2_icon"
-              />
+              {hideBalance ? (
+                <ViewOffIcon
+                  size={18}
+                  className="WalletPageDiv_1_cont_2_div2_icon"
+                  onClick={ToggleBalanceView}
+                />
+              ) : (
+                <ViewIcon
+                  size={18}
+                  className="WalletPageDiv_1_cont_2_div2_icon"
+                  onClick={ToggleBalanceView}
+                />
+              )}
             </div>
           </div>
           <div className="WalletPageDiv_1_cont_3">
@@ -152,7 +185,11 @@ const WalletPage = () => {
                 Pluto
               </div>
               <div className="WalletPageDiv_2_body_cont1_amount_div_amount">
-                {numberWithCommas(parseFloat(userBalance).toFixed(2))}
+                {hideBalance ? (
+                  "*****"
+                ) : (
+                  <> {numberWithCommas(parseFloat(userBalance).toFixed(2))}</>
+                )}
               </div>
             </div>
           </div>
@@ -204,7 +241,9 @@ const WalletPage = () => {
                                 : data.to_email}
                             </div>
                             <div className="transactionBody_cont1_area1_time">
-                              {data.status}
+                              {data.status === "ADMIN_APPROVED"
+                                ? "PENDING"
+                                : data.status}
                             </div>
                           </div>
                         </div>
@@ -307,13 +346,22 @@ const WalletPage = () => {
                   ) : (
                     <button
                       className="redeemModal_cont_body_4_btn"
-                      onClick={withdraw_funds}
+                      onClick={() => {
+                        handleHapticFeedback();
+                        withdraw_funds();
+                      }}
                       disabled={disabled}
                     >
                       {loading ? (
                         <div style={{ display: "flex", alignItems: "center" }}>
                           Redeeming...
-                          <span style={{ marginLeft: "10px" }}>
+                          <span
+                            style={{
+                              marginLeft: "10px",
+                              display: "flex",
+                              alignItems: "center",
+                            }}
+                          >
                             <ClipLoader color="#fff" size={20} />
                           </span>
                         </div>

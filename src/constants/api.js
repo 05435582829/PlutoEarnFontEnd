@@ -59,3 +59,11 @@ export const WithdrawReward = async (payload) => {
     return error.response || error.message;
   }
 };
+export const CompleteTask = async (task) => {
+  try {
+    const res = await api.get(`/reward/complete/task/${task}`);
+    return res.data;
+  } catch (error) {
+    return error.response || error.message;
+  }
+};

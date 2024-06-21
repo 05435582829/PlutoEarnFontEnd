@@ -12,6 +12,7 @@ export const UserProvider = ({ children }) => {
   const [userBalance, setUserBalance] = useState(0);
   const [lastTime, setLastTime] = useState();
   const [refCode, setRefCode] = useState("");
+  const [task, setTask] = useState(null);
 
   //   useEffect(() => {
   //     // Fetch user data from API
@@ -50,6 +51,8 @@ export const UserProvider = ({ children }) => {
         setLastTime,
         refCode,
         setRefCode,
+        task,
+        setTask,
       }}
     >
       {children}

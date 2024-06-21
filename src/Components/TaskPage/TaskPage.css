@@ -74,3 +74,10 @@
   justify-content: center;
   /* line-height: 7px; */
 }
+.task_page_div_2_cont1_div2_btn:disabled {
+  padding: 6px 3px;
+  background: #12b66f99;
+  color: #fff;
+  width: 50px;
+  cursor: not-allowed;
+}

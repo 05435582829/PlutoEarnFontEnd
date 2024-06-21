@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   padding: 0em 0em;
-  padding-top: 2em;
+  padding-top: 1em;
   justify-content: space-between;
   animation: opacityAnime 0.3s linear;
 }
@@ -18,7 +18,7 @@
 .TapPageDiv_area_1_profile_name {
   font-size: 18px;
   font-weight: 500;
-  margin-top: 10px;
+  margin-top: 0px;
 }
 .TapPageDiv_area_1_profileAmountClaimes {
   display: flex;
@@ -48,14 +48,14 @@
   border: solid 1px #d4ece2;
   padding: 6px;
   border-radius: 10px;
-  margin-top: 6px;
+  margin-top: 0px;
   text-align: center;
   line-height: 1.5;
   background: #12b66f0f;
   width: 70%;
 }
 .TapPageDiv_area_3 {
-  margin-bottom: 1em;
+  margin-bottom: 5px;
 }
 .TapPageDiv_area_2 {
   width: -webkit-fill-available;

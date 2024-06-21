@@ -35,7 +35,7 @@ const TapPage = () => {
     }
   }, []);
   const AddToPointBalance = () => {
-    const newBalance = parseInt(userBalance) + 1000;
+    const newBalance = parseInt(userBalance) + 3000;
     console.log(userBalance);
     setUserBalance(newBalance);
   };
@@ -59,13 +59,23 @@ const TapPage = () => {
         setLoadingStart(false);
         setAnimationLoading(false);
         localStorage.setItem("farming", "true");
-        toast.success("You have started farming");
+        toast.success("You have started farming", {
+          style: { fontSize: "12px" },
+        });
       }, 1500);
 
       return;
     }
-    setLoadingStart(false);
-    toast.error(response.data.errorMessage);
+
+    const timer2 = setTimeout(() => {
+      setLoadingStart(false);
+      setAnimationLoading(false);
+      localStorage.setItem("farming", "false");
+      localStorage.setItem("claimFarming", "false");
+      toast.error(response.data.errorMessage, {
+        style: { fontSize: "12px" },
+      });
+    }, 1500);
   };
   const claim_earning = async () => {
     handleHapticFeedback();
@@ -76,12 +86,16 @@ const TapPage = () => {
       setLastTime(null);
       localStorage.setItem("claimFarming", "false");
       localStorage.setItem("farming", "false");
-      toast.success("You have successfully claimed 1,000 pluto tokens");
+      toast.success("You have successfully claimed 1,000 pluto tokens", {
+        style: { fontSize: "12px" },
+      });
       AddToPointBalance();
       return;
     }
     setLoading(false);
-    toast.error(response.data.errorMessage);
+    toast.error(response.data.errorMessage, {
+      style: { fontSize: "12px" },
+    });
   };
 
   const local_storage_farming = localStorage.getItem("farming");
@@ -144,14 +158,11 @@ const TapPage = () => {
               className="event_sideBar_div_area_last_div_cont1_title_gif"
             />{" "}
             <AnimatedNumber
-              value={parseFloat(userBalance).toFixed(2)}
+              value={parseInt(userBalance)}
               hasComma={true}
               size={32}
               duration={500}
             />
-          </span>
-          <span className="TapPageDiv_area_1_profileAmountClaimes_Span_txt">
-            Pluto Token
           </span>
           <span className="TapPageDiv_area_1_profileAmountClaimes_Span_txt2">
             Once your balance reaches 50,000, you must withdraw your funds
@@ -235,7 +246,13 @@ const TapPage = () => {
             {loading ? (
               <div style={{ display: "flex", alignItems: "center" }}>
                 Claiming...
-                <span style={{ marginLeft: "10px" }}>
+                <span
+                  style={{
+                    marginLeft: "10px",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
                   <ClipLoader color="#fff" size={20} />
                 </span>
               </div>
@@ -255,7 +272,7 @@ const TapPage = () => {
                     alt=""
                     className="TapPageDiv_area_3_btn_gif"
                   />
-                  1,000
+                  3,000
                 </div>
               </>
             )}
@@ -269,7 +286,13 @@ const TapPage = () => {
             {loadingStart ? (
               <div style={{ display: "flex", alignItems: "center" }}>
                 Starting...
-                <span style={{ marginLeft: "10px" }}>
+                <span
+                  style={{
+                    marginLeft: "10px",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
                   <ClipLoader color="#fff" size={20} />
                 </span>
               </div>

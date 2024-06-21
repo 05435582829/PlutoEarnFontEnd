@@ -17,6 +17,7 @@
   max-width: 500px;
   padding: 0em 1em;
   height: 100%;
+  margin: auto;
 }
 @keyframes opacityAnime {
   0% {

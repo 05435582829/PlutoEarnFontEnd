@@ -1,9 +1,160 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./TaskPage.css";
 import { NewTwitterIcon } from "hugeicons-react";
 import { TelegramIcon, Wallet02Icon } from "hugeicons-react";
+import { CompleteTask } from "../../constants/api";
+import { Tick01Icon } from "hugeicons-react";
+import { UserContext } from "../../Utils/UserContext";
 
 const TaskPage = () => {
+  const { task } = useContext(UserContext);
+  const [metamaskTask, setMetaMaskTask] = useState(false);
+  const [egochainX, setEgochainX] = useState(false);
+  const [egochainCommunity, setEgochainCommunity] = useState(false);
+  const [plutoX, setPlutoX] = useState(false);
+  const [plutoCommunity, setPlutoCommunity] = useState(false);
+  const [plutoChannel, setPlutoChannel] = useState(false);
+
+  const handleHapticFeedback = () => {
+    if (window.Telegram && window.Telegram.WebApp) {
+      window.Telegram.WebApp.HapticFeedback.impactOccurred("medium"); // Adjust feedback type as needed
+    }
+  };
+  const Complete_task_func = async (task) => {
+    const response = await CompleteTask(task);
+    console.log(response);
+    handleHapticFeedback();
+    if (task === "metamask") {
+      if (response.success === true) {
+        window.location.href = "https://chainlist.org/?search=egochain";
+        const timer = setTimeout(() => {
+          setMetaMaskTask(true);
+        }, 5000);
+        return;
+      }
+      setMetaMaskTask(false);
+      return;
+    }
+
+    if (task === "egochainX") {
+      if (response.success === true) {
+        window.location.href = "https://x.com/egochainHQ";
+        const timer = setTimeout(() => {
+          setEgochainX(true);
+        }, 5000);
+        return;
+      }
+      setEgochainX(false);
+      return;
+    }
+    if (task === "plutoX") {
+      if (response.success === true) {
+        window.location.href = "https://x.com/plutodex";
+        const timer = setTimeout(() => {
+          setPlutoX(true);
+        }, 5000);
+        return;
+      }
+      setPlutoX(false);
+      return;
+    }
+    if (task === "plutoT") {
+      if (response.success === true) {
+        window.location.href = "https://t.me/pluto_ex";
+        const timer = setTimeout(() => {
+          setPlutoCommunity(true);
+        }, 5000);
+        return;
+      }
+      setPlutoCommunity(false);
+      return;
+    }
+    if (task === "plutoC") {
+      if (response.success === true) {
+        window.location.href = "https://t.me/pluto_newz";
+        const timer = setTimeout(() => {
+          setPlutoChannel(true);
+        }, 5000);
+        return;
+      }
+      setPlutoChannel(false);
+      return;
+    }
+    if (task === "egochainT") {
+      if (response.success === true) {
+        window.location.href = "https://t.me/egochainHQ";
+        const timer = setTimeout(() => {
+          setEgochainCommunity(true);
+        }, 5000);
+        return;
+      }
+      setEgochainCommunity(false);
+      return;
+    }
+  };
+
+  useEffect(() => {
+    if (task) {
+      if (task.metamask === "COMPLETED") {
+        setMetaMaskTask(true);
+        return;
+      }
+      return;
+    }
+  }, [task]);
+
+  useEffect(() => {
+    if (task) {
+      if (task.egochainX === "COMPLETED") {
+        setEgochainX(true);
+        return;
+      }
+      return;
+    }
+  }, [task]);
+
+  useEffect(() => {
+    if (task) {
+      if (task.plutoX === "COMPLETED") {
+        setPlutoX(true);
+        return;
+      }
+      return;
+    }
+  }, [task]);
+
+  useEffect(() => {
+    if (task) {
+      if (task.plutoT === "COMPLETED") {
+        setPlutoCommunity(true);
+        return;
+      }
+      return;
+    }
+  }, [task]);
+
+  useEffect(() => {
+    if (task) {
+      if (task.plutoC === "COMPLETED") {
+        setPlutoChannel(true);
+        true;
+        return;
+      }
+      return;
+    }
+  }, [task]);
+
+  useEffect(() => {
+    if (task) {
+      if (task.egochainT === "COMPLETED") {
+        setEgochainCommunity(true);
+        true;
+        return;
+      }
+      return;
+    }
+  }, [task]);
+
   return (
     <div className="task_page_div">
       <div className="task_page_div_1">
@@ -27,13 +178,19 @@ const TaskPage = () => {
               </div>
             </div>
           </div>
-          <a
-            href="https://chainlist.org/?search=egochain"
-            target="_blank"
-            className="task_page_div_2_cont1_div2"
-          >
-            <button className="task_page_div_2_cont1_div2_btn">Start</button>
-          </a>
+
+          {metamaskTask ? (
+            <button className="task_page_div_2_cont1_div2_btn" disabled>
+              <Tick01Icon size={20} />
+            </button>
+          ) : (
+            <button
+              className="task_page_div_2_cont1_div2_btn"
+              onClick={() => Complete_task_func("metamask")}
+            >
+              Start
+            </button>
+          )}
         </div>
         <div className="task_page_div_2_cont1">
           <div className="task_page_div_2_cont1_div1">
@@ -49,36 +206,21 @@ const TaskPage = () => {
               </div>
             </div>
           </div>
-          <a
-            href="https://x.com/plutodex"
-            target="_blank"
-            className="task_page_div_2_cont1_div2"
-          >
-            <button className="task_page_div_2_cont1_div2_btn">Start</button>
-          </a>
+
+          {plutoX ? (
+            <button className="task_page_div_2_cont1_div2_btn" disabled>
+              <Tick01Icon size={20} />
+            </button>
+          ) : (
+            <button
+              className="task_page_div_2_cont1_div2_btn"
+              onClick={() => Complete_task_func("plutoX")}
+            >
+              Start
+            </button>
+          )}
         </div>
-        {/* <div className="task_page_div_2_cont1">
-          <div className="task_page_div_2_cont1_div1">
-            <div className="task_page_div_2_cont1_div1_icon">
-              <NewTwitterIcon size={20} />
-            </div>
-            <div className="task_page_div_2_cont1_div1_txt_div">
-              <div className="task_page_div_2_cont1_div1_txt_div_title">
-                Follow Egoras on X
-              </div>
-              <div className="task_page_div_2_cont1_div1_txt_div_amount">
-                +500
-              </div>
-            </div>
-          </div>
-          <a
-            href="https://x.com/Egoras_auto"
-            target="_blank"
-            className="task_page_div_2_cont1_div2"
-          >
-            <button className="task_page_div_2_cont1_div2_btn">Start</button>
-          </a>
-        </div> */}
+
         <div className="task_page_div_2_cont1">
           <div className="task_page_div_2_cont1_div1">
             <div className="task_page_div_2_cont1_div1_icon">
@@ -93,13 +235,19 @@ const TaskPage = () => {
               </div>
             </div>
           </div>
-          <a
-            href="https://x.com/egochainHQ"
-            target="_blank"
-            className="task_page_div_2_cont1_div2"
-          >
-            <button className="task_page_div_2_cont1_div2_btn">Start</button>
-          </a>
+
+          {egochainX ? (
+            <button className="task_page_div_2_cont1_div2_btn" disabled>
+              <Tick01Icon size={20} />
+            </button>
+          ) : (
+            <button
+              className="task_page_div_2_cont1_div2_btn"
+              onClick={() => Complete_task_func("egochainX")}
+            >
+              Start
+            </button>
+          )}
         </div>
         <div className="task_page_div_2_cont1">
           <div className="task_page_div_2_cont1_div1">
@@ -115,13 +263,19 @@ const TaskPage = () => {
               </div>
             </div>
           </div>
-          <a
-            href="https://t.me/pluto_ex"
-            target="_blank"
-            className="task_page_div_2_cont1_div2"
-          >
-            <button className="task_page_div_2_cont1_div2_btn">Start</button>
-          </a>
+
+          {plutoCommunity ? (
+            <button className="task_page_div_2_cont1_div2_btn" disabled>
+              <Tick01Icon size={20} />
+            </button>
+          ) : (
+            <button
+              className="task_page_div_2_cont1_div2_btn"
+              onClick={() => Complete_task_func("plutoT")}
+            >
+              Start
+            </button>
+          )}
         </div>
         <div className="task_page_div_2_cont1">
           <div className="task_page_div_2_cont1_div1">
@@ -137,13 +291,19 @@ const TaskPage = () => {
               </div>
             </div>
           </div>
-          <a
-            href="https://t.me/pluto_newz"
-            target="_blank"
-            className="task_page_div_2_cont1_div2"
-          >
-            <button className="task_page_div_2_cont1_div2_btn">Start</button>
-          </a>
+
+          {plutoChannel ? (
+            <button className="task_page_div_2_cont1_div2_btn" disabled>
+              <Tick01Icon size={20} />
+            </button>
+          ) : (
+            <button
+              className="task_page_div_2_cont1_div2_btn"
+              onClick={() => Complete_task_func("plutoC")}
+            >
+              Start
+            </button>
+          )}
         </div>
         {/* <div className="task_page_div_2_cont1">
           <div className="task_page_div_2_cont1_div1">
@@ -181,13 +341,19 @@ const TaskPage = () => {
               </div>
             </div>
           </div>
-          <a
-            href="https://t.me/egochainHQ"
-            target="_blank"
-            className="task_page_div_2_cont1_div2"
-          >
-            <button className="task_page_div_2_cont1_div2_btn">Start</button>
-          </a>
+
+          {egochainCommunity ? (
+            <button className="task_page_div_2_cont1_div2_btn" disabled>
+              <Tick01Icon size={20} />
+            </button>
+          ) : (
+            <button
+              className="task_page_div_2_cont1_div2_btn"
+              onClick={() => Complete_task_func("egochainT")}
+            >
+              Start
+            </button>
+          )}
         </div>
       </div>
     </div>

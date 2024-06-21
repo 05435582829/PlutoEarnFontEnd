@@ -5,6 +5,7 @@ import React, { useState, useEffect, useContext } from "react";
 import NavigationBar from "./NavigationBar/NavigationBar";
 import DefaultComponentLoading from "./ComponentLoader/DefaultComponentLoading";
 import { UserContext } from "../Utils/UserContext";
+// import toast, { Toaster } from "react-hot-toast";
 
 // pages=========
 // pages=========
@@ -19,6 +20,7 @@ import TaskPage from "../Components/TaskPage";
 // styles=========
 import "./Home.css";
 import { SignupLogin, GetEarningBal } from "../constants/api";
+import toast, { Toaster } from "react-hot-toast";
 const Home = () => {
   const {
     setUser,
@@ -34,6 +36,8 @@ const Home = () => {
     setLastTime,
     refCode,
     setRefCode,
+    task,
+    setTask,
   } = useContext(UserContext);
 
   const [activeTab, setActiveTab] = useState("home");
@@ -60,9 +64,11 @@ const Home = () => {
         //call the login api
         const res = await SignupLogin(data.user.username, data.user.id);
         console.log(res, "aaa");
+        console.log(res?.data?.findTask, "aaa");
 
         if (res.success) {
           setUser(res?.data?.user);
+          setTask(res?.data?.findTask);
           console.log(res?.data?.claimTime);
           console.log(res?.data.user.swapRef);
           console.log(res?.data);
@@ -72,8 +78,10 @@ const Home = () => {
           setLoadingDiv(false);
           return;
         }
+        toast.error(res.data.errorMessage);
       } catch (error) {
         console.error("Error initializing Telegram Web App:", error);
+        toast.error(error);
       }
     } else {
       console.log("area");
@@ -144,6 +152,7 @@ const Home = () => {
           {/* <img src="/img/pluto_bg.jpg" alt="" className="Home_bg" /> */}
         </div>
       )}
+      <Toaster />
     </>
   );
 };

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://plutoearn.egoras.com";
+const baseURL = "https://pineapple.egodeo.org";
 
 const api = axios.create({
   baseURL,
