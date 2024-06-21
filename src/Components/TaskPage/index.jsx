@@ -23,10 +23,9 @@ const TaskPage = () => {
   const Complete_task_func = async (task) => {
     const response = await CompleteTask(task);
     console.log(response);
-    handleHapticFeedback();
     if (task === "metamask") {
       if (response.success === true) {
-        window.location.href = "https://chainlist.org/?search=egochain";
+        window.open("https://chainlist.org/?search=egochain", "_blank");
         const timer = setTimeout(() => {
           setMetaMaskTask(true);
         }, 5000);
@@ -38,7 +37,7 @@ const TaskPage = () => {
 
     if (task === "egochainX") {
       if (response.success === true) {
-        window.location.href = "https://x.com/egochainHQ";
+        window.open("https://x.com/egochainHQ", "_blank");
         const timer = setTimeout(() => {
           setEgochainX(true);
         }, 5000);
@@ -47,9 +46,10 @@ const TaskPage = () => {
       setEgochainX(false);
       return;
     }
+
     if (task === "plutoX") {
       if (response.success === true) {
-        window.location.href = "https://x.com/plutodex";
+        window.open("https://x.com/plutodex", "_blank");
         const timer = setTimeout(() => {
           setPlutoX(true);
         }, 5000);
@@ -58,9 +58,10 @@ const TaskPage = () => {
       setPlutoX(false);
       return;
     }
+
     if (task === "plutoT") {
       if (response.success === true) {
-        window.location.href = "https://t.me/pluto_ex";
+        window.open("https://t.me/pluto_ex", "_blank");
         const timer = setTimeout(() => {
           setPlutoCommunity(true);
         }, 5000);
@@ -69,9 +70,10 @@ const TaskPage = () => {
       setPlutoCommunity(false);
       return;
     }
+
     if (task === "plutoC") {
       if (response.success === true) {
-        window.location.href = "https://t.me/pluto_newz";
+        window.open("https://t.me/pluto_newz", "_blank");
         const timer = setTimeout(() => {
           setPlutoChannel(true);
         }, 5000);
@@ -80,9 +82,10 @@ const TaskPage = () => {
       setPlutoChannel(false);
       return;
     }
+
     if (task === "egochainT") {
       if (response.success === true) {
-        window.location.href = "https://t.me/egochainHQ";
+        window.open("https://t.me/egochainHQ", "_blank");
         const timer = setTimeout(() => {
           setEgochainCommunity(true);
         }, 5000);
@@ -186,7 +189,10 @@ const TaskPage = () => {
           ) : (
             <button
               className="task_page_div_2_cont1_div2_btn"
-              onClick={() => Complete_task_func("metamask")}
+              onClick={() => {
+                handleHapticFeedback();
+                Complete_task_func("metamask");
+              }}
             >
               Start
             </button>
@@ -214,7 +220,10 @@ const TaskPage = () => {
           ) : (
             <button
               className="task_page_div_2_cont1_div2_btn"
-              onClick={() => Complete_task_func("plutoX")}
+              onClick={() => {
+                handleHapticFeedback();
+                Complete_task_func("plutoX");
+              }}
             >
               Start
             </button>
@@ -243,7 +252,10 @@ const TaskPage = () => {
           ) : (
             <button
               className="task_page_div_2_cont1_div2_btn"
-              onClick={() => Complete_task_func("egochainX")}
+              onClick={() => {
+                handleHapticFeedback();
+                Complete_task_func("egochainX");
+              }}
             >
               Start
             </button>
@@ -271,7 +283,10 @@ const TaskPage = () => {
           ) : (
             <button
               className="task_page_div_2_cont1_div2_btn"
-              onClick={() => Complete_task_func("plutoT")}
+              onClick={() => {
+                handleHapticFeedback();
+                Complete_task_func("plutoT");
+              }}
             >
               Start
             </button>
@@ -299,7 +314,10 @@ const TaskPage = () => {
           ) : (
             <button
               className="task_page_div_2_cont1_div2_btn"
-              onClick={() => Complete_task_func("plutoC")}
+              onClick={() => {
+                handleHapticFeedback();
+                Complete_task_func("plutoC");
+              }}
             >
               Start
             </button>
@@ -349,7 +367,10 @@ const TaskPage = () => {
           ) : (
             <button
               className="task_page_div_2_cont1_div2_btn"
-              onClick={() => Complete_task_func("egochainT")}
+              onClick={() => {
+                handleHapticFeedback();
+                Complete_task_func("egochainT");
+              }}
             >
               Start
             </button>
