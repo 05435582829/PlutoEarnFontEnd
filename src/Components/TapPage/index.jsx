@@ -45,7 +45,7 @@ const TapPage = () => {
       window.Telegram.WebApp.HapticFeedback.impactOccurred("medium"); // Adjust feedback type as needed
     }
   };
-  // localStorage.setItem("startFarming", "true");
+
   const init_earning = async () => {
     handleHapticFeedback();
     setLoadingStart(true);
@@ -62,7 +62,7 @@ const TapPage = () => {
         toast.success("You have started farming", {
           style: { fontSize: "12px" },
         });
-      }, 2000);
+      }, 2800);
 
       return;
     }

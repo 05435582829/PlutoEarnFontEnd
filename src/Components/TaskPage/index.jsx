@@ -78,7 +78,7 @@ const TaskPage = () => {
     if (task === "plutoT") {
       if (response.success === true) {
         if (window.Telegram && window.Telegram.WebApp) {
-          window.Telegram.WebApp.openLink("https://t.me/pluto_ex");
+          window.Telegram.WebApp.openTelegramLink("https://t.me/pluto_ex");
         } else {
           window.open("https://t.me/pluto_ex", "_blank");
         }
@@ -95,7 +95,7 @@ const TaskPage = () => {
     if (task === "plutoC") {
       if (response.success === true) {
         if (window.Telegram && window.Telegram.WebApp) {
-          window.Telegram.WebApp.openLink("https://t.me/pluto_newz");
+          window.Telegram.WebApp.openTelegramLink("https://t.me/pluto_newz");
         } else {
           window.open("https://t.me/pluto_newz", "_blank");
         }
@@ -112,7 +112,7 @@ const TaskPage = () => {
     if (task === "egochainT") {
       if (response.success === true) {
         if (window.Telegram && window.Telegram.WebApp) {
-          window.Telegram.WebApp.openLink("https://t.me/egochainHQ");
+          window.Telegram.WebApp.openTelegramLink("https://t.me/egochainHQ");
         } else {
           window.open("https://t.me/egochainHQ", "_blank");
         }

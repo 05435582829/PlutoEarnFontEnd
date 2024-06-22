@@ -1,18 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import { UserProvider } from "./Utils/UserContext.jsx";
-//hello
 
-//make telegram webapp view show site fullscreen
+const isRunningInTelegram = () => {
+  return (
+    window.Telegram &&
+    window.Telegram.WebApp &&
+    window.Telegram.WebApp.initDataUnsafe
+  );
+};
+
 window.Telegram.WebApp.expand();
-// window.Telegram.WebApp.BackButton.setCallback(async () => {
-//   console.log("hell");
-// });
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <UserProvider>
-    <App />
-  </UserProvider>
+const NotInTelegramMessage = () => (
+  <div style={{ textAlign: "center", marginTop: "20%" }}>
+    <h1>This app can only be used within Telegram.</h1>
+  </div>
 );
+
+const Root = () => {
+  const [isInTelegram, setIsInTelegram] = useState(null);
+
+  useEffect(() => {
+    if (isRunningInTelegram()) {
+      window.Telegram.WebApp.expand();
+      setIsInTelegram(true);
+    } else {
+      setIsInTelegram(false);
+    }
+  }, []);
+
+  if (isInTelegram === null) {
+    return null; // Optionally, render a loading state while checking
+  }
+
+  return (
+    <UserProvider>
+      {isInTelegram ? <App /> : <NotInTelegramMessage />}
+    </UserProvider>
+  );
+};
+
+ReactDOM.createRoot(document.getElementById("root")).render(<Root />);
