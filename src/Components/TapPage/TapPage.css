@@ -149,6 +149,14 @@
 .TapPageDiv_animation1 svg g g g:nth-child(18) {
   display: none !important;
 }
+
+.TapPageDiv_animation1 svg g g g:nth-child(6) g path:first-child {
+  fill: #fff;
+}
+.TapPageDiv_animation1 svg g g g:nth-child(7) g path:first-child {
+  fill: #fff;
+}
+
 .TapPageDiv_animation2 svg g g g:nth-child(17) {
   display: none !important;
 }
@@ -161,6 +169,12 @@
 .TapPageDiv_animation2 svg g g g:nth-child(19) {
   display: none !important;
 }
+.TapPageDiv_animation2 svg g g g:nth-child(7) g path:first-child {
+  fill: #fff;
+}
+.TapPageDiv_animation2 svg g g g:nth-child(8) g path:first-child {
+  fill: #fff;
+}
 .TapPageDiv_animation3 svg g g g:nth-child(20) {
   display: none !important;
 }
@@ -172,6 +186,12 @@
 }
 .TapPageDiv_animation3 svg g g g:nth-child(23) {
   display: none !important;
+}
+.TapPageDiv_animation3 svg g g g:nth-child(7) g path:first-child {
+  fill: #fff;
+}
+.TapPageDiv_animation3 svg g g g:nth-child(8) g path:first-child {
+  fill: #fff;
 }
 
 /* ============== */

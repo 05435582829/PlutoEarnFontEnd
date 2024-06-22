@@ -5,25 +5,38 @@ import { TelegramIcon, Wallet02Icon } from "hugeicons-react";
 import { CompleteTask } from "../../constants/api";
 import { Tick01Icon } from "hugeicons-react";
 import { UserContext } from "../../Utils/UserContext";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const TaskPage = () => {
-  const { task } = useContext(UserContext);
+  const { task, setTask } = useContext(UserContext);
   const [metamaskTask, setMetaMaskTask] = useState(false);
+  const [metamaskTaskLoader, setMetaMaskTaskLoader] = useState(false);
   const [egochainX, setEgochainX] = useState(false);
+  const [egochainXLoader, setEgochainXLoader] = useState(false);
   const [egochainCommunity, setEgochainCommunity] = useState(false);
+  const [egochainCommunityLoader, setEgochainCommunityLoader] = useState(false);
   const [plutoX, setPlutoX] = useState(false);
+  const [plutoXLoader, setPlutoXLoader] = useState(false);
   const [plutoCommunity, setPlutoCommunity] = useState(false);
+  const [plutoCommunityLoader, setPlutoCommunityLoader] = useState(false);
   const [plutoChannel, setPlutoChannel] = useState(false);
+  const [plutoChannelLoader, setPlutoChannelLoader] = useState(false);
 
   const handleHapticFeedback = () => {
     if (window.Telegram && window.Telegram.WebApp) {
       window.Telegram.WebApp.HapticFeedback.impactOccurred("medium"); // Adjust feedback type as needed
     }
   };
+
+  console.log("====================================");
+  console.log(task);
+  console.log("====================================");
+
   const Complete_task_func = async (task) => {
     const response = await CompleteTask(task);
     console.log(response);
     if (task === "metamask") {
+      setMetaMaskTaskLoader(true);
       if (response.success === true) {
         if (window.Telegram && window.Telegram.WebApp) {
           window.Telegram.WebApp.openLink(
@@ -35,14 +48,21 @@ const TaskPage = () => {
 
         const timer = setTimeout(() => {
           setMetaMaskTask(true);
+          setMetaMaskTaskLoader(false);
+          setTask({
+            ...task,
+            metamask: "COMPLETED",
+          });
         }, 5000);
         return;
       }
+      setMetaMaskTaskLoader(false);
       setMetaMaskTask(false);
       return;
     }
 
     if (task === "egochainX") {
+      setEgochainXLoader(true);
       if (response.success === true) {
         if (window.Telegram && window.Telegram.WebApp) {
           window.Telegram.WebApp.openLink("https://x.com/egochainHQ");
@@ -52,14 +72,21 @@ const TaskPage = () => {
 
         const timer = setTimeout(() => {
           setEgochainX(true);
+          setEgochainXLoader(false);
+          setTask({
+            ...task,
+            egochainX: "COMPLETED",
+          });
         }, 5000);
         return;
       }
       setEgochainX(false);
+      setEgochainXLoader(false);
       return;
     }
 
     if (task === "plutoX") {
+      setPlutoXLoader(true);
       if (response.success === true) {
         if (window.Telegram && window.Telegram.WebApp) {
           window.Telegram.WebApp.openLink("https://x.com/plutodex");
@@ -68,14 +95,21 @@ const TaskPage = () => {
         }
         const timer = setTimeout(() => {
           setPlutoX(true);
+          setPlutoXLoader(false);
+          setTask({
+            ...task,
+            plutoX: "COMPLETED",
+          });
         }, 5000);
         return;
       }
+      setPlutoXLoader(false);
       setPlutoX(false);
       return;
     }
 
     if (task === "plutoT") {
+      setPlutoCommunityLoader(true);
       if (response.success === true) {
         if (window.Telegram && window.Telegram.WebApp) {
           window.Telegram.WebApp.openTelegramLink("https://t.me/pluto_ex");
@@ -85,14 +119,22 @@ const TaskPage = () => {
 
         const timer = setTimeout(() => {
           setPlutoCommunity(true);
+          setPlutoCommunityLoader(false);
+          setTask({
+            ...task,
+            plutoT: "COMPLETED",
+          });
         }, 5000);
         return;
       }
       setPlutoCommunity(false);
+      setPlutoCommunityLoader(false);
+
       return;
     }
 
     if (task === "plutoC") {
+      setPlutoChannelLoader(true);
       if (response.success === true) {
         if (window.Telegram && window.Telegram.WebApp) {
           window.Telegram.WebApp.openTelegramLink("https://t.me/pluto_newz");
@@ -102,14 +144,21 @@ const TaskPage = () => {
 
         const timer = setTimeout(() => {
           setPlutoChannel(true);
+          setPlutoChannelLoader(false);
+          setTask({
+            ...task,
+            plutoC: "COMPLETED",
+          });
         }, 5000);
         return;
       }
+      setPlutoChannelLoader(false);
       setPlutoChannel(false);
       return;
     }
 
     if (task === "egochainT") {
+      setEgochainCommunityLoader(true);
       if (response.success === true) {
         if (window.Telegram && window.Telegram.WebApp) {
           window.Telegram.WebApp.openTelegramLink("https://t.me/egochainHQ");
@@ -119,10 +168,16 @@ const TaskPage = () => {
 
         const timer = setTimeout(() => {
           setEgochainCommunity(true);
+          setEgochainCommunityLoader(false);
+          setTask({
+            ...task,
+            egochainT: "COMPLETED",
+          });
         }, 5000);
         return;
       }
       setEgochainCommunity(false);
+      setEgochainCommunityLoader(false);
       return;
     }
   };
@@ -224,8 +279,13 @@ const TaskPage = () => {
                 handleHapticFeedback();
                 Complete_task_func("metamask");
               }}
+              disabled={metamaskTaskLoader}
             >
-              Start
+              {metamaskTaskLoader ? (
+                <ClipLoader color="#fff" size={15} />
+              ) : (
+                "Start"
+              )}
             </button>
           )}
         </div>
@@ -255,8 +315,9 @@ const TaskPage = () => {
                 handleHapticFeedback();
                 Complete_task_func("plutoX");
               }}
+              disabled={plutoXLoader}
             >
-              Start
+              {plutoXLoader ? <ClipLoader color="#fff" size={15} /> : "Start"}
             </button>
           )}
         </div>
@@ -287,8 +348,13 @@ const TaskPage = () => {
                 handleHapticFeedback();
                 Complete_task_func("egochainX");
               }}
+              disabled={egochainXLoader}
             >
-              Start
+              {egochainXLoader ? (
+                <ClipLoader color="#fff" size={15} />
+              ) : (
+                "Start"
+              )}
             </button>
           )}
         </div>
@@ -318,8 +384,13 @@ const TaskPage = () => {
                 handleHapticFeedback();
                 Complete_task_func("plutoT");
               }}
+              disabled={plutoCommunityLoader}
             >
-              Start
+              {plutoCommunityLoader ? (
+                <ClipLoader color="#fff" size={15} />
+              ) : (
+                "Start"
+              )}
             </button>
           )}
         </div>
@@ -349,8 +420,13 @@ const TaskPage = () => {
                 handleHapticFeedback();
                 Complete_task_func("plutoC");
               }}
+              disabled={plutoChannelLoader}
             >
-              Start
+              {plutoChannelLoader ? (
+                <ClipLoader color="#fff" size={15} />
+              ) : (
+                "Start"
+              )}
             </button>
           )}
         </div>
@@ -402,8 +478,13 @@ const TaskPage = () => {
                 handleHapticFeedback();
                 Complete_task_func("egochainT");
               }}
+              disabled={egochainCommunityLoader}
             >
-              Start
+              {egochainCommunityLoader ? (
+                <ClipLoader color="#fff" size={15} />
+              ) : (
+                "Start"
+              )}
             </button>
           )}
         </div>
