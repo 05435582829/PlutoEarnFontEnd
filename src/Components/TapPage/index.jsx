@@ -49,12 +49,12 @@ const TapPage = () => {
   const init_earning = async () => {
     handleHapticFeedback();
     setLoadingStart(true);
-    setAnimationLoading(true);
     const response = await InitializeEarning();
     console.log(response, "jack");
     if (response.success === true) {
       setLastTime(response?.data?.lastTime);
       localStorage.setItem("claimFarming", "false");
+      setAnimationLoading(true);
       const timer = setTimeout(() => {
         setLoadingStart(false);
         setAnimationLoading(false);
@@ -62,7 +62,7 @@ const TapPage = () => {
         toast.success("You have started farming", {
           style: { fontSize: "12px" },
         });
-      }, 1500);
+      }, 2000);
 
       return;
     }
