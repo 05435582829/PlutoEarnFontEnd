@@ -35,7 +35,7 @@ const TapPage = () => {
     }
   }, []);
   const AddToPointBalance = () => {
-    const newBalance = parseInt(userBalance) + 3000;
+    const newBalance = parseInt(userBalance) + 2000;
     console.log(userBalance);
     setUserBalance(newBalance);
   };
@@ -86,7 +86,7 @@ const TapPage = () => {
       setLastTime(null);
       localStorage.setItem("claimFarming", "false");
       localStorage.setItem("farming", "false");
-      toast.success("You have successfully claimed 1,000 pluto tokens", {
+      toast.success("You have successfully claimed 2,000 pluto tokens", {
         style: { fontSize: "12px" },
       });
       AddToPointBalance();
