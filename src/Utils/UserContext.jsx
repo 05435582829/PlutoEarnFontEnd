@@ -13,6 +13,8 @@ export const UserProvider = ({ children }) => {
   const [lastTime, setLastTime] = useState();
   const [refCode, setRefCode] = useState("");
   const [task, setTask] = useState(null);
+  const [claimFarming, setClaimFarming] = useState(false);
+  const [farming, setFarming] = useState(false);
 
   //   useEffect(() => {
   //     // Fetch user data from API
@@ -53,6 +55,10 @@ export const UserProvider = ({ children }) => {
         setRefCode,
         task,
         setTask,
+        claimFarming,
+        farming,
+        setClaimFarming,
+        setFarming,
       }}
     >
       {children}

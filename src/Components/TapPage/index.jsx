@@ -19,23 +19,23 @@ import Swam from "./swamAnimation.js";
 import Running from "./runningGlass.js";
 
 const TapPage = () => {
-  const { pre_data, userBalance, setUserBalance, setLastTime, lastTime } =
-    useContext(UserContext);
+  const {
+    pre_data,
+    userBalance,
+    setUserBalance,
+    setLastTime,
+    lastTime,
+    claimFarming,
+    farming,
+    setClaimFarming,
+    setFarming,
+  } = useContext(UserContext);
   const [pointBalance, setPointBalance] = useState(100000);
   const [nextRewardTakeTime, setNextRewardTakeTime] = useState(new Date());
   const [loading, setLoading] = useState(false);
   const [loadingStart, setLoadingStart] = useState(false);
   const [animationLoading, setAnimationLoading] = useState(false);
-  const [currentTime, setCurrentTime] = useState(new Date());
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000); // Update every second or any desired interval
-
-    return () => clearInterval(interval); // Cleanup interval on unmount
-  }, []);
-
+  const hasConditionMet = useRef(false);
   const lottieRef = useRef();
 
   useEffect(() => {
@@ -60,14 +60,13 @@ const TapPage = () => {
     setLoadingStart(true);
     const response = await InitializeEarning();
     console.log(response, "jack");
+    setAnimationLoading(true);
     if (response.success === true) {
-      setLastTime(response?.data?.lastTime);
-      localStorage.setItem("claimFarming", "false");
-      setAnimationLoading(true);
       const timer = setTimeout(() => {
+        setLastTime(response?.data?.lastTime);
         setLoadingStart(false);
         setAnimationLoading(false);
-        localStorage.setItem("farming", "true");
+        setFarming(true);
         toast.success("You have started farming", {
           style: { fontSize: "12px" },
         });
@@ -79,12 +78,11 @@ const TapPage = () => {
     const timer2 = setTimeout(() => {
       setLoadingStart(false);
       setAnimationLoading(false);
-      localStorage.setItem("farming", "false");
-      localStorage.setItem("claimFarming", "false");
+      setFarming(false);
       toast.error(response.data.errorMessage, {
         style: { fontSize: "12px" },
       });
-    }, 1500);
+    }, 2800);
   };
   const claim_earning = async () => {
     handleHapticFeedback();
@@ -93,8 +91,8 @@ const TapPage = () => {
     if (response.success === true) {
       setLoading(false);
       setLastTime(null);
-      localStorage.setItem("claimFarming", "false");
-      localStorage.setItem("farming", "false");
+      setFarming(false);
+      setClaimFarming(false);
       toast.success("You have successfully claimed 2,000 pluto tokens", {
         style: { fontSize: "12px" },
       });
@@ -107,29 +105,65 @@ const TapPage = () => {
     });
   };
 
-  const local_storage_farming = localStorage.getItem("farming");
-  const local_storage_claim_farm = localStorage.getItem("claimFarming");
+  // const local_storage_farming = localStorage.getItem("farming");
+  // const local_storage_claim_farm = localStorage.getItem("claimFarming");
+
+  // useEffect(() => {
+  //   console.log(lastTime);
+  //   if (lastTime !== null) {
+  //     console.log("i'm not null");
+  //     if (new Date(lastTime) <= new Date()) {
+  //       localStorage.setItem("claimFarming", "true");
+  //       localStorage.setItem("farming", "false");
+  //       return;
+  //     }
+  //     if (new Date(lastTime) > new Date()) {
+  //       localStorage.setItem("claimFarming", "false");
+  //       localStorage.setItem("farming", "true");
+  //       return;
+  //     }
+  //     return;
+  //   }
+  //   if (lastTime === null) {
+  //     console.log("i'm  null");
+
+  //     localStorage.setItem("claimFarming", "false");
+  //     localStorage.setItem("farming", "false");
+  //     return;
+  //   }
+  // }, [lastTime, new Date()]);
+
+  // console.log(local_storage_claim_farm);
+  // console.log(new Date(lastTime), new Date(), new Date(null), lastTime);
 
   useEffect(() => {
     if (lastTime !== null) {
-      if (new Date(lastTime) <= currentTime) {
-        localStorage.setItem("claimFarming", "true");
-        localStorage.setItem("farming", "false");
-        return;
-      }
-      if (new Date(lastTime) > currentTime) {
-        localStorage.setItem("claimFarming", "false");
-        localStorage.setItem("farming", "true");
-        return;
-      }
-      return;
+      const checkCondition = () => {
+        const currentTime = new Date();
+        const targetTime = new Date(lastTime);
+        if (targetTime <= currentTime && !hasConditionMet.current) {
+          setClaimFarming(true);
+          setFarming(false);
+          hasConditionMet.current = true;
+        } else if (targetTime > currentTime) {
+          setClaimFarming(false);
+          setFarming(true);
+        }
+      };
+
+      // Initial check
+      checkCondition();
+
+      // Set an interval to check periodically
+      const intervalId = setInterval(checkCondition, 1000); // Check every second
+
+      // Cleanup the interval on unmount
+      return () => clearInterval(intervalId);
+    } else {
+      setClaimFarming(false);
+      setFarming(false);
     }
-    if (lastTime === null) {
-      localStorage.setItem("claimFarming", "false");
-      localStorage.setItem("farming", "false");
-      return;
-    }
-  }, [lastTime, currentTime]);
+  }, [lastTime]);
 
   return (
     <div className="TapPageDiv_div">
@@ -173,7 +207,7 @@ const TapPage = () => {
         </div>
       </div>{" "}
       <div className="TapPageDiv_area_2">
-        {local_storage_farming === "true" ? (
+        {farming === true ? (
           <Lottie
             animationData={Running}
             loop={true}
@@ -181,7 +215,7 @@ const TapPage = () => {
             className=" TapPageDiv_animation TapPageDiv_animation3"
             preserveAspectRatio="xMidYMid meet"
           />
-        ) : local_storage_claim_farm === "true" ? (
+        ) : claimFarming === true ? (
           <Lottie
             animationData={Check}
             loop={false}
@@ -194,7 +228,6 @@ const TapPage = () => {
             {animationLoading ? (
               <Lottie
                 animationData={Swam}
-                play={loadingStart}
                 loop={false}
                 autoPlay={true}
                 className="TapPageDiv_animation TapPageDiv_animation2"
@@ -227,7 +260,7 @@ const TapPage = () => {
       {/* ============== */}
       {/* ============== */}
       <div className="TapPageDiv_area_3">
-        {local_storage_farming === "true" ? (
+        {farming === true ? (
           <button className="TapPageDiv_area_3_btn2">
             <span className="TapPageDiv_area_3_btn2_span">
               Farming
@@ -239,7 +272,7 @@ const TapPage = () => {
             </span>
             <Timer deadline={lastTime} />
           </button>
-        ) : local_storage_claim_farm === "true" ? (
+        ) : claimFarming === true ? (
           <button
             className="TapPageDiv_area_3_btn"
             onClick={claim_earning}
