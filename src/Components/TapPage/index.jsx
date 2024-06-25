@@ -26,6 +26,15 @@ const TapPage = () => {
   const [loading, setLoading] = useState(false);
   const [loadingStart, setLoadingStart] = useState(false);
   const [animationLoading, setAnimationLoading] = useState(false);
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000); // Update every second or any desired interval
+
+    return () => clearInterval(interval); // Cleanup interval on unmount
+  }, []);
 
   const lottieRef = useRef();
 
@@ -102,15 +111,13 @@ const TapPage = () => {
   const local_storage_claim_farm = localStorage.getItem("claimFarming");
 
   useEffect(() => {
-    console.log(lastTime);
     if (lastTime !== null) {
-      console.log("i'm not null");
-      if (new Date(lastTime) <= new Date()) {
+      if (new Date(lastTime) <= currentTime) {
         localStorage.setItem("claimFarming", "true");
         localStorage.setItem("farming", "false");
         return;
       }
-      if (new Date(lastTime) > new Date()) {
+      if (new Date(lastTime) > currentTime) {
         localStorage.setItem("claimFarming", "false");
         localStorage.setItem("farming", "true");
         return;
@@ -118,16 +125,11 @@ const TapPage = () => {
       return;
     }
     if (lastTime === null) {
-      console.log("i'm  null");
-
       localStorage.setItem("claimFarming", "false");
       localStorage.setItem("farming", "false");
       return;
     }
-  }, [lastTime, new Date(), lastTime]);
-
-  console.log(local_storage_claim_farm);
-  console.log(new Date(lastTime), new Date(), new Date(null), lastTime);
+  }, [lastTime, currentTime]);
 
   return (
     <div className="TapPageDiv_div">
@@ -272,7 +274,7 @@ const TapPage = () => {
                     alt=""
                     className="TapPageDiv_area_3_btn_gif"
                   />
-                  3,000
+                  2,000
                 </div>
               </>
             )}
